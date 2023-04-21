@@ -1,11 +1,3 @@
-<?php
-if ($this->session->userdata('type_user') == 'user_karyawan') {
-    redirect(site_url('Login'));
-} else if ($this->session->userdata('type_user') == null) {
-    redirect(site_url('Login'));
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,11 +9,11 @@ if ($this->session->userdata('type_user') == 'user_karyawan') {
     <title><?= $titlePage ?></title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="<?= base_url() ?>assets//plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets//plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets//css/docs.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets//css/highlighter.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets//css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/docs.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/highlighter.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/adminlte.min.css">
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <main class="main" id="app">
