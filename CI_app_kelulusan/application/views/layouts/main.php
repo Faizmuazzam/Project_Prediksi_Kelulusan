@@ -8,12 +8,19 @@
     <link rel="shortcut icon" href="<?= base_url() ?>asset/image/favicon/favicon.png" type="image/x-icon">
     <title><?= $titlePage ?></title>
 
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/docs.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/highlighter.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/adminlte.min.css">
+
+
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <main class="main" id="app">

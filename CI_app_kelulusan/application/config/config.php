@@ -321,7 +321,7 @@ $config['cache_query_string'] = FALSE;
 |--------------------------------------------------------------------------
 | Encryption Key
 |--------------------------------------------------------------------------
-|
+|              
 | If you use the Encryption class, you must set an encryption key.
 | See the user guide for more info.
 |
