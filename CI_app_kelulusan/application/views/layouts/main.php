@@ -1,3 +1,9 @@
+<?php
+if ($this->session->userdata('isLogin') != 'active') {
+    redirect(base_url('auth'));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +28,7 @@
 
 
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed ">
     <main class="main" id="app">
         <?= @$content; ?>
     </main>

@@ -32,12 +32,11 @@ class Auth_model extends CI_Model
 
   // ------------------------------------------------------------------------
 
-
   // ------------------------------------------------------------------------
-  public function login($username, $password)
+  public function login($username)
   {
     $this->db->where('username', $username);
-    $this->db->where('password', $password);
+    // $this->db->where('password', $password);
     return $this->db->get($this->table)->row();
   }
 

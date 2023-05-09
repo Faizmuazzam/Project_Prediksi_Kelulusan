@@ -24,17 +24,16 @@
               <h3 class="card-title">DataTable with minimal features & hover style</h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
-              <div class="row" style="margin-bottom: 10px">
+            <div class="card-body table-responsive">
+              <div class="row">
                 <div class="col-md-4">
-                  <?php echo anchor(site_url('users/create'), 'Create', 'class="btn btn-success"'); ?>
+                  <!-- <?php echo anchor(site_url('users/create'), 'Create', 'class="btn btn-success"'); ?> -->
                 </div>
                 <div class="col-md-4 text-center">
                   <div style="margin-top: 8px" id="message">
                     <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
                   </div>
                 </div>
-
                 <div class="col-md-4 text-right d-flex justify-content-end">
                   <form action="<?php echo site_url('users/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
@@ -43,7 +42,7 @@
                         <?php
                         if ($q <> '') {
                         ?>
-                          <a href="<?php echo site_url('users'); ?>" class="btn btn-danger">Reset</a>
+                          <a href="<?php echo site_url('users'); ?>" class="btn btn-danger rounded-0">Reset</a>
                         <?php
                         }
                         ?>
@@ -53,18 +52,20 @@
                   </form>
                 </div>
               </div>
+
+              <div class="py-3"></div>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
                     <th>No</th>
                     <th>Username</th>
-                    <th>Password</th>
+                    <!-- <th>Password</th> -->
                     <th>Email</th>
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
                     <th>No Telp</th>
                     <th>Alamat</th>
-                    <th>Image</th>
+                    <!-- <th>Image</th> -->
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -74,21 +75,21 @@
                     <tr>
                       <td width="80px"><?php echo ++$start ?></td>
                       <td><?php echo $users->username ?></td>
-                      <td><?php echo $users->password ?></td>
+                      <!-- <td><?php echo $users->password ?></td> -->
                       <td><?php echo $users->email ?></td>
                       <td><?php echo $users->nama ?></td>
                       <td><?php echo $users->jenis_kelamin ?></td>
                       <td><?php echo $users->no_telp ?></td>
                       <td><?php echo $users->alamat ?></td>
-                      <td><?php echo $users->image ?></td>
+                      <!-- <td><?php echo $users->image ?></td> -->
                       <td><?php echo $users->status ?></td>
                       <td style="text-align:center" width="200px">
                         <?php
-                        echo anchor(site_url('users/read/' . $users->id), 'Read');
+                        echo anchor(base_url('users/read/' . $users->id), 'Read');
                         echo ' | ';
-                        echo anchor(site_url('users/update/' . $users->id), 'Update');
+                        echo anchor(base_url('users/update/' . $users->id), 'Update');
                         echo ' | ';
-                        echo anchor(site_url('users/delete/' . $users->id), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                        echo anchor(base_url('users/delete/' . $users->id), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
                         ?>
                       </td>
                     </tr>
