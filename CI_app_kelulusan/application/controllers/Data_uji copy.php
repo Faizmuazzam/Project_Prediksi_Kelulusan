@@ -35,6 +35,7 @@ class Data_uji extends CI_Controller
 
         $titlePage = 'Data Uji';
 
+
         $data = array(
             'data_uji_data' => $data_uji,
             'q' => $q,
@@ -55,14 +56,11 @@ class Data_uji extends CI_Controller
                 'id' => $row->id,
                 'nim' => $row->nim,
                 'jenis_kelamin' => $row->jenis_kelamin,
-                'sks1' => $row->sks1,
-                'sks2' => $row->sks2,
-                'sks3' => $row->sks3,
-                'sks4' => $row->sks4,
                 'ipk1' => $row->ipk1,
                 'ipk2' => $row->ipk2,
                 'ipk3' => $row->ipk3,
                 'ipk4' => $row->ipk4,
+                'ipk_akhir' => $row->ipk_akhir,
                 'keterangan' => $row->keterangan,
             );
             $this->layout->views('data_uji/tb_data_uji_read', $data);
@@ -80,14 +78,11 @@ class Data_uji extends CI_Controller
             'id' => set_value('id'),
             'nim' => set_value('nim'),
             'jenis_kelamin' => set_value('jenis_kelamin'),
-            'sks1' => set_value('sks1'),
-            'sks2' => set_value('sks2'),
-            'sks3' => set_value('sks3'),
-            'sks4' => set_value('sks4'),
             'ipk1' => set_value('ipk1'),
             'ipk2' => set_value('ipk2'),
             'ipk3' => set_value('ipk3'),
             'ipk4' => set_value('ipk4'),
+            'ipk_akhir' => set_value('ipk_akhir'),
             'keterangan' => set_value('keterangan'),
         );
         $this->layout->views('data_uji/tb_data_uji_form', $data);
@@ -103,14 +98,11 @@ class Data_uji extends CI_Controller
             $data = array(
                 'nim' => $this->input->post('nim', TRUE),
                 'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'sks1' => $this->input->post('sks1', TRUE),
-                'sks2' => $this->input->post('sks2', TRUE),
-                'sks3' => $this->input->post('sks3', TRUE),
-                'sks4' => $this->input->post('sks4', TRUE),
                 'ipk1' => $this->input->post('ipk1', TRUE),
                 'ipk2' => $this->input->post('ipk2', TRUE),
                 'ipk3' => $this->input->post('ipk3', TRUE),
                 'ipk4' => $this->input->post('ipk4', TRUE),
+                'ipk_akhir' => $this->input->post('ipk_akhir', TRUE),
                 'keterangan' => $this->input->post('keterangan', TRUE),
             );
 
@@ -150,21 +142,35 @@ class Data_uji extends CI_Controller
                 $highestRow = $worksheet->getHighestRow();
                 $highestColumn = $worksheet->getHighestColumn();
 
-                for ($row = 4; $row <= $highestRow; $row++) {
+                for ($row = 2; $row <= $highestRow; $row++) {
 
-                    $nim = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                    $nama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    $angkatan = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $nim = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $jenis_kelamin = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $ipk1 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $ipk2 = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $ipk3 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                    $ipk4 = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+                    $ipk_akhir = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+                    $keterangan = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+
+
 
                     $data[] = array(
-                        'nim' => $nim,
-                        'nama' => $nama,
-                        'angkatan' => $angkatan,
+                        'nim' => strval($nim),
+                        'jenis_kelamin' => strval($jenis_kelamin),
+                        'ipk1' => strval($ipk1),
+                        'ipk2' => strval($ipk2),
+                        'ipk3' => strval($ipk3),
+                        'ipk4' => strval($ipk4),
+                        'ipk_akhir' => strval($ipk_akhir),
+                        'keterangan' => strval($keterangan),
                     );
+
+                    // var_dump($data);
                 }
             }
 
-            $this->Data_uji_model->insert($data);
+            $this->Data_uji_model->insert_excell($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('data_uji'));
         } else {
@@ -184,14 +190,11 @@ class Data_uji extends CI_Controller
                 'id' => set_value('id', $row->id),
                 'nim' => set_value('nim', $row->nim),
                 'jenis_kelamin' => set_value('jenis_kelamin', $row->jenis_kelamin),
-                'sks1' => set_value('sks1', $row->sks1),
-                'sks2' => set_value('sks2', $row->sks2),
-                'sks3' => set_value('sks3', $row->sks3),
-                'sks4' => set_value('sks4', $row->sks4),
                 'ipk1' => set_value('ipk1', $row->ipk1),
                 'ipk2' => set_value('ipk2', $row->ipk2),
                 'ipk3' => set_value('ipk3', $row->ipk3),
                 'ipk4' => set_value('ipk4', $row->ipk4),
+                'ipk_akhir' => set_value('ipk_akhir', $row->ipk_akhir),
                 'keterangan' => set_value('keterangan', $row->keterangan),
             );
             $this->layout->views('data_uji/tb_data_uji_form', $data);
@@ -211,14 +214,11 @@ class Data_uji extends CI_Controller
             $data = array(
                 'nim' => $this->input->post('nim', TRUE),
                 'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'sks1' => $this->input->post('sks1', TRUE),
-                'sks2' => $this->input->post('sks2', TRUE),
-                'sks3' => $this->input->post('sks3', TRUE),
-                'sks4' => $this->input->post('sks4', TRUE),
                 'ipk1' => $this->input->post('ipk1', TRUE),
                 'ipk2' => $this->input->post('ipk2', TRUE),
                 'ipk3' => $this->input->post('ipk3', TRUE),
                 'ipk4' => $this->input->post('ipk4', TRUE),
+                'ipk_akhir' => $this->input->post('ipk_akhir', TRUE),
                 'keterangan' => $this->input->post('keterangan', TRUE),
             );
 
@@ -246,14 +246,11 @@ class Data_uji extends CI_Controller
     {
         $this->form_validation->set_rules('nim', 'nim', 'trim|required');
         $this->form_validation->set_rules('jenis_kelamin', 'jenis kelamin', 'trim|required');
-        $this->form_validation->set_rules('sks1', 'sks1', 'trim|required');
-        $this->form_validation->set_rules('sks2', 'sks2', 'trim|required');
-        $this->form_validation->set_rules('sks3', 'sks3', 'trim|required');
-        $this->form_validation->set_rules('sks4', 'sks4', 'trim|required');
         $this->form_validation->set_rules('ipk1', 'ipk1', 'trim|required');
         $this->form_validation->set_rules('ipk2', 'ipk2', 'trim|required');
         $this->form_validation->set_rules('ipk3', 'ipk3', 'trim|required');
         $this->form_validation->set_rules('ipk4', 'ipk4', 'trim|required');
+        $this->form_validation->set_rules('ipk_akhir', 'ipk akhir', 'trim|required');
         $this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
 
         $this->form_validation->set_rules('id', 'id', 'trim');
@@ -284,14 +281,11 @@ class Data_uji extends CI_Controller
         xlsWriteLabel($tablehead, $kolomhead++, "No");
         xlsWriteLabel($tablehead, $kolomhead++, "Nim");
         xlsWriteLabel($tablehead, $kolomhead++, "Jenis Kelamin");
-        xlsWriteLabel($tablehead, $kolomhead++, "Sks1");
-        xlsWriteLabel($tablehead, $kolomhead++, "Sks2");
-        xlsWriteLabel($tablehead, $kolomhead++, "Sks3");
-        xlsWriteLabel($tablehead, $kolomhead++, "Sks4");
         xlsWriteLabel($tablehead, $kolomhead++, "Ipk1");
         xlsWriteLabel($tablehead, $kolomhead++, "Ipk2");
         xlsWriteLabel($tablehead, $kolomhead++, "Ipk3");
         xlsWriteLabel($tablehead, $kolomhead++, "Ipk4");
+        xlsWriteLabel($tablehead, $kolomhead++, "Ipk Akhir");
         xlsWriteLabel($tablehead, $kolomhead++, "Keterangan");
 
         foreach ($this->Data_uji_model->get_all() as $data) {
@@ -301,14 +295,11 @@ class Data_uji extends CI_Controller
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
             xlsWriteLabel($tablebody, $kolombody++, $data->nim);
             xlsWriteLabel($tablebody, $kolombody++, $data->jenis_kelamin);
-            xlsWriteLabel($tablebody, $kolombody++, $data->sks1);
-            xlsWriteLabel($tablebody, $kolombody++, $data->sks2);
-            xlsWriteLabel($tablebody, $kolombody++, $data->sks3);
-            xlsWriteLabel($tablebody, $kolombody++, $data->sks4);
             xlsWriteLabel($tablebody, $kolombody++, $data->ipk1);
             xlsWriteLabel($tablebody, $kolombody++, $data->ipk2);
             xlsWriteLabel($tablebody, $kolombody++, $data->ipk3);
             xlsWriteLabel($tablebody, $kolombody++, $data->ipk4);
+            xlsWriteLabel($tablebody, $kolombody++, $data->ipk_akhir);
             xlsWriteLabel($tablebody, $kolombody++, $data->keterangan);
 
             $tablebody++;
@@ -323,5 +314,5 @@ class Data_uji extends CI_Controller
 /* End of file Data_uji.php */
 /* Location: ./application/controllers/Data_uji.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2023-05-08 13:44:56 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2023-05-08 23:53:12 */
 /* http://harviacode.com */
