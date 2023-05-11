@@ -23,8 +23,8 @@
             <div class="card-body table-responsive">
                 <div class="row">
                     <div class="col-md-6">
-                        <?php echo anchor(site_url('data_uji/import'), 'Import', 'class="btn btn-primary me-3"'); ?>
-                        <?php echo anchor(site_url('data_uji/excel'), 'Excel', 'class="btn btn-success"'); ?>
+                        <?php echo anchor(site_url('data_latih/import'), 'Import', 'class="btn btn-primary me-3"'); ?>
+                        <?php echo anchor(site_url('data_latih/excel'), 'Excel', 'class="btn btn-success"'); ?>
 
                     </div>
                     <!-- <div class="col-md-4 text-center">
@@ -33,14 +33,14 @@
                           </div>
                       </div> -->
                     <div class="col-md-6 text-right d-flex justify-content-end">
-                        <form action="<?php echo site_url('data_uji/index'); ?>" class="form-inline" method="get">
+                        <form action="<?php echo site_url('data_latih/index'); ?>" class="form-inline" method="get">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                                 <span class="input-group-btn">
                                     <?php
                                     if ($q <> '') {
                                     ?>
-                                        <a href="<?php echo site_url('data_uji'); ?>" class="btn btn-default">Reset</a>
+                                        <a href="<?php echo site_url('data_latih'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                     }
                                     ?>
@@ -68,31 +68,31 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr><?php
-                            foreach ($data_uji_data as $data_uji) {
+                            foreach ($data_latih_data as $data_latih) {
                             ?>
                         <tr>
                             <td width="80px"><?php echo ++$start ?></td>
-                            <td><?php echo $data_uji->nama ?></td>
-                            <td><?php echo $data_uji->jenis_kelamin ?></td>
-                            <td><?php echo $data_uji->nim ?></td>
-                            <td><?php echo $data_uji->usia ?></td>
-                            <td><?php echo $data_uji->alamat ?></td>
-                            <td><?php echo $data_uji->ips_1 ?></td>
-                            <td><?php echo $data_uji->ips_2 ?></td>
-                            <td><?php echo $data_uji->ips_3 ?></td>
-                            <td><?php echo $data_uji->ips_4 ?></td>
-                            <td><?php echo $data_uji->status ?></td>
+                            <td><?php echo $data_latih->nama ?></td>
+                            <td><?php echo $data_latih->jenis_kelamin ?></td>
+                            <td><?php echo $data_latih->nim ?></td>
+                            <td><?php echo $data_latih->usia ?></td>
+                            <td><?php echo $data_latih->alamat ?></td>
+                            <td><?php echo $data_latih->ips_1 ?></td>
+                            <td><?php echo $data_latih->ips_2 ?></td>
+                            <td><?php echo $data_latih->ips_3 ?></td>
+                            <td><?php echo $data_latih->ips_4 ?></td>
+                            <td><?php echo $data_latih->status ?></td>
                             <td style="text-align:center" width="70px">
 
-                                <!-- <a href="<?= base_url('data_uji/read/' . $data_uji->id) ?>" class="btn btn-primary">
+                                <!-- <a href="<?= base_url('data_latih/read/' . $data_latih->id) ?>" class="btn btn-primary">
                                     <span class="iconify" data-icon="material-symbols:search"></span>
                                 </a>
 
-                                <a href="<?= base_url('data_uji/update/' . $data_uji->id) ?>" class="btn btn-warning">
+                                <a href="<?= base_url('data_latih/update/' . $data_latih->id) ?>" class="btn btn-warning">
                                     <span class="iconify" data-icon="material-symbols:edit"></span>
                                 </a> -->
 
-                                <a href="<?= base_url('data_uji/delete/' . $data_uji->id) ?>" onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-danger">
+                                <a href="<?= base_url('data_latih/delete/' . $data_latih->id) ?>" onclick="return confirm('Are You Sure ?')" class="btn btn-danger">
                                     <span class="iconify" data-icon="material-symbols:delete-outline"></span>
                                 </a>
                             </td>
@@ -110,6 +110,63 @@
                         <div class="vPaginations">
                             <?php echo $pagination ?>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Total</th>
+                            </tr>
+                            <?php foreach ($data_status as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['status'] ?></th>
+                                    <td><?= $value['countAll'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <th>Total</th>
+                            </tr>
+                            <?php foreach ($data_jenkel as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['jenkel'] ?></th>
+                                    <td><?= $value['countTepat'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <td><?= $value['countAll'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
                     </div>
                 </div>
             </div>

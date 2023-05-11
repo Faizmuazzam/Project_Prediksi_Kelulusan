@@ -53,11 +53,11 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?= base_url('/data_uji') ?>" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+            <a href="<?= base_url('/data_latih') ?>" class="nav-link">
+              <i class="nav-icon fas fa-folder"></i>
               <p>
-                Uji Data
-                <span class="right badge badge-danger">Test</span>
+                Data Latih
+                <span class="right badge badge-danger">Training</span>
               </p>
             </a>
           </li>

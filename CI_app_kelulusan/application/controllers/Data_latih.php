@@ -3,12 +3,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Data_uji extends CI_Controller
+class Data_latih extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Data_uji_model');
+        $this->load->model('Data_latih_model');
         $this->load->library('form_validation');
     }
 
@@ -18,17 +18,45 @@ class Data_uji extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'data_uji/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'data_uji/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'data_latih/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'data_latih/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'data_uji/index.html';
-            $config['first_url'] = base_url() . 'data_uji/index.html';
+            $config['base_url'] = base_url() . 'data_latih/index.html';
+            $config['first_url'] = base_url() . 'data_latih/index.html';
         }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Data_uji_model->total_rows($q);
-        $data_uji = $this->Data_uji_model->get_limit_data($config['per_page'], $start, $q);
+        $config['total_rows'] = $this->Data_latih_model->total_rows($q);
+        $data_latih = $this->Data_latih_model->get_limit_data($config['per_page'], $start, $q);
+
+        // Probabilitas Status
+        $get_status = $this->Data_latih_model->get_data_prob('status');
+
+        $data_status = [];
+
+        foreach ($get_status as $key => $value) {
+            $data_status[$key]['status'] = $value->status;
+        }
+
+        foreach ($data_status as $key => $value) {
+            $data_status[$key]['countAll'] = $this->Data_latih_model->total_rows($value['status']);
+        }
+        // Probabilitas Jenis Kelamin
+        $get_jenkel = $this->Data_latih_model->get_data_prob('jenis_kelamin');
+
+        $data_jenkel = [];
+
+        foreach ($get_jenkel as $key => $value) {
+            $data_jenkel[$key]['jenkel'] = $value->jenis_kelamin;
+        }
+
+        foreach ($data_jenkel as $key => $value) {
+            $data_jenkel[$key]['countAll'] = $this->Data_latih_model->total_rows($value['jenkel']);
+            $data_jenkel[$key]['countLate'] = $this->Data_latih_model->total_data_prob('jenis_kelamin', 'TERLAMBAT', $value['jenkel']);
+            $data_jenkel[$key]['countTepat'] = $this->Data_latih_model->total_data_prob('jenis_kelamin', 'TEPAT', $value['jenkel']);
+        }
+
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -37,20 +65,22 @@ class Data_uji extends CI_Controller
 
 
         $data = array(
-            'data_uji_data' => $data_uji,
+            'data_latih_data' => $data_latih,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'titlePage' => $titlePage
+            'titlePage' => $titlePage,
+            'data_jenkel' => $data_jenkel,
+            'data_status' => $data_status
 
         );
-        $this->layout->views('data_uji/tb_data_uji_list', $data);
+        $this->layout->views('data_latih/tb_data_latih_list', $data);
     }
 
     public function read($id)
     {
-        $row = $this->Data_uji_model->get_by_id($id);
+        $row = $this->Data_latih_model->get_by_id($id);
         if ($row) {
             $data = array(
                 'id' => $row->id,
@@ -65,10 +95,10 @@ class Data_uji extends CI_Controller
                 'ips_4' => $row->ips_4,
                 'status' => $row->status,
             );
-            $this->layout->views('data_uji/tb_data_uji_read', $data);
+            $this->layout->views('data_latih/tb_data_latih_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -76,7 +106,7 @@ class Data_uji extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('data_uji/create_action'),
+            'action' => site_url('data_latih/create_action'),
             'id' => set_value('id'),
             'nama' => set_value('nama'),
             'jenis_kelamin' => set_value('jenis_kelamin'),
@@ -89,7 +119,7 @@ class Data_uji extends CI_Controller
             'ips_4' => set_value('ips_4'),
             'status' => set_value('status'),
         );
-        $this->layout->views('data_uji/tb_data_uji_form', $data);
+        $this->layout->views('data_latih/tb_data_latih_form', $data);
     }
 
     public function create_action()
@@ -112,9 +142,9 @@ class Data_uji extends CI_Controller
                 'status' => $this->input->post('status', TRUE),
             );
 
-            $this->Data_uji_model->insert($data);
+            $this->Data_latih_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -128,7 +158,7 @@ class Data_uji extends CI_Controller
             'file_excel' => set_value(null),
             'keterangan' => set_value('keterangan'),
         );
-        $this->layout->views('data_uji/import', $data);
+        $this->layout->views('data_latih/import', $data);
     }
 
     public function import_action()
@@ -197,23 +227,23 @@ class Data_uji extends CI_Controller
                 }
             }
 
-            $this->Data_uji_model->insert_excell($data);
+            $this->Data_latih_model->insert_excell($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         } else {
             $this->session->set_flashdata('message_error', 'Create Record Failed');
-            redirect('data_uji/import');
+            redirect('data_latih/import');
         }
     }
 
     public function update($id)
     {
-        $row = $this->Data_uji_model->get_by_id($id);
+        $row = $this->Data_latih_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('data_uji/update_action'),
+                'action' => site_url('data_latih/update_action'),
                 'id' => set_value('id', $row->id),
                 'nama' => set_value('nama', $row->nama),
                 'jenis_kelamin' => set_value('jenis_kelamin', $row->jenis_kelamin),
@@ -226,10 +256,10 @@ class Data_uji extends CI_Controller
                 'ips_4' => set_value('ips_4', $row->ips_4),
                 'status' => set_value('status', $row->status),
             );
-            $this->layout->views('data_uji/tb_data_uji_form', $data);
+            $this->layout->views('data_latih/tb_data_latih_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -253,23 +283,23 @@ class Data_uji extends CI_Controller
                 'status' => $this->input->post('status', TRUE),
             );
 
-            $this->Data_uji_model->update($this->input->post('id', TRUE), $data);
+            $this->Data_latih_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         }
     }
 
     public function delete($id)
     {
-        $row = $this->Data_uji_model->get_by_id($id);
+        $row = $this->Data_latih_model->get_by_id($id);
 
         if ($row) {
-            $this->Data_uji_model->delete($id);
+            $this->Data_latih_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('data_uji'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -293,8 +323,8 @@ class Data_uji extends CI_Controller
     public function excel()
     {
         $this->load->helper('exportexcel');
-        $namaFile = "tb_data_uji.xls";
-        $judul = "tb_data_uji";
+        $namaFile = "tb_data_latih.xls";
+        $judul = "tb_data_latih";
         $tablehead = 0;
         $tablebody = 1;
         $nourut = 1;
@@ -323,7 +353,7 @@ class Data_uji extends CI_Controller
         xlsWriteLabel($tablehead, $kolomhead++, "Ips 4");
         xlsWriteLabel($tablehead, $kolomhead++, "Status");
 
-        foreach ($this->Data_uji_model->get_all() as $data) {
+        foreach ($this->Data_latih_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
@@ -348,8 +378,8 @@ class Data_uji extends CI_Controller
     }
 }
 
-/* End of file Data_uji.php */
-/* Location: ./application/controllers/Data_uji.php */
+/* End of file data_latih.php */
+/* Location: ./application/controllers/data_latih.php */
 /* Please DO NOT modify this information : */
 /* Generated by Harviacode Codeigniter CRUD Generator 2023-05-10 07:49:29 */
 /* http://harviacode.com */

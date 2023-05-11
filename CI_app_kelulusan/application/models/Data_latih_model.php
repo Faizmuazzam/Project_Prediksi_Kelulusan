@@ -3,10 +3,10 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Data_uji_model extends CI_Model
+class Data_latih_model extends CI_Model
 {
 
-    public $table = 'tb_data_uji';
+    public $table = 'tb_data_latih';
     public $id = 'id';
     public $order = 'DESC';
 
@@ -66,6 +66,20 @@ class Data_uji_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+
+    function get_data_prob($field)
+    {
+        $this->db->group_by($field);
+        return $this->db->get($this->table)->result();
+    }
+
+    function total_data_prob($field, $status, $q = NULL)
+    {
+        $this->db->where('status', $status);
+        $this->db->where($field, $q);
+        $this->db->from($this->table);
+        return $this->db->count_all_results();
+    }
     // insert data
     function insert($data)
     {
@@ -84,6 +98,7 @@ class Data_uji_model extends CI_Model
     function update($id, $data)
     {
         $this->db->where($this->id, $id);
+        $this->db->order_by($this->id, $this->order);
         $this->db->update($this->table, $data);
     }
 

@@ -26,7 +26,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action="<?= base_url('data_uji/import_action') ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?= base_url('data_latih/import_action') ?>" enctype="multipart/form-data">
                         <div class="card-body">
 
                             <div class="form-group">

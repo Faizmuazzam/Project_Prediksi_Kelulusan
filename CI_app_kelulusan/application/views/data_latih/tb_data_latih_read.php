@@ -22,7 +22,7 @@
 	    <tr><td>Ips 3</td><td><?php echo $ips_3; ?></td></tr>
 	    <tr><td>Ips 4</td><td><?php echo $ips_4; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('data_uji') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('data_latih') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
         </body>
 </html>
