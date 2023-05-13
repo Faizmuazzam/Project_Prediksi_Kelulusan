@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Data_latih_model extends CI_Model
 {
-
+ 
     public $table = 'tb_data_latih';
     public $id = 'id';
     public $order = 'DESC';
@@ -80,6 +80,15 @@ class Data_latih_model extends CI_Model
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
+
+    // function total_data_prob_ips($field, $status, $q = NULL)
+    // {
+
+    //     $this->db->where('status', $status);
+    //     $this->db->where($field, floatval($q));
+    //     $this->db->from($this->table);
+    //     return $this->db->count_all_results();
+    // }
     // insert data
     function insert($data)
     {

@@ -10,6 +10,7 @@ class Data_latih extends CI_Controller
         parent::__construct();
         $this->load->model('Data_latih_model');
         $this->load->library('form_validation');
+        $this->load->library('naves_bayes');
     }
 
     public function index()
@@ -30,32 +31,23 @@ class Data_latih extends CI_Controller
         $config['total_rows'] = $this->Data_latih_model->total_rows($q);
         $data_latih = $this->Data_latih_model->get_limit_data($config['per_page'], $start, $q);
 
-        // Probabilitas Status
-        $get_status = $this->Data_latih_model->get_data_prob('status');
+        $data_status = $this->naves_bayes->getDataStatus();
 
-        $data_status = [];
+        $data_jenkel = $this->naves_bayes->getPropabilitas('jenis_kelamin');
 
-        foreach ($get_status as $key => $value) {
-            $data_status[$key]['status'] = $value->status;
-        }
+        $data_usia = $this->naves_bayes->getPropabilitas('usia');
 
-        foreach ($data_status as $key => $value) {
-            $data_status[$key]['countAll'] = $this->Data_latih_model->total_rows($value['status']);
-        }
-        // Probabilitas Jenis Kelamin
-        $get_jenkel = $this->Data_latih_model->get_data_prob('jenis_kelamin');
+        $data_alamat = $this->naves_bayes->getPropabilitas('alamat');
 
-        $data_jenkel = [];
+        $data_ips_1 = $this->naves_bayes->getPropabilitas('ips_1');
 
-        foreach ($get_jenkel as $key => $value) {
-            $data_jenkel[$key]['jenkel'] = $value->jenis_kelamin;
-        }
+        $data_ips_2 = $this->naves_bayes->getPropabilitas('ips_2');
 
-        foreach ($data_jenkel as $key => $value) {
-            $data_jenkel[$key]['countAll'] = $this->Data_latih_model->total_rows($value['jenkel']);
-            $data_jenkel[$key]['countLate'] = $this->Data_latih_model->total_data_prob('jenis_kelamin', 'TERLAMBAT', $value['jenkel']);
-            $data_jenkel[$key]['countTepat'] = $this->Data_latih_model->total_data_prob('jenis_kelamin', 'TEPAT', $value['jenkel']);
-        }
+        $data_ips_3 = $this->naves_bayes->getPropabilitas('ips_3');
+
+        $data_ips_4 = $this->naves_bayes->getPropabilitas('ips_4');
+
+
 
 
         $this->load->library('pagination');
@@ -72,7 +64,13 @@ class Data_latih extends CI_Controller
             'start' => $start,
             'titlePage' => $titlePage,
             'data_jenkel' => $data_jenkel,
-            'data_status' => $data_status
+            'data_status' => $data_status,
+            'data_usia' => $data_usia,
+            'data_alamat' => $data_alamat,
+            'data_ips_1' => $data_ips_1,
+            'data_ips_2' => $data_ips_2,
+            'data_ips_3' => $data_ips_3,
+            'data_ips_4' => $data_ips_4,
 
         );
         $this->layout->views('data_latih/tb_data_latih_list', $data);
@@ -206,12 +204,12 @@ class Data_latih extends CI_Controller
                         'nama' => strval($nama),
                         'jenis_kelamin' => strval($jenis_kelamin),
                         'nim' => strval($nim),
-                        'usia' => $usia,
+                        'usia' => strval($usia),
                         'alamat' => strval($alamat),
-                        'ips_1' => $ips_1,
-                        'ips_2' => $ips_2,
-                        'ips_3' => $ips_3,
-                        'ips_4' => $ips_4,
+                        'ips_1' => strval($ips_1),
+                        'ips_2' => strval($ips_2),
+                        'ips_3' => strval($ips_3),
+                        'ips_4' => strval($ips_4),
                         'status' => strval($status),
                         // 'nim' => strval($nim),
                         // 'jenis_kelamin' => strval($jenis_kelamin),

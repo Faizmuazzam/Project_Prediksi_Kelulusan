@@ -117,7 +117,7 @@
     </div>
 </section>
 
-<section class="content">
+<section class="content propabilitas">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
@@ -130,11 +130,13 @@
                             <tr>
                                 <th></th>
                                 <th>Total</th>
+                                <th>Peluang</th>
                             </tr>
                             <?php foreach ($data_status as $key => $value) : ?>
                                 <tr>
                                     <th><?= $value['status'] ?></th>
-                                    <td><?= $value['countAll'] ?></td>
+                                    <td><?= $value['count'] ?></td>
+                                    <td><?= $value['result'] ?></td>
                                 </tr>
                             <?php endforeach ?>
 
@@ -155,14 +157,201 @@
                                 <th></th>
                                 <th>Tepat</th>
                                 <th>Terlambat</th>
-                                <th>Total</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
                             </tr>
                             <?php foreach ($data_jenkel as $key => $value) : ?>
                                 <tr>
-                                    <th><?= $value['jenkel'] ?></th>
-                                    <td><?= $value['countTepat'] ?></td>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
                                     <td><?= $value['countLate'] ?></td>
-                                    <td><?= $value['countAll'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
+                            </tr>
+                            <?php foreach ($data_alamat as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
+                            </tr>
+                            <?php foreach ($data_usia as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
+                            </tr>
+                            <?php foreach ($data_ips_1 as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
+                            </tr>
+                            <?php foreach ($data_ips_2 as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
+                            </tr>
+                            <?php foreach ($data_ips_3 as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Probabilitas Data Jenis Kelamin</h3>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="margin-bottom: 10px">
+                            <tr>
+                                <th></th>
+                                <th>Tepat</th>
+                                <th>Terlambat</th>
+                                <!-- <th>Total Mahasiswa</th> -->
+                                <th>Peluang Lulus</th>
+                                <th>Peluang Terlambat</th>
+                            </tr>
+                            <?php foreach ($data_ips_4 as $key => $value) : ?>
+                                <tr>
+                                    <th><?= $value['name'] ?></th>
+                                    <td><?= $value['countOnTime'] ?></td>
+                                    <td><?= $value['countLate'] ?></td>
+                                    <!-- <td><?= $value['countAll'] ?></td> -->
+                                    <td><?= $value['resultOnTime'] ?></td>
+                                    <td><?= $value['resultLate'] ?></td>
                                 </tr>
                             <?php endforeach ?>
 
@@ -193,5 +382,9 @@
 
     .vPaginations nav ul li:last-of-type {
         border-right: 1px solid #ccc;
+    }
+
+    .content.propabilitas table td {
+        text-align: end;
     }
 </style>
