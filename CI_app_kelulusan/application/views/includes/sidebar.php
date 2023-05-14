@@ -61,6 +61,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('/data_uji') ?>" class="nav-link">
+              <i class="nav-icon fas fa-folder"></i>
+              <p>
+                Data Uji
+                <span class="right badge badge-danger">Testing</span>
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

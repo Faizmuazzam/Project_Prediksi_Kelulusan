@@ -53,7 +53,7 @@ class Data_latih extends CI_Controller
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        $titlePage = 'Data Uji';
+        $titlePage = 'Data Latih';
 
 
         $data = array(
@@ -204,12 +204,12 @@ class Data_latih extends CI_Controller
                         'nama' => strval($nama),
                         'jenis_kelamin' => strval($jenis_kelamin),
                         'nim' => strval($nim),
-                        'usia' => strval($usia),
+                        'usia' => $usia,
                         'alamat' => strval($alamat),
-                        'ips_1' => strval($ips_1),
-                        'ips_2' => strval($ips_2),
-                        'ips_3' => strval($ips_3),
-                        'ips_4' => strval($ips_4),
+                        'ips_1' => $ips_1,
+                        'ips_2' => $ips_2,
+                        'ips_3' => $ips_3,
+                        'ips_4' => $ips_4,
                         'status' => strval($status),
                         // 'nim' => strval($nim),
                         // 'jenis_kelamin' => strval($jenis_kelamin),
