@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Data Users</h1>
+                <h1>Data Testing</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">DataTables</li>
+                    <li class="breadcrumb-item active">Data Testing</li>
                 </ol>
             </div>
         </div>
@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <?php echo anchor(site_url('data_latih/import'), 'Import', 'class="btn btn-primary me-3"'); ?>
                         <?php echo anchor(site_url('data_latih/excel'), 'Excel', 'class="btn btn-success"'); ?>
-
+                        <?php echo anchor(site_url('data_latih/empty_data'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); ?>
                     </div>
                     <!-- <div class="col-md-4 text-center">
                           <div style="margin-top: 8px" id="message">

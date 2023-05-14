@@ -40,7 +40,7 @@ class Users extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->load->view('users/users_list', $data);
+        $this->layout->views('users/users_list', $data);
     }
 
     public function read($id) 
@@ -59,7 +59,7 @@ class Users extends CI_Controller
 		'image' => $row->image,
 		'status' => $row->status,
 	    );
-            $this->load->view('users/users_read', $data);
+            $this->layout->views('users/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));
@@ -82,7 +82,7 @@ class Users extends CI_Controller
 	    'image' => set_value('image'),
 	    'status' => set_value('status'),
 	);
-        $this->load->view('users/users_form', $data);
+        $this->layout->views('users/users_form', $data);
     }
     
     public function create_action() 
@@ -129,7 +129,7 @@ class Users extends CI_Controller
 		'image' => set_value('image', $row->image),
 		'status' => set_value('status', $row->status),
 	    );
-            $this->load->view('users/users_form', $data);
+            $this->layout->views('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));

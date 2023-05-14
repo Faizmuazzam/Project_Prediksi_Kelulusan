@@ -189,6 +189,11 @@ class Naves_bayes
     return $result;
   }
 
+  public function Percentage_data($data, $allData)
+  {
+    # code...
+  }
+
   // ------------------------------------------------------------------------
 }
 

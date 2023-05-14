@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Data_latih_model extends CI_Model
 {
- 
+
     public $table = 'tb_data_latih';
     public $id = 'id';
     public $order = 'DESC';
@@ -116,6 +116,12 @@ class Data_latih_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+    }
+
+    function empty_data()
+    {
+        $this->db->from($this->table);
+        $this->db->truncate();
     }
 }
 

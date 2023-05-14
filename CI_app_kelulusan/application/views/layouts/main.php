@@ -26,6 +26,8 @@ if ($this->session->userdata('isLogin') != 'active') {
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/highlighter.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets_lib/css/adminlte.min.css">
 
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
 
 
 <body class="hold-transition sidebar-mini layout-fixed ">

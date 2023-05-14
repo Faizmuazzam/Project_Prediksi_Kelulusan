@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Data Users</h1>
+                <h1>Uji Data</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">DataTables</li>
+                    <li class="breadcrumb-item active">Data Uji</li>
                 </ol>
             </div>
         </div>
@@ -68,7 +68,7 @@ if (!empty($correct)) {
                     <div class="col-md-1 text-right">
                     </div>
                     <div class="col-md-3 text-right">
-                        <form action="<?php echo site_url('data_uji/index'); ?>" class="form-inline" method="get">
+                        <form action="<?php echo site_url('data_uji/index'); ?>" class="w-100 d-none" method="get">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                                 <span class="input-group-btn">
@@ -141,8 +141,8 @@ if (!empty($correct)) {
                             <td><?php echo $data_uji->ips_4 ?></td>
                             <td><?php echo $data_uji->status ?></td>
                             <td><?php echo $data_uji->result ?></td>
-                            <td><?php //echo $clasification 
-                                ?></td>
+                            <!-- <td><?php //echo $clasification 
+                                ?></td> -->
                             <td>
                                 <?php
                                 // echo anchor(site_url('data_uji/read/' . $data_uji->id), 'Read');

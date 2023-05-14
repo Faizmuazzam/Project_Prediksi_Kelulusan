@@ -301,6 +301,13 @@ class Data_latih extends CI_Controller
         }
     }
 
+    public function empty_data()
+    {
+        $this->Data_latih_model->empty_data();
+        $this->session->set_flashdata('message', 'Delete Data Success');
+        redirect(site_url('data_latih'));
+    }
+
     public function _rules()
     {
         $this->form_validation->set_rules('nama', 'nama', 'trim|required');
