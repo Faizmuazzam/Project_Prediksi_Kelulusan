@@ -9,6 +9,7 @@ class Data_latih extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Data_latih_model');
+        $this->load->model('Data_probabilitas_model');
         $this->load->library('form_validation');
         $this->load->library('naves_bayes');
     }
@@ -47,14 +48,10 @@ class Data_latih extends CI_Controller
 
         $data_ips_4 = $this->naves_bayes->getPropabilitas('ips_4');
 
-
-
-
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
         $titlePage = 'Data Latih';
-
 
         $data = array(
             'data_latih_data' => $data_latih,
@@ -178,16 +175,6 @@ class Data_latih extends CI_Controller
 
                 for ($row = 2; $row <= $highestRow; $row++) {
 
-                    // $nim = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    // $jenis_kelamin = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-                    // $ipk1 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-                    // $ipk2 = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-                    // $ipk3 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-                    // $ipk4 = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-                    // $ipk_akhir = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-                    // $keterangan = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-
-
                     $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $jenis_kelamin = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $nim = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
@@ -211,19 +198,13 @@ class Data_latih extends CI_Controller
                         'ips_3' => $ips_3,
                         'ips_4' => $ips_4,
                         'status' => strval($status),
-                        // 'nim' => strval($nim),
-                        // 'jenis_kelamin' => strval($jenis_kelamin),
-                        // 'ipk1' => strval($ipk1),
-                        // 'ipk2' => strval($ipk2),
-                        // 'ipk3' => strval($ipk3),
-                        // 'ipk4' => strval($ipk4),
-                        // 'ipk_akhir' => strval($ipk_akhir),
-                        // 'keterangan' => strval($keterangan),
                     );
 
                     // var_dump($data);
                 }
             }
+
+            
 
             $this->Data_latih_model->insert_excell($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -304,6 +285,14 @@ class Data_latih extends CI_Controller
     public function empty_data()
     {
         $this->Data_latih_model->empty_data();
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_status');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_jenkel');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_alamat');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_usia');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips1');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips2');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips3');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips4');
         $this->session->set_flashdata('message', 'Delete Data Success');
         redirect(site_url('data_latih'));
     }

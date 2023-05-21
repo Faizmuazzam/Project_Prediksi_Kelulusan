@@ -9,117 +9,70 @@ class Data_uji extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Data_uji_model');
-        $this->load->model('Data_probabilitas_model');
-        $this->load->model('Data_latih_model');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
 
-        $filterData = doubleval($this->input->post('filterDataUji', TRUE));
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'data_uji/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'data_uji/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'data_uji/index.html';
+            $config['first_url'] = base_url() . 'data_uji/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Data_uji_model->total_rows($q);
+        // $data_uji = $this->Data_uji_model->get_limit_data($config['per_page'], $start, $q);
+        $data_uji = $this->Data_uji_model->get_all();
+
+
+        $this->load->library('pagination');
+        // $this->pagination->initialize($config);
 
         $titlePage = 'Data Uji';
 
-        $totalDataLatih = $this->Data_latih_model->total_rows(null);
 
-        $countFilter = round($filterData * $totalDataLatih, 0);
+        // $data_uji_all = $this->Data_uji_model->get_all();
 
-        $resultFilter = $this->Data_uji_model->get_filters_data($countFilter);
+        // $correct = 0;
+        // $inCorrect = 0;
 
-        $dataAccuracy = 0;
-        $correct = 0;
-        $inCorrect = 0;
-        $totalDataUji = 0;
+        // foreach ($data_uji_all as $key => $value) {
+        //     $jenis_kelamin = $value->jenis_kelamin;
+        //     $usia = $value->usia;
+        //     $alamat = $value->alamat;
+        //     $ips_1 = $value->ips_1;
+        //     $ips_2 = $value->ips_2;
+        //     $ips_3 = $value->ips_3;
+        //     $ips_4 = $value->ips_4;
 
-
-
-
-
-        $dataResult = [];
-
-        foreach ($resultFilter as $key => $data_uji) {
-            $jenis_kelamin = $data_uji->jenis_kelamin;
-            $usia = $data_uji->usia;
-            $alamat = $data_uji->alamat;
-            $ips_1 = $data_uji->ips_1;
-            $ips_2 = $data_uji->ips_2;
-            $ips_3 = $data_uji->ips_3;
-            $ips_4 = $data_uji->ips_4;
-
-            $clasification = $this->naves_bayes->clasification($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
-
-            $dataResult[$key] = $clasification;
-            // if ($data_uji->result == $data_uji->status) {
-            //     $correct = $correct + 1;
-            // } else {
-            //     $inCorrect = $inCorrect + 1;
-            // }
-            $totalDataUji = $totalDataUji + 1;
-            if ($clasification == $data_uji->status) {
-                $correct = $correct + 1;
-            } else {
-                $inCorrect = $inCorrect + 1;
-            }
-        }
-
-        if (!empty($correct)) {
-            $dataAccuracy = ($correct / $totalDataUji) * 100;
-        }
+        //     $clasification = $this->naves_bayes->clasification($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
 
 
-        $totalAllData = $this->Data_latih_model->total_rows(null);
+        // }
 
-        $data_latih = $this->Data_latih_model->get_all();
+        $totalAllData = $this->Data_uji_model->total_rows(null);
 
-        $start = 0;
+        // $dataAccuracy = $correct;
 
-        $probStatus = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_status');
+        // var_dump($dataAccuracy);
 
-        $probJenkel = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_jenkel');
-
-        $probAlamat = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_alamat');
-
-        $probUsia = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_usia');
-
-        $newPropUsia = $this->naves_bayes->new_data_prob_usia($probUsia);
-
-        $probIps1 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips1');
-
-        $newProbIps1 = $this->naves_bayes->new_data_prob_ips($probIps1);
-
-        $probIps2 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips2');
-
-        $newProbIps2 = $this->naves_bayes->new_data_prob_ips($probIps2);
-
-        $probIps3 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips3');
-
-        $newProbIps3 = $this->naves_bayes->new_data_prob_ips($probIps3);
-
-        $probIps4 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips4');
-
-        $newProbIps4 = $this->naves_bayes->new_data_prob_ips($probIps4);
 
         $data = array(
+            'data_uji_data' => $data_uji,
+            'q' => $q,
+            // 'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
             'start' => $start,
+            // 'dataAccuracy' => $dataAccuracy,
             'titlePage' => $titlePage,
-            'totalAllData' => $totalAllData,
-            'resultFilter' => $resultFilter,
-            'dataResult' => $dataResult,
-            'probStatus' => $probStatus,
-            'probJenkel' => $probJenkel,
-            'probAlamat' => $probAlamat,
-            'data_latih' => $data_latih,
-            'probUsia' => $newPropUsia,
-            'probIps1' => $newProbIps1,
-            'probIps2' => $newProbIps2,
-            'probIps3' => $newProbIps3,
-            'probIps4' => $newProbIps4,
-            'dataAccuracy' => round($dataAccuracy, 0),
-            'totalDataUji' => $totalDataUji,
-            'filterData' => $filterData,
-            'correct' => $correct,
-            'inCorrect' => $inCorrect
+            'totalAllData' => $totalAllData
 
         );
         $this->layout->views('data_uji/tb_data_uji_list', $data);
@@ -362,22 +315,6 @@ class Data_uji extends CI_Controller
         redirect(site_url('data_uji'));
     }
 
-    public function empty_data_prob()
-    {
-        $this->Data_latih_model->empty_data();
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_status');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_jenkel');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_alamat');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_usia');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips1');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips2');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips3');
-        $this->Data_probabilitas_model->empty_data_prob('tb_prob_ips4');
-
-        $this->session->set_flashdata('message', 'Delete Data Success');
-        redirect(site_url('data_uji'));
-    }
-
     public function _rules()
     {
         $this->form_validation->set_rules('nama', 'nama', 'trim|required');
@@ -450,130 +387,6 @@ class Data_uji extends CI_Controller
 
         xlsEOF();
         exit();
-    }
-
-    public function action_count_prob()
-    {
-        if (empty($this->Data_probabilitas_model->get_all_tb_prob('tb_prob_status'))) {
-            $data_status = $this->naves_bayes->getDataStatus();
-            $data_jenkel = $this->naves_bayes->getPropabilitas('jenis_kelamin');
-            $data_alamat = $this->naves_bayes->getPropabilitas('alamat');
-            $data_usia = $this->naves_bayes->getPropabilitas('usia');
-            $data_ips1 = $this->naves_bayes->getPropabilitas('ips_1');
-            $data_ips2 = $this->naves_bayes->getPropabilitas('ips_2');
-            $data_ips3 = $this->naves_bayes->getPropabilitas('ips_3');
-            $data_ips4 = $this->naves_bayes->getPropabilitas('ips_4');
-
-            foreach ($data_status as $key => $value) {
-                $dataInsertStatus = [
-                    'status' => $value['status'],
-                    'count' => intval($value['count']),
-                    'result' => doubleval($value['result'])
-                ];
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_status', $dataInsertStatus);
-            }
-
-
-            foreach ($data_jenkel as $key => $value) {
-                $data_in_jenkel = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                // var_dump($data_in_jenkelsertJenkel);
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_jenkel', $data_in_jenkel);
-            }
-
-
-            foreach ($data_alamat as $key => $value) {
-                $data_in_alamat = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                // var_dump($data_in_alamatsertJenkel);
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_alamat', $data_in_alamat);
-            }
-
-            foreach ($data_usia as $key => $value) {
-                $data_in_usia = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_usia', $data_in_usia);
-            }
-
-            foreach ($data_ips1 as $key => $value) {
-                $data_in_ips1 = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_ips1', $data_in_ips1);
-            }
-
-            foreach ($data_ips2 as $key => $value) {
-                $data_in_ips2 = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_ips2', $data_in_ips2);
-            }
-
-            foreach ($data_ips3 as $key => $value) {
-                $data_in_ips3 = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_ips3', $data_in_ips3);
-            }
-
-            foreach ($data_ips4 as $key => $value) {
-                $data_in_ips4 = [
-                    'name' => $value['name'],
-                    'countOnTime' => intval($value['countOnTime']),
-                    'countLate' => intval($value['countLate']),
-                    'countAll' => intval($value['countAll']),
-                    'resultOnTime' => doubleval($value['resultOnTime']),
-                    'resultLate' => doubleval($value['resultLate']),
-                ];
-
-                $this->Data_probabilitas_model->insert_tb_prob('tb_prob_ips4', $data_in_ips4);
-            }
-
-            $this->session->set_flashdata('message', 'Data Berhasil Di Buat');
-            redirect(base_url('data_uji'));
-        } else {
-            $this->session->set_flashdata('message', 'Data Sudah Ada');
-            redirect(base_url('data_uji'));
-        }
     }
 }
 

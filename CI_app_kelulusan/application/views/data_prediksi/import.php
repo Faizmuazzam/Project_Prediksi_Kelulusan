@@ -33,7 +33,7 @@
                                 <label for="file_excel">File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file_excel" name="file_excel">
+                                        <input type="file" class="custom-file-input" id="file_excel" name="file_excel" required>
                                         <label class="custom-file-label" for="file_excel" id="label_excel">Choose file</label>
                                     </div>
                                 </div>

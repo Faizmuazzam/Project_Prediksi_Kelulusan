@@ -3,13 +3,15 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Data_prediksi extends CI_Controller
+class Data_latih extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Data_prediksi_model');
+        $this->load->model('Data_latih_model');
+        $this->load->model('Data_probabilitas_model');
         $this->load->library('form_validation');
+        $this->load->library('naves_bayes');
     }
 
     public function index()
@@ -18,64 +20,62 @@ class Data_prediksi extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'data_prediksi/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'data_prediksi/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'data_latih/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'data_latih/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'data_prediksi/index.html';
-            $config['first_url'] = base_url() . 'data_prediksi/index.html';
+            $config['base_url'] = base_url() . 'data_latih/index.html';
+            $config['first_url'] = base_url() . 'data_latih/index.html';
         }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Data_prediksi_model->total_rows($q);
-        $data_prediksi = $this->Data_prediksi_model->get_limit_data($config['per_page'], $start, $q);
+        $config['total_rows'] = $this->Data_latih_model->total_rows($q);
+        $data_latih = $this->Data_latih_model->get_limit_data($config['per_page'], $start, $q);
 
-        $data_prediksi_all = $this->Data_prediksi_model->get_all();
+        $data_status = $this->naves_bayes->getDataStatus();
+
+        $data_jenkel = $this->naves_bayes->getPropabilitas('jenis_kelamin');
+
+        $data_usia = $this->naves_bayes->getPropabilitas('usia');
+
+        $data_alamat = $this->naves_bayes->getPropabilitas('alamat');
+
+        $data_ips_1 = $this->naves_bayes->getPropabilitas('ips_1');
+
+        $data_ips_2 = $this->naves_bayes->getPropabilitas('ips_2');
+
+        $data_ips_3 = $this->naves_bayes->getPropabilitas('ips_3');
+
+        $data_ips_4 = $this->naves_bayes->getPropabilitas('ips_4');
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        $titlePage = 'Prediksi';
-
-        $data_status = $this->naves_bayes->getDataStatus();
-        $totalDataPrediksi = $this->Data_prediksi_model->total_rows(null);
-
-
-        $percentageOnTime = 0;
-        $onTime = 0;
-        $late = 0;
-
-        foreach ($data_prediksi_all as $key => $value) {
-            if ($value->result == 'TEPAT') {
-                $onTime = $onTime + 1;
-            } else if ($value->result == 'TERLAMBAT') {
-                $late = $late + 1;
-            }
-        }
-
-        if (!empty($onTime)) {
-            $percentageOnTime = ($onTime / $totalDataPrediksi) * 100;
-        }
+        $titlePage = 'Data Latih';
 
         $data = array(
-            'data_prediksi_data' => $data_prediksi,
+            'data_latih_data' => $data_latih,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
             'titlePage' => $titlePage,
-            'percentageOnTime' => round($percentageOnTime, 0),
-            'onTime' => $onTime,
-            'late' => $late,
-            'totalDataPrediksi' => $totalDataPrediksi,
-            'data_status' => $data_status
+            'data_jenkel' => $data_jenkel,
+            'data_status' => $data_status,
+            'data_usia' => $data_usia,
+            'data_alamat' => $data_alamat,
+            'data_ips_1' => $data_ips_1,
+            'data_ips_2' => $data_ips_2,
+            'data_ips_3' => $data_ips_3,
+            'data_ips_4' => $data_ips_4,
+
         );
-        $this->layout->views('data_prediksi/tb_data_prediksi_list', $data);
+        $this->layout->views('data_latih/tb_data_latih_list', $data);
     }
 
     public function read($id)
     {
-        $row = $this->Data_prediksi_model->get_by_id($id);
+        $row = $this->Data_latih_model->get_by_id($id);
         if ($row) {
             $data = array(
                 'id' => $row->id,
@@ -88,12 +88,12 @@ class Data_prediksi extends CI_Controller
                 'ips_2' => $row->ips_2,
                 'ips_3' => $row->ips_3,
                 'ips_4' => $row->ips_4,
-                'result' => $row->result,
+                'status' => $row->status,
             );
-            $this->layout->views('data_prediksi/tb_data_prediksi_read', $data);
+            $this->layout->views('data_latih/tb_data_latih_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -101,7 +101,7 @@ class Data_prediksi extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('data_prediksi/create_action'),
+            'action' => site_url('data_latih/create_action'),
             'id' => set_value('id'),
             'nama' => set_value('nama'),
             'jenis_kelamin' => set_value('jenis_kelamin'),
@@ -112,9 +112,9 @@ class Data_prediksi extends CI_Controller
             'ips_2' => set_value('ips_2'),
             'ips_3' => set_value('ips_3'),
             'ips_4' => set_value('ips_4'),
-            'result' => set_value('result'),
+            'status' => set_value('status'),
         );
-        $this->layout->views('data_prediksi/tb_data_prediksi_form', $data);
+        $this->layout->views('data_latih/tb_data_latih_form', $data);
     }
 
     public function create_action()
@@ -134,12 +134,12 @@ class Data_prediksi extends CI_Controller
                 'ips_2' => $this->input->post('ips_2', TRUE),
                 'ips_3' => $this->input->post('ips_3', TRUE),
                 'ips_4' => $this->input->post('ips_4', TRUE),
-                'result' => $this->input->post('result', TRUE),
+                'status' => $this->input->post('status', TRUE),
             );
 
-            $this->Data_prediksi_model->insert($data);
+            $this->Data_latih_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -153,7 +153,7 @@ class Data_prediksi extends CI_Controller
             'file_excel' => set_value(null),
             'keterangan' => set_value('keterangan'),
         );
-        $this->layout->views('data_prediksi/import', $data);
+        $this->layout->views('data_latih/import', $data);
     }
 
     public function import_action()
@@ -175,6 +175,16 @@ class Data_prediksi extends CI_Controller
 
                 for ($row = 2; $row <= $highestRow; $row++) {
 
+                    // $nim = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    // $jenis_kelamin = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    // $ipk1 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    // $ipk2 = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    // $ipk3 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                    // $ipk4 = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+                    // $ipk_akhir = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+                    // $keterangan = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+
+
                     $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $jenis_kelamin = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $nim = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
@@ -184,9 +194,8 @@ class Data_prediksi extends CI_Controller
                     $ips_2 = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
                     $ips_3 = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
                     $ips_4 = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-                    // $status = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+                    $status = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
 
-                    $clasification = $this->naves_bayes->clasification($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
 
                     $data[] = array(
                         'nama' => strval($nama),
@@ -198,31 +207,38 @@ class Data_prediksi extends CI_Controller
                         'ips_2' => $ips_2,
                         'ips_3' => $ips_3,
                         'ips_4' => $ips_4,
-                        // 'status' => strval($status),
-                        'result' => $clasification
+                        'status' => strval($status),
+                        // 'nim' => strval($nim),
+                        // 'jenis_kelamin' => strval($jenis_kelamin),
+                        // 'ipk1' => strval($ipk1),
+                        // 'ipk2' => strval($ipk2),
+                        // 'ipk3' => strval($ipk3),
+                        // 'ipk4' => strval($ipk4),
+                        // 'ipk_akhir' => strval($ipk_akhir),
+                        // 'keterangan' => strval($keterangan),
                     );
 
                     // var_dump($data);
                 }
             }
 
-            $this->Data_prediksi_model->insert_excell($data);
+            $this->Data_latih_model->insert_excell($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         } else {
             $this->session->set_flashdata('message_error', 'Create Record Failed');
-            redirect('data_prediksi/import');
+            redirect('data_latih/import');
         }
     }
 
     public function update($id)
     {
-        $row = $this->Data_prediksi_model->get_by_id($id);
+        $row = $this->Data_latih_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('data_prediksi/update_action'),
+                'action' => site_url('data_latih/update_action'),
                 'id' => set_value('id', $row->id),
                 'nama' => set_value('nama', $row->nama),
                 'jenis_kelamin' => set_value('jenis_kelamin', $row->jenis_kelamin),
@@ -233,12 +249,12 @@ class Data_prediksi extends CI_Controller
                 'ips_2' => set_value('ips_2', $row->ips_2),
                 'ips_3' => set_value('ips_3', $row->ips_3),
                 'ips_4' => set_value('ips_4', $row->ips_4),
-                'result' => set_value('result', $row->result),
+                'status' => set_value('status', $row->status),
             );
-            $this->layout->views('data_prediksi/tb_data_prediksi_form', $data);
+            $this->layout->views('data_latih/tb_data_latih_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         }
     }
 
@@ -259,34 +275,37 @@ class Data_prediksi extends CI_Controller
                 'ips_2' => $this->input->post('ips_2', TRUE),
                 'ips_3' => $this->input->post('ips_3', TRUE),
                 'ips_4' => $this->input->post('ips_4', TRUE),
-                'result' => $this->input->post('result', TRUE),
+                'status' => $this->input->post('status', TRUE),
             );
 
-            $this->Data_prediksi_model->update($this->input->post('id', TRUE), $data);
+            $this->Data_latih_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         }
     }
 
     public function delete($id)
     {
-        $row = $this->Data_prediksi_model->get_by_id($id);
+        $row = $this->Data_latih_model->get_by_id($id);
 
         if ($row) {
-            $this->Data_prediksi_model->delete($id);
+            $this->Data_latih_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('data_prediksi'));
+            redirect(site_url('data_latih'));
         }
     }
 
     public function empty_data()
     {
-        $this->Data_prediksi_model->empty_data();
+        $this->Data_latih_model->empty_data();
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_status');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_jenkel');
+        $this->Data_probabilitas_model->empty_data_prob('tb_prob_alamat');
         $this->session->set_flashdata('message', 'Delete Data Success');
-        redirect(site_url('data_prediksi'));
+        redirect(site_url('data_latih'));
     }
 
     public function _rules()
@@ -296,11 +315,11 @@ class Data_prediksi extends CI_Controller
         $this->form_validation->set_rules('nim', 'nim', 'trim|required');
         $this->form_validation->set_rules('usia', 'usia', 'trim|required');
         $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
-        $this->form_validation->set_rules('ips_1', 'ips 1', 'trim|required|numeric');
-        $this->form_validation->set_rules('ips_2', 'ips 2', 'trim|required|numeric');
-        $this->form_validation->set_rules('ips_3', 'ips 3', 'trim|required|numeric');
-        $this->form_validation->set_rules('ips_4', 'ips 4', 'trim|required|numeric');
-        $this->form_validation->set_rules('result', 'result', 'trim|required');
+        $this->form_validation->set_rules('ips_1', 'ips 1', 'trim|required');
+        $this->form_validation->set_rules('ips_2', 'ips 2', 'trim|required');
+        $this->form_validation->set_rules('ips_3', 'ips 3', 'trim|required');
+        $this->form_validation->set_rules('ips_4', 'ips 4', 'trim|required');
+        $this->form_validation->set_rules('status', 'status', 'trim|required');
 
         $this->form_validation->set_rules('id', 'id', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -309,8 +328,8 @@ class Data_prediksi extends CI_Controller
     public function excel()
     {
         $this->load->helper('exportexcel');
-        $namaFile = "tb_data_prediksi.xls";
-        $judul = "tb_data_prediksi";
+        $namaFile = "tb_data_latih.xls";
+        $judul = "tb_data_latih";
         $tablehead = 0;
         $tablebody = 1;
         $nourut = 1;
@@ -337,9 +356,9 @@ class Data_prediksi extends CI_Controller
         xlsWriteLabel($tablehead, $kolomhead++, "Ips 2");
         xlsWriteLabel($tablehead, $kolomhead++, "Ips 3");
         xlsWriteLabel($tablehead, $kolomhead++, "Ips 4");
-        xlsWriteLabel($tablehead, $kolomhead++, "Result");
+        xlsWriteLabel($tablehead, $kolomhead++, "Status");
 
-        foreach ($this->Data_prediksi_model->get_all() as $data) {
+        foreach ($this->Data_latih_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
@@ -349,11 +368,11 @@ class Data_prediksi extends CI_Controller
             xlsWriteLabel($tablebody, $kolombody++, $data->nim);
             xlsWriteNumber($tablebody, $kolombody++, $data->usia);
             xlsWriteLabel($tablebody, $kolombody++, $data->alamat);
-            xlsWriteNumber($tablebody, $kolombody++, $data->ips_1);
-            xlsWriteNumber($tablebody, $kolombody++, $data->ips_2);
-            xlsWriteNumber($tablebody, $kolombody++, $data->ips_3);
-            xlsWriteNumber($tablebody, $kolombody++, $data->ips_4);
-            xlsWriteLabel($tablebody, $kolombody++, $data->result);
+            xlsWriteLabel($tablebody, $kolombody++, $data->ips_1);
+            xlsWriteLabel($tablebody, $kolombody++, $data->ips_2);
+            xlsWriteLabel($tablebody, $kolombody++, $data->ips_3);
+            xlsWriteLabel($tablebody, $kolombody++, $data->ips_4);
+            xlsWriteLabel($tablebody, $kolombody++, $data->status);
 
             $tablebody++;
             $nourut++;
@@ -364,8 +383,8 @@ class Data_prediksi extends CI_Controller
     }
 }
 
-/* End of file Data_prediksi.php */
-/* Location: ./application/controllers/Data_prediksi.php */
+/* End of file data_latih.php */
+/* Location: ./application/controllers/data_latih.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2023-05-14 01:41:52 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2023-05-10 07:49:29 */
 /* http://harviacode.com */

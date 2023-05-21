@@ -12,3 +12,4 @@
   <link rel="stylesheet" href="{{ '/assets/css/highlighter.css' | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ '/assets/css/adminlte.min.css' | prepend: site.baseurl }}">
 </head>
+

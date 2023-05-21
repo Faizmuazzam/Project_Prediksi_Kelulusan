@@ -14,170 +14,870 @@
     </div><!-- /.container-fluid -->
 </section>
 
-<?php
-$dataAccuracy = 0;
-$correct = 0;
-$inCorrect = 0;
-
-foreach ($data_uji_data as $key => $data_uji) {
-    if ($data_uji->result == $data_uji->status) {
-        $correct = $correct + 1;
-    } else {
-        $inCorrect = $inCorrect + 1;
-    }
-}
-
-
-
-if (!empty($correct)) {
-    $dataAccuracy = ($correct / $totalAllData) * 100;
-}
-?>
-
 <section class="content">
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Accuracy : <strong><?php echo $dataAccuracy ?>%</strong></h3>
+                <h3 class="card-title">Setting Data Uji</h3>
             </div>
-        </div>
-    </div>
-</section>
-<div class="py-2"></div>
-
-<section class="content">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
-            </div>
-            <div class="card-body table-responsive">
+            <div class="card-body">
+                <div class="desc">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quod in perferendis, saepe eaque mollitia minus soluta dolorum veritatis iste sequi, at animi cumque nobis obcaecati culpa maxime. Vitae ullam perferendis placeat similique veniam, possimus ipsa impedit! Vero eaque illo quam accusantium. Natus expedita voluptatem voluptates laudantium, error placeat repellendus.</p>
+                </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <?php echo anchor(site_url('data_uji/import'), 'Import', 'class="btn btn-primary me-3"'); ?>
-                        <?php echo anchor(site_url('data_uji/excel'), 'Excel', 'class="btn btn-success"'); ?>
-                        <?php //echo anchor(site_url('data_uji/create'), 'Create', 'class="btn btn-primary"'); 
-                        ?>
-                        <?php echo anchor(site_url('data_uji/empty_data'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); ?>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div style="margin-top: 8px" id="message">
-                            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-                        </div>
-                    </div>
-                    <div class="col-md-1 text-right">
-                    </div>
-                    <div class="col-md-3 text-right">
-                        <form action="<?php echo site_url('data_uji/index'); ?>" class="w-100 d-none" method="get">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
-                                <span class="input-group-btn">
+                        <?php if (!empty($probStatus)) : ?>
+                            <form action="<?= base_url('data_uji') ?>" method="post">
+                                <div class="row">
                                     <?php
-                                    if ($q <> '') {
+                                    $dataSelect = [
+                                        [
+                                            'val' => 0.1,
+                                            'opt' => '10%'
+                                        ],
+                                        [
+                                            'val' => 0.15,
+                                            'opt' => '15%'
+                                        ],
+                                        [
+                                            'val' => 0.25,
+                                            'opt' => '25%'
+                                        ],
+                                        [
+                                            'val' => 0.35,
+                                            'opt' => '35%'
+                                        ],
+                                        [
+                                            'val' => 0.5,
+                                            'opt' => '50%'
+                                        ],
+                                        [
+                                            'val' => 0.75,
+                                            'opt' => '75%'
+                                        ],
+                                    ]
                                     ?>
-                                        <a href="<?php echo site_url('data_uji'); ?>" class="btn btn-default">Reset</a>
-                                    <?php
-                                    }
-                                    ?>
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </span>
-                            </div>
-                        </form>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select name="filterDataUji" id="filterDataUji" class="form-control">
+                                                <?php foreach ($dataSelect as $key => $value) : ?>
+                                                    <?php if ($filterData == $value['val']) : ?>
+                                                        <option value=<?= $value['val'] ?> selected><?= $value['opt'] ?></option>
+                                                    <?php endif ?>
+                                                    <option value=<?= $value['val'] ?>><?= $value['opt'] ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-success" id="filterData">
+                                            Filter Data
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        <?php endif ?>
                     </div>
-                </div>
-
-                <div class="py-2"></div>
-
-                <?php
-                // $CI = &get_instance();
-                // $CI->load->library('Naves_bayes');
-                // // $CI->library_name->yourFunction();
-                // $correct = 0;
-                // $inCorrect = 0;
-                ?>
-                <table class="table clasification table-bordered" style="margin-bottom: 10px">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Nim</th>
-                        <th>Usia</th>
-                        <th>Alamat</th>
-                        <th>Ips 1</th>
-                        <th>Ips 2</th>
-                        <th>Ips 3</th>
-                        <th>Ips 4</th>
-                        <th>Status</th>
-                        <th>Result</th>
-                        <th>Action</th>
-                    </tr><?php
-                            foreach ($data_uji_data as $key => $data_uji) {
-                                // $jenis_kelamin = $data_uji->jenis_kelamin;
-                                // $usia = $data_uji->usia;
-                                // $alamat = $data_uji->alamat;
-                                // $ips_1 = $data_uji->ips_1;
-                                // $ips_2 = $data_uji->ips_2;
-                                // $ips_3 = $data_uji->ips_3;
-                                // $ips_4 = $data_uji->ips_4;
-
-                                // $clasification = $CI->naves_bayes->clasification($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
-
-                                if ($data_uji->result == $data_uji->status) {
-                                    $correct = $correct + 1;
-                                } else {
-                                    $inCorrect = $inCorrect + 1;
-                                }
-                            ?>
-                        <tr class="<?php echo ($data_uji->result == $data_uji->status) ? 'bg-success' : 'bg-danger'  ?>">
-                            <td><?php echo ++$start ?></td>
-                            <td><?php echo $data_uji->nama ?></td>
-                            <td><?php echo $data_uji->jenis_kelamin ?></td>
-                            <td><?php echo $data_uji->nim ?></td>
-                            <td><?php echo $data_uji->usia ?></td>
-                            <td><?php echo $data_uji->alamat ?></td>
-                            <td><?php echo $data_uji->ips_1 ?></td>
-                            <td><?php echo $data_uji->ips_2 ?></td>
-                            <td><?php echo $data_uji->ips_3 ?></td>
-                            <td><?php echo $data_uji->ips_4 ?></td>
-                            <td><?php echo $data_uji->status ?></td>
-                            <td><?php echo $data_uji->result ?></td>
-                            <!-- <td><?php //echo $clasification 
-                                ?></td> -->
-                            <td>
-                                <?php
-                                // echo anchor(site_url('data_uji/read/' . $data_uji->id), 'Read');
-                                // echo ' | ';
-                                // echo anchor(site_url('data_uji/update/' . $data_uji->id), 'Update');
-                                // echo ' | ';
-                                // echo anchor(site_url('data_uji/delete/' . $data_uji->id), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-                                // 
-                                ?>
-
-                                <a href="<?= base_url('data_uji/delete/' . $data_uji->id) ?>" onclick="return confirm('Are You Sure ?')" class="btn btn-danger">
-                                    <span class="iconify" data-icon="material-symbols:delete-outline"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="d-flex justify-content-end">
+                            <?php
+                            if (empty($probStatus) && !empty($data_latih)) : ?>
+                                <form action="<?php echo base_url('data_uji/action_count_prob') ?>" method="post">
+                                    <button class="btn btn-success mr-2" type="submit">
+                                        Hitung Propabilitas
+                                    </button>
+                                </form>
+                            <?php endif ?>
+                            <?php
+                            if (empty($data_latih)) {
+                                echo anchor(site_url('data_latih/import'), 'Import Data Latih', 'class="btn btn-primary mr-2"');
+                            } else {
+                                echo anchor(site_url('data_uji/empty_data_prob'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
                             }
-                    ?>
-                </table>
-                <div class="row">
-                    <div class="col-md-6">
-                        <a href="#" class="btn">Total Record : <?php echo $total_rows ?></a>
-                    </div>
-                    <!-- <div class="col-md-6 text-right">
-                        <div class="vPaginations">
-                            <?php //echo $pagination 
+
                             ?>
+
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<div class="py-2"></div>
+
+
+<div class="loader d-none" id="loader">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <!-- <span class="visually-hidden">Loading...</span> -->
+                    </div>
+                    <h5>Wait a minutes..........</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<?php if (!empty($resultFilter)) : ?>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3><?= $dataAccuracy ?><sup style="font-size: 20px">%</sup></h3>
+                            <p>Akurasi Data Yang Di Uji</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer text-left px-2">
+                            Total data yang di uji <strong><?= $totalDataUji ?></strong>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3><?= $totalDataUji ?><sup style="font-size: 20px">/<?= $totalAllData ?></sup></h3>
+                            <p>Jumlah Data Yang Di Uji</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer text-left px-2">
+                            Diambil <strong><?= $filterData * 100 ?>%</strong> dari data latih
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3><?= $correct ?><sup style="font-size: 20px">/<?= $totalDataUji ?></sup></h3>
+                            <p>Jumlah Pengujian Benar</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer text-left px-2">
+                            Persentase dari data uji <strong><?= $dataAccuracy ?>%</strong>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?= $inCorrect ?><sup style="font-size: 20px">/<?= $totalDataUji ?></sup></h3>
+                            <p>Jumlah Pengujian Salah</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer text-left px-2">
+                            Persentase dari data uji <strong><?= 100 - $dataAccuracy ?>%</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">Lihat Detail</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table clasification table-bordered" style="margin-bottom: 10px">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Nim</th>
+                            <th>Usia</th>
+                            <th>Alamat</th>
+                            <th>Ips 1</th>
+                            <th>Ips 2</th>
+                            <th>Ips 3</th>
+                            <th>Ips 4</th>
+                            <th>Status</th>
+                            <th>Result</th>
+                            <th>Action</th>
+                        </tr><?php
+                                foreach ($resultFilter as $key => $data_uji) {
+                                ?>
+                            <tr class="<?php echo ($dataResult[$key] == $data_uji->status) ? '' : 'bg-danger'  ?>">
+                                <td><?php echo ++$start ?></td>
+                                <td><?php echo $data_uji->nama ?></td>
+                                <td><?php echo $data_uji->jenis_kelamin ?></td>
+                                <td><?php echo $data_uji->nim ?></td>
+                                <td><?php echo $data_uji->usia ?></td>
+                                <td><?php echo $data_uji->alamat ?></td>
+                                <td><?php echo $data_uji->ips_1 ?></td>
+                                <td><?php echo $data_uji->ips_2 ?></td>
+                                <td><?php echo $data_uji->ips_3 ?></td>
+                                <td><?php echo $data_uji->ips_4 ?></td>
+                                <td><?php echo $data_uji->status ?></td>
+                                <td><?php echo $dataResult[$key] ?></td>
+                                <td>
+                                    <?php
+                                    // echo anchor(site_url('data_uji/read/' . $data_uji->id), 'Read');
+                                    // echo ' | ';
+                                    // echo anchor(site_url('data_uji/update/' . $data_uji->id), 'Update');
+                                    // echo ' | ';
+                                    // echo anchor(site_url('data_uji/delete/' . $data_uji->id), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                                    // 
+                                    ?>
+
+                                    <a href="<?= base_url('data_uji/delete/' . $data_uji->id) ?>" onclick="return confirm('Are You Sure ?')" class="btn btn-danger">
+                                        <span class="iconify" data-icon="material-symbols:delete-outline"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                                }
+                        ?>
+                    </table>
+                </div>
+            </div>
+            <div class="py-2"></div>
+            <hr>
+            <div class="py-2"></div>
+        </div>
+    </section>
+<?php endif ?>
+
+<?php if (!empty($probStatus)) : ?>
+    <section class="content">
+        <div class="container-fluid">
+            <h5 class="mt-4 mb-3 text-center">Propabilitas <code>Status</code> dari Data Uji</h5>
+            <div class="row justify-content-center">
+                <?php foreach ($probStatus as $key => $value) : ?>
+                    <div class="col-md-3">
+                        <?php if ($value['status'] == 'TEPAT') : ?>
+                            <div class="info-box bg-success">
+                                <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text"><strong><?php echo $value['status'] ?></strong></span>
+                                    <h3 class="h3 font-weight-bold"><?php echo $value['result'] ?></h3>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: <?php echo $value['result'] * 100 ?>%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        <?php echo $value['count'] ?> dari <?= $totalAllData ?>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        <?php else : ?>
+                            <div class="info-box bg-danger">
+                                <span class="info-box-icon"><i class="far fa-thumbs-down"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text"><strong><?php echo $value['status'] ?></strong></span>
+                                    <h3 class="h3 font-weight-bold"><?php echo $value['result'] ?></h3>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: <?php echo $value['result'] * 100 ?>%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        <?php echo $value['count'] ?> dari <?= $totalAllData ?>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        <?php endif ?>
+
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+
+<?php if (!empty($probJenkel)) : ?>
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>Jenis Kelamin</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php foreach ($probJenkel as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probJenkel as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+<?php if (!empty($probAlamat)) : ?>
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>Alamat</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php foreach ($probAlamat as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probAlamat as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+<?php if (!empty($probStatus)) : ?>
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>Usia</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php
+                                $cat1Ontime = 0;
+                                $probOntimeUsia = 0;
+                                foreach ($probUsia as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probUsia as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+<?php if (!empty($probStatus)) : ?>
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>IPS 1</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php foreach ($probIps1 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probIps1 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+<?php if (!empty($probStatus)) : ?>
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>IPS 2</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php foreach ($probIps2 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probIps2 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+<?php if (!empty($probStatus)) : ?>
+    <sect class="content">
+        <div class=" px-0con-mdtainer-fluid px-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>IPS 3</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php foreach ($probIps3 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probIps3 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </sect table-responsiveion>
+<?php endif ?>
+
+<?php if (!empty($probStatus)) : ?>
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
+            <h5 class="mt-4 mb-2">Propabilitas <code>IPS 4</code> dari Data Uji</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TEPAT</strong></h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Tepat</th>
+                                    <th>Peluang Lulus</th>
+                                </tr>
+                                <?php foreach ($probIps4 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countOnTime'] ?></td>
+                                        <td><?= $value['resultOnTime'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Data <strong>TERLAMBAT</strong></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="display: block;">
+                            <table class="table table-bordered" style="margin-bottom: 10px">
+                                <tr>
+                                    <th></th>
+                                    <th>Terlambat</th>
+                                    <th>Peluang Terlambat</th>
+                                </tr>
+                                <?php foreach ($probIps4 as $key => $value) : ?>
+                                    <tr class="text-right">
+                                        <th><?= $value['name'] ?></th>
+                                        <td><?= $value['countLate'] ?></td>
+                                        <td><?= $value['resultLate'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif ?>
+
+
+
 
 
 
@@ -187,6 +887,29 @@ if (!empty($correct)) {
 
 
 <style>
+    /* .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    .loader .loader-inner {
+        display: grid;
+        place-content: center;
+        height: 100%;
+        width: 100%;
+        background-color: #212529;
+        color: #fff;
+    }
+
+    .loader .loader-inner .v-load-content .logo-text h5 {
+        color: #fff;
+        font-size: 60px;
+    } */
+
     .vPaginations nav ul {
         display: flex;
         justify-content: end;
@@ -212,6 +935,11 @@ if (!empty($correct)) {
         text-align: end;
     }
 
+    .content table td {
+        vertical-align: middle !important;
+
+    }
+
     .content table.clasification tr.bg-success {
         background-color: rgba(40, 167, 69, 0.3) !important;
         color: #212529 !important;
@@ -222,3 +950,25 @@ if (!empty($correct)) {
         color: #212529 !important;
     }
 </style>
+
+<script>
+    document.getElementById('filterData').onclick = () => {
+        document.getElementById("loader").classList.remove('d-none');
+    }
+
+    function loading() {
+        if (document.all) {
+            // document.all["loader"].style.visibility = "hidden";
+            document.getElementById("loader").classList.remove('d-none');
+            // document.all["main"].style.visibility = "visible";
+            console.log('load');
+        } else if (document.getElementById) {
+            document.getElementById("loader").classList.add('d-none');
+            // node = document.getElementById("loader").style.visibility = 'hidden';
+            // node = document.getElementById("main").style.visibility = 'visible';
+            console.log('finish');
+        }
+    }
+
+    document.body.onload = () => loading();
+</script>

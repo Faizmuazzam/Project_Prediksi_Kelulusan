@@ -7,7 +7,6 @@ class Data_uji_model extends CI_Model
 {
 
     public $table = 'tb_data_uji';
-    public $table2 = 'tb_data_latih';
     public $id = 'id';
     public $order = 'DESC';
 
@@ -28,14 +27,6 @@ class Data_uji_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
-    }
-
-    function get_filters_data($limit)
-    {
-        $this->db->order_by($this->id, 'rand()');
-        $this->db->limit($limit);
-        $query = $this->db->get($this->table2);
-        return $query->result();
     }
 
     // get total rows
@@ -109,6 +100,7 @@ class Data_uji_model extends CI_Model
     {
         $this->db->from($this->table);
         $this->db->truncate();
+        
     }
 }
 
