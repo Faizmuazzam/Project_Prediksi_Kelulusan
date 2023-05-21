@@ -18,9 +18,18 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-5"></div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>About Me ?</h4>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo praesentium perspiciatis, sapiente earum <code>voluptas voluptates</code> repudiandae sequi ea aliquid est, ipsa illo! Quia aspernatur atque velit accusantium minus cumque blanditiis hic dolores excepturi, quasi eaque officiis magnam officia vero quis quos suscipit consequatur architecto qui repellendus voluptates nulla. Error, necessitatibus.
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-7">
-                <div class="card card-primary">
+                <div class="card card-light">
                     <div class="card-header">
                         <h3 class="card-title">Import Excel</h3>
                     </div>
@@ -44,6 +53,9 @@
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Import</button>
+                            <a href="<?= base_url('data_latih') ?>" class="btn btn-secondary">
+                                Cancel
+                            </a>
                         </div>
                     </form>
                 </div>

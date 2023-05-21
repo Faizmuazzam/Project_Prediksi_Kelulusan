@@ -8,7 +8,7 @@
               <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active">DataTables</li>
+                      <li class="breadcrumb-item active">Users</li>
                   </ol>
               </div>
           </div>
@@ -93,9 +93,9 @@
                                                 // 
                                                 ?>
 
-                                              <a href="<?= base_url('users/read/' . $users->id) ?>" class="btn btn-primary">
+                                              <!-- <a href="<?= base_url('users/read/' . $users->id) ?>" class="btn btn-primary">
                                                   <span class="iconify" data-icon="material-symbols:search"></span>
-                                              </a>
+                                              </a> -->
 
                                               <a href="<?= base_url('users/update/' . $users->id) ?>" class="btn btn-warning">
                                                   <span class="iconify" data-icon="material-symbols:edit"></span>

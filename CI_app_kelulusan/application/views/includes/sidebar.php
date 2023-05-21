@@ -25,7 +25,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?= base_url('/') ?>" class="nav-link">
+            <a href="<?= base_url('/') ?>" class="nav-link <?= ($this->uri->uri_string() == '') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -34,7 +34,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?= base_url('/data_prediksi') ?>" class="nav-link">
+            <a href="<?= base_url('/data_prediksi') ?>" class="nav-link <?= ($this->uri->uri_string() == 'data_prediksi') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Prediksi Kelulusan
@@ -43,7 +43,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?= base_url('/data_uji') ?>" class="nav-link">
+            <a href="<?= base_url('/data_uji') ?>" class="nav-link <?= ($this->uri->uri_string() == 'data_uji') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-folder"></i>
               <p>
                 Uji Data
@@ -54,7 +54,7 @@
 
           <li class="nav-header">Data Master</li>
           <li class="nav-item">
-            <a href="<?= base_url('users') ?>" class="nav-link">
+            <a href="<?= base_url('users') ?>" class="nav-link <?= ($this->uri->uri_string() == 'users') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Users
@@ -63,11 +63,21 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?= base_url('/data_latih') ?>" class="nav-link">
+            <a href="<?= base_url('/data_latih') ?>" class="nav-link <?= ($this->uri->uri_string() == 'data_latih') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-folder"></i>
               <p>
                 Data Latih
                 <span class="right badge badge-danger">Training</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">Auth</li>
+          <li class="nav-item">
+            <a href="<?= base_url('/auth/logout') ?>" class="nav-link">
+              <!-- <i class="nav-icon fas fa-folder"></i> -->
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
               </p>
             </a>
           </li>

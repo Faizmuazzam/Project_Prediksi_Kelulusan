@@ -7,7 +7,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Data Uji</a></li>
+                    <li class="breadcrumb-item"><a href="#">Prediksi</a></li>
                     <li class="breadcrumb-item active">Import</li>
                 </ol>
             </div>
@@ -18,9 +18,18 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-5"></div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>About Me ?</h4>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo praesentium perspiciatis, sapiente earum <code>voluptas voluptates</code> repudiandae sequi ea aliquid est, ipsa illo! Quia aspernatur atque velit accusantium minus cumque blanditiis hic dolores excepturi, quasi eaque officiis magnam officia vero quis quos suscipit consequatur architecto qui repellendus voluptates nulla. Error, necessitatibus.
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-7">
-                <div class="card card-primary">
+                <div class="card card-light">
                     <div class="card-header">
                         <h3 class="card-title">Import Excel</h3>
                     </div>
@@ -43,7 +52,8 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Import</button>
+                            <button type="submit" class="btn btn-primary me-2">Import</button>
+                            <a href="<?= base_url('data_prediksi') ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

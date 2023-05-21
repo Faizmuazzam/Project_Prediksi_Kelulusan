@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Data Testing</h1>
+                <h1>Data Uji</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Data Testing</li>
+                    <li class="breadcrumb-item active">Data Uji</li>
                 </ol>
             </div>
         </div>
@@ -18,14 +18,20 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                <h3 class="card-title">List Data Uji</h3>
             </div>
             <div class="card-body table-responsive">
                 <div class="row">
                     <div class="col-md-6">
-                        <?php echo anchor(site_url('data_latih/import'), 'Import', 'class="btn btn-primary me-3"'); ?>
+                        <?php
+                        if (empty($data_latih_data)) {
+                            echo anchor(site_url('data_latih/import'), 'Import', 'class="btn btn-primary me-3"');
+                        } else {
+                            echo anchor(site_url('data_latih/empty_data'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                        }
+                        ?>
                         <?php echo anchor(site_url('data_latih/excel'), 'Excel', 'class="btn btn-success"'); ?>
-                        <?php echo anchor(site_url('data_latih/empty_data'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); ?>
+
                     </div>
                     <!-- <div class="col-md-4 text-center">
                           <div style="margin-top: 8px" id="message">

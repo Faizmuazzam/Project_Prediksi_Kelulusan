@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success" id="filterData">
+                                        <button type="submit" class="btn btn-success" id="filterData" onclick="hideLoader()">
                                             Filter Data
                                         </button>
                                     </div>
@@ -84,7 +84,7 @@
                             <?php
                             if (empty($probStatus) && !empty($data_latih)) : ?>
                                 <form action="<?php echo base_url('data_uji/action_count_prob') ?>" method="post">
-                                    <button class="btn btn-success mr-2" type="submit">
+                                    <button class="btn btn-success mr-2" type="submit" id="hitungProb" onclick="hideLoader()">
                                         Hitung Propabilitas
                                     </button>
                                 </form>
@@ -93,7 +93,7 @@
                             if (empty($data_latih)) {
                                 echo anchor(site_url('data_latih/import'), 'Import Data Latih', 'class="btn btn-primary mr-2"');
                             } else {
-                                echo anchor(site_url('data_uji/empty_data_prob'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                                echo anchor(site_url('data_uji/empty_data_prob'), 'Reset Data Latih', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
                             }
 
                             ?>
@@ -952,9 +952,12 @@
 </style>
 
 <script>
-    document.getElementById('filterData').onclick = () => {
+
+    const hideLoader = () => {
         document.getElementById("loader").classList.remove('d-none');
     }
+
+
 
     function loading() {
         if (document.all) {

@@ -23,11 +23,16 @@
             <div class="card-body table-responsive">
                 <div class="row" style="margin-bottom: 10px">
                     <div class="col-md-4">
-                        <?php echo anchor(site_url('data_prediksi/import'), 'Import', 'class="btn btn-primary me-3"'); ?>
+                        <?php
+                        if (empty($data_prediksi_data)) {
+                            echo anchor(site_url('data_prediksi/import'), 'Import', 'class="btn btn-primary me-3"');
+                        } else {
+                            echo anchor(site_url('data_prediksi/empty_data'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                        }
+                        ?>
                         <?php echo anchor(site_url('data_prediksi/excel'), 'Excel', 'class="btn btn-success"'); ?>
                         <?php //echo anchor(site_url('data_prediksi/create'), 'Create', 'class="btn btn-primary"'); 
                         ?>
-                        <?php echo anchor(site_url('data_prediksi/empty_data'), 'Empty', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); ?>
                     </div>
                     <div class="col-md-4 text-center">
                         <div id="message">
