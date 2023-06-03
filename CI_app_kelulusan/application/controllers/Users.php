@@ -177,7 +177,7 @@ class Users extends CI_Controller
 
             $this->Users_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('users'));
+            redirect(base_url('/'));
         }
     }
 

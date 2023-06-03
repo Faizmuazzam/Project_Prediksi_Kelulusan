@@ -196,65 +196,72 @@ class Naves_bayes
     $cat3_prob_onTime = 0;
     $cat3_prob_late = 0;
 
-    $cat4_Ontime = 0;
-    $cat4_late = 0;
-    $cat4_prob_onTime = 0;
-    $cat4_prob_late = 0;
+    // $cat4_Ontime = 0;
+    // $cat4_late = 0;
+    // $cat4_prob_onTime = 0;
+    // $cat4_prob_late = 0;
 
 
     foreach ($data as $key => $value) {
-      if (intval($value['name']) < 26) {
+      if (intval($value['name']) < 20) {
         $cat1_Ontime = $cat1_Ontime + intval($value['countOnTime']);
         $cat1_late = $cat1_late + intval($value['countLate']);
         $cat1_prob_onTime = $cat1_prob_onTime + doubleval($value['resultOnTime']);
         $cat1_prob_late = $cat1_prob_late + doubleval($value['resultLate']);
       }
 
-      if (intval($value['name']) >= 26 && intval($value['name']) < 31) {
+      if (intval($value['name']) >= 20 && intval($value['name']) < 23) {
         $cat2_Ontime = $cat2_Ontime + intval($value['countOnTime']);
         $cat2_late = $cat2_late + intval($value['countLate']);
         $cat2_prob_onTime = $cat2_prob_onTime + doubleval($value['resultOnTime']);
         $cat2_prob_late = $cat2_prob_late + doubleval($value['resultLate']);
       }
 
-      if (intval($value['name']) >= 31 && intval($value['name']) < 36) {
+      if (intval($value['name']) >= 23) {
         $cat3_Ontime = $cat3_Ontime + intval($value['countOnTime']);
         $cat3_late = $cat3_late + intval($value['countLate']);
         $cat3_prob_onTime = $cat3_prob_onTime + doubleval($value['resultOnTime']);
         $cat3_prob_late = $cat3_prob_late + doubleval($value['resultLate']);
       }
 
-      if (intval($value['name']) >= 36) {
-        $cat4_Ontime = $cat4_Ontime + intval($value['countOnTime']);
-        $cat4_late = $cat4_late + intval($value['countLate']);
-        $cat4_prob_onTime = $cat4_prob_onTime + doubleval($value['resultOnTime']);
-        $cat4_prob_late = $cat4_prob_late + doubleval($value['resultLate']);
-      }
+      // if (intval($value['name']) >= 31 && intval($value['name']) < 36) {
+      //   $cat3_Ontime = $cat3_Ontime + intval($value['countOnTime']);
+      //   $cat3_late = $cat3_late + intval($value['countLate']);
+      //   $cat3_prob_onTime = $cat3_prob_onTime + doubleval($value['resultOnTime']);
+      //   $cat3_prob_late = $cat3_prob_late + doubleval($value['resultLate']);
+      // }
+
+      // if (intval($value['name']) >= 36) {
+      //   $cat4_Ontime = $cat4_Ontime + intval($value['countOnTime']);
+      //   $cat4_late = $cat4_late + intval($value['countLate']);
+      //   $cat4_prob_onTime = $cat4_prob_onTime + doubleval($value['resultOnTime']);
+      //   $cat4_prob_late = $cat4_prob_late + doubleval($value['resultLate']);
+      // }
     }
 
-    $newPropUsia[0]['name'] = '0 - 25 Tahun';
+    $newPropUsia[0]['name'] = '< 20 Tahun';
     $newPropUsia[0]['countOnTime'] = $cat1_Ontime;
     $newPropUsia[0]['countLate'] = $cat1_late;
     $newPropUsia[0]['resultOnTime'] = $cat1_prob_onTime;
     $newPropUsia[0]['resultLate'] = $cat1_prob_late;
 
-    $newPropUsia[1]['name'] = '26 - 30 Tahun';
+    $newPropUsia[1]['name'] = '20 - 23 Tahun';
     $newPropUsia[1]['countOnTime'] = $cat2_Ontime;
     $newPropUsia[1]['countLate'] = $cat2_late;
     $newPropUsia[1]['resultOnTime'] = $cat2_prob_onTime;
     $newPropUsia[1]['resultLate'] = $cat2_prob_late;
 
-    $newPropUsia[2]['name'] = '31 - 35 Tahun';
+    $newPropUsia[2]['name'] = '> 23 Tahun';
     $newPropUsia[2]['countOnTime'] = $cat3_Ontime;
     $newPropUsia[2]['countLate'] = $cat3_late;
     $newPropUsia[2]['resultOnTime'] = $cat3_prob_onTime;
     $newPropUsia[2]['resultLate'] = $cat3_prob_late;
 
-    $newPropUsia[3]['name'] = '> 36 Tahun';
-    $newPropUsia[3]['countOnTime'] = $cat4_Ontime;
-    $newPropUsia[3]['countLate'] = $cat4_late;
-    $newPropUsia[3]['resultOnTime'] = $cat4_prob_onTime;
-    $newPropUsia[3]['resultLate'] = $cat4_prob_late;
+    // $newPropUsia[3]['name'] = '> 36 Tahun';
+    // $newPropUsia[3]['countOnTime'] = $cat4_Ontime;
+    // $newPropUsia[3]['countLate'] = $cat4_late;
+    // $newPropUsia[3]['resultOnTime'] = $cat4_prob_onTime;
+    // $newPropUsia[3]['resultLate'] = $cat4_prob_late;
 
     return $newPropUsia;
   }
