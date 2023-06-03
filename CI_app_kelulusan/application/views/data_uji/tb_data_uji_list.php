@@ -61,10 +61,7 @@
                                         <div class="form-group">
                                             <select name="filterDataUji" id="filterDataUji" class="form-control">
                                                 <?php foreach ($dataSelect as $key => $value) : ?>
-                                                    <?php if ($filterData == $value['val']) : ?>
-                                                        <option value=<?= $value['val'] ?> selected><?= $value['opt'] ?></option>
-                                                    <?php endif ?>
-                                                    <option value=<?= $value['val'] ?>><?= $value['opt'] ?></option>
+                                                    <option value=<?= $value['val'] ?> <?= ($filterData == $value['val'] ? 'selected' : '') ?>><?= $value['opt'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -93,7 +90,7 @@
                             if (empty($data_latih)) {
                                 echo anchor(site_url('data_latih/import'), 'Import Data Latih', 'class="btn btn-primary mr-2"');
                             } else {
-                                echo anchor(site_url('data_uji/empty_data_prob'), 'Reset Data Latih', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                                // echo anchor(site_url('data_uji/empty_data_prob'), 'Reset Data Latih', 'class="btn btn-danger"', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
                             }
 
                             ?>
@@ -952,7 +949,6 @@
 </style>
 
 <script>
-
     const hideLoader = () => {
         document.getElementById("loader").classList.remove('d-none');
     }

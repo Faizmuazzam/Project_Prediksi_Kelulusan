@@ -73,7 +73,7 @@
                             </div>
                             <input type="hidden" name="id" value="<?php echo $id; ?>" />
                             <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
-                            <a href="<?php echo site_url('users') ?>" class="btn btn-default">Cancel</a>
+                            <a href="<?php echo base_url('/') ?>" class="btn btn-default">Cancel</a>
                         </form>
                     </div>
                 </div>

@@ -25,7 +25,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 // $config['base_url'] = 'http://localhost/faiz/CI_Kerupuk';
 // $config['base_url'] = "http://".$_SERVER['HTTP_HOST'].'/'.$_SERVER['REQUEST_URI'];
-$config['base_url'] = "http://" . $_SERVER['HTTP_HOST'] . '/Project_Prediksi_Kelulusan/CI_app_kelulusan/';
+// $config['base_url'] = "http://" . $_SERVER['HTTP_HOST'] . '/Project_Prediksi_Kelulusan/CI_app_kelulusan/';
+$config['base_url'] = "http://" . $_SERVER['HTTP_HOST'] . '/Freelance/Project_Prediksi_Kelulusan/CI_app_kelulusan/';
 
 /*
 |--------------------------------------------------------------------------

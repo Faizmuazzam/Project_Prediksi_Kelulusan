@@ -1,0 +1,1439 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jun 03, 2023 at 06:29 AM
+-- Server version: 5.7.33
+-- PHP Version: 7.2.34
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_app_kelulusan`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_data_latih`
+--
+
+CREATE TABLE `tb_data_latih` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_kelamin` varchar(50) NOT NULL,
+  `nim` varchar(50) NOT NULL,
+  `usia` int(11) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `ips_1` double NOT NULL,
+  `ips_2` double NOT NULL,
+  `ips_3` double NOT NULL,
+  `ips_4` double NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_data_latih`
+--
+
+INSERT INTO `tb_data_latih` (`id`, `nama`, `jenis_kelamin`, `nim`, `usia`, `alamat`, `ips_1`, `ips_2`, `ips_3`, `ips_4`, `status`) VALUES
+(1, 'ANIK WIDAYANTI', 'PEREMPUAN', '54540977', 28, 'Dalam Kabupaten', 2.76, 2.8, 3.2, 3.17, 'TERLAMBAT'),
+(2, 'DWI HESTYNA PRIHASTANTY', 'PEREMPUAN', '23220863', 32, 'Luar Kabupaten', 3, 3.3, 3.14, 3.14, 'TERLAMBAT'),
+(3, 'MURYA ARIEF BASUKI', 'PEREMPUAN', '69814179', 29, 'Luar Provinsi', 3.5, 3.3, 3.7, 3.29, 'TERLAMBAT'),
+(4, 'NANIK SUSANTI', 'PEREMPUAN', '77949717', 27, 'Dalam Kabupaten', 3.17, 3.41, 3.61, 3.36, 'TERLAMBAT'),
+(5, 'RIFKA ISTIQFARINA', 'PEREMPUAN', '57535297', 29, 'Luar Kabupaten', 2.9, 2.89, 3.3, 2.85, 'TERLAMBAT'),
+(6, 'SUHARYONO', 'LAKI - LAKI', '33162408', 27, 'Luar Provinsi', 2.95, 2.82, 3.09, 3.1, 'TERLAMBAT'),
+(7, 'FARIKHATUN NAZLI', 'PEREMPUAN', '58950343', 26, 'Dalam Kabupaten', 2.76, 3.14, 2.6, 2.95, 'TEPAT'),
+(8, 'FIFI SUNALISA', 'PEREMPUAN', '20843166', 27, 'Dalam Kabupaten', 2.62, 2.89, 2.32, 2.5, 'TEPAT'),
+(9, 'HENDRIK MULIYANTO', 'PEREMPUAN', '97320562', 25, 'Dalam Kabupaten', 3.6, 3.54, 3.52, 3.39, 'TERLAMBAT'),
+(10, 'IMAM AGUNG RIBOWO', 'PEREMPUAN', '41192889', 28, 'Dalam Kabupaten', 2.71, 2.55, 1.77, 2.11, 'TERLAMBAT'),
+(11, 'IMAM SANTOSA', 'PEREMPUAN', '67490792', 27, 'Dalam Kabupaten', 3.14, 3.46, 3.4, 3.43, 'TERLAMBAT'),
+(12, 'IRFAN EKO WAHYUDI', 'PEREMPUAN', '76328432', 32, 'Dalam Kabupaten', 2.67, 2.3, 1.57, 1.44, 'TERLAMBAT'),
+(13, 'IWAN HAMBALI', 'PEREMPUAN', '55610511', 26, 'Dalam Kabupaten', 2.57, 2.82, 2.2, 2.45, 'TERLAMBAT'),
+(14, 'M SYAIFULLAH', 'PEREMPUAN', '74785839', 31, 'Dalam Kabupaten', 2.71, 3, 2.65, 2.27, 'TERLAMBAT'),
+(15, 'DIANA LAILY FITHRI', 'PEREMPUAN', '64160757', 26, 'Luar Kabupaten', 3.24, 3.38, 3.44, 3.3, 'TERLAMBAT'),
+(16, 'DONNY PRABOWO', 'LAKI - LAKI', '36460232', 27, 'Luar Kabupaten', 2.86, 2.86, 2.45, 1.86, 'TERLAMBAT'),
+(17, 'EDI JATMIKO', 'PEREMPUAN', '53606852', 27, 'Luar Kabupaten', 2.71, 3.27, 2.54, 3.36, 'TERLAMBAT'),
+(18, 'ADI SUBEKTI', 'LAKI - LAKI', '15882190', 29, 'Dalam Kabupaten', 2.67, 2.2, 1.45, 3, 'TERLAMBAT'),
+(19, 'AHMAD IBROZI', 'LAKI - LAKI', '21281460', 27, 'Luar Kabupaten', 2.67, 2.68, 1.95, 1.61, 'TERLAMBAT'),
+(20, 'ANDI HARDIANTO', 'LAKI - LAKI', '86497186', 27, 'Luar Provinsi', 3.1, 3.71, 2.96, 3.4, 'TEPAT'),
+(21, 'ANDI SUNARWAN', 'LAKI - LAKI', '28566553', 28, 'Dalam Kabupaten', 3, 3.33, 2.88, 2.8, 'TERLAMBAT'),
+(22, 'ANNY AZIZAH', 'LAKI - LAKI', '62330253', 26, 'Luar Kabupaten', 3.12, 3.23, 2.96, 3, 'TERLAMBAT'),
+(23, 'ARIEF PRAM WAHYUDI', 'LAKI - LAKI', '76290294', 26, 'Luar Provinsi', 2.9, 3.32, 2.83, 2.91, 'TERLAMBAT'),
+(24, 'DENNY SELA PUTROWIBOWO', 'LAKI - LAKI', '57615508', 29, 'Dalam Kabupaten', 2.95, 3.41, 3.48, 3.24, 'TERLAMBAT'),
+(25, 'MARTHINA FLAVERIA', 'LAKI - LAKI', '96455085', 25, 'Dalam Kabupaten', 3.05, 2.92, 2.27, 2.65, 'TERLAMBAT'),
+(26, 'MASLUH JAMIL', 'LAKI - LAKI', '93379354', 30, 'Dalam Kabupaten', 2.64, 3, 2.9, 2.77, 'TERLAMBAT'),
+(27, 'MURDIANTORO', 'LAKI - LAKI', '79179423', 32, 'Dalam Kabupaten', 2.45, 2.45, 2.14, 1.95, 'TERLAMBAT'),
+(28, 'NAILI ROHMAH', 'PEREMPUAN', '78625155', 27, 'Dalam Kabupaten', 0.33, 2.9, 3.16, 2.35, 'TERLAMBAT'),
+(29, 'NASRUL SAFARAH', 'LAKI - LAKI', '71924561', 27, 'Dalam Kabupaten', 3.33, 3.63, 3.29, 3.89, 'TEPAT'),
+(30, 'NOOR KAMALUDDIN MALIK', 'LAKI - LAKI', '65081535', 26, 'Dalam Kabupaten', 2.52, 2.7, 2.84, 2.77, 'TERLAMBAT'),
+(31, 'ROHANA MIRAWATI', 'LAKI - LAKI', '22996291', 25, 'Dalam Kabupaten', 3.05, 3.38, 3.21, 2.93, 'TEPAT'),
+(32, 'SANDY YUDHA NUGRAHA', 'LAKI - LAKI', '51268029', 30, 'Luar Kabupaten', 2.81, 3.09, 2.63, 3.36, 'TERLAMBAT'),
+(33, 'SISKA LIANAWATI', 'LAKI - LAKI', '69686278', 32, 'Luar Kabupaten', 2.52, 2.75, 2.25, 2.5, 'TEPAT'),
+(34, 'SRI MINUK ISWATI', 'LAKI - LAKI', '74647514', 27, 'Luar Kabupaten', 3.12, 3.1, 2.73, 2.8, 'TEPAT'),
+(35, 'SUDANDING DWI SUPRABANA', 'LAKI - LAKI', '74896216', 27, 'Dalam Kabupaten', 2.86, 3.05, 2.54, 2.36, 'TERLAMBAT'),
+(36, 'SUGIYANTO', 'LAKI - LAKI', '74549981', 26, 'Luar Kabupaten', 3.05, 3.27, 2.31, 3.05, 'TERLAMBAT'),
+(37, 'SUSI  HANDAYANI', 'LAKI - LAKI', '79305291', 25, 'Luar Provinsi', 2.71, 3.16, 2.44, 2.91, 'TEPAT'),
+(38, 'SUTOPO', 'LAKI - LAKI', '92914708', 50, 'Dalam Kabupaten', 2.88, 3.32, 2.48, 3.27, 'TERLAMBAT'),
+(39, 'TOTOK ANTON ARIBOWO', 'LAKI - LAKI', '60525714', 27, 'Luar Kabupaten', 2.76, 3.25, 2.98, 1.91, 'TERLAMBAT'),
+(40, 'ADI DARMADI', 'LAKI - LAKI', '39313161', 29, 'Luar Provinsi', 2.69, 2.59, 3.2, 3, 'TERLAMBAT'),
+(41, 'EKO JAUHARI SAPUTRO', 'LAKI - LAKI', '35258469', 30, 'Dalam Kabupaten', 2.29, 3.09, 3.2, 2.74, 'TERLAMBAT'),
+(42, 'HARMINTO MULYO', 'LAKI - LAKI', '93009553', 28, 'Dalam Kabupaten', 2.71, 2.59, 3.09, 1.76, 'TERLAMBAT'),
+(43, 'HERI PURWANTO', 'LAKI - LAKI', '38310061', 27, 'Dalam Kabupaten', 2.43, 3.02, 3, 2.79, 'TERLAMBAT'),
+(44, 'MIFTACHUR RIDHO', 'LAKI - LAKI', '84397971', 27, 'Dalam Kabupaten', 2.88, 2.59, 2.82, 3.05, 'TERLAMBAT'),
+(45, 'TATIK HIKMAWATI', 'LAKI - LAKI', '53471367', 29, 'Dalam Kabupaten', 2.07, 2.59, 2.59, 2.48, 'TERLAMBAT'),
+(46, 'USWATUN KHASANAH', 'LAKI - LAKI', '49781872', 25, 'Dalam Kabupaten', 3.1, 3, 2.98, 3.1, 'TERLAMBAT'),
+(47, 'A SYAFI\'I', 'LAKI - LAKI', '57230168', 28, 'Dalam Kabupaten', 2.57, 2.55, 2.57, 1.91, 'TERLAMBAT'),
+(48, 'ABDUL GHOFFAR ISMA\'IL', 'LAKI - LAKI', '99648274', 28, 'Dalam Kabupaten', 3.26, 3.73, 3.02, 3.5, 'TEPAT'),
+(49, 'ACHMAD FAHMI AQWA', 'LAKI - LAKI', '91793692', 32, 'Luar Kabupaten', 2.71, 2.89, 2.75, 3.18, 'TEPAT'),
+(50, 'ADY PRASETIA', 'LAKI - LAKI', '72794862', 27, 'Luar Kabupaten', 1.9, 1.91, 1.59, 1.28, 'TERLAMBAT'),
+(51, 'AGUNG WIDODO', 'LAKI - LAKI', '60727952', 29, 'Luar Kabupaten', 2.24, 1.68, 2.45, 1.59, 'TERLAMBAT'),
+(52, 'AGUS SUSILO', 'LAKI - LAKI', '89397425', 27, 'Dalam Kabupaten', 2.52, 2.27, 2.68, 1.86, 'TERLAMBAT'),
+(53, 'AGUS BUDI UTOMO', 'LAKI - LAKI', '15040099', 26, 'Luar Kabupaten', 2.86, 2.8, 2.2, 2.14, 'TERLAMBAT'),
+(54, 'AGUS RIYANTO', 'LAKI - LAKI', '74925971', 27, 'Luar Provinsi', 2.76, 3.09, 2.58, 2.73, 'TERLAMBAT'),
+(55, 'ALINA INDRAWATI', 'PEREMPUAN', '94629114', 25, 'Dalam Kabupaten', 2.57, 2.82, 2.89, 2.64, 'TERLAMBAT'),
+(56, 'ANDY MAHENDRA', 'LAKI - LAKI', '27769961', 28, 'Luar Kabupaten', 2.14, 1.55, 2.03, 2.27, 'TERLAMBAT'),
+(57, 'ARIEF IRFANDIANSYAH', 'LAKI - LAKI', '91295443', 32, 'Luar Provinsi', 2.48, 2.95, 2.84, 2.5, 'TERLAMBAT'),
+(58, 'ARIEF SETIAWAN', 'LAKI - LAKI', '59409665', 26, 'Dalam Kabupaten', 2.33, 1.84, 2.76, 2.14, 'TERLAMBAT'),
+(59, 'BAGUS WIBOWO HERRU PRIHANTO', 'LAKI - LAKI', '48431015', 26, 'Dalam Kabupaten', 2.1, 2.5, 3.02, 2.85, 'TERLAMBAT'),
+(60, 'DEFI MAULA KHORIDA', 'PEREMPUAN', '51458257', 27, 'Dalam Kabupaten', 2.88, 3.48, 3.17, 2.5, 'TEPAT'),
+(61, 'DEVI RIESTYANINGSIH', 'PEREMPUAN', '85572359', 27, 'Dalam Kabupaten', 2.81, 3.11, 3.19, 3.08, 'TERLAMBAT'),
+(62, 'DIAH KUSUMANINGTYAS', 'PEREMPUAN', '45263044', 28, 'Dalam Kabupaten', 2.6, 2.91, 2.68, 2.68, 'TERLAMBAT'),
+(63, 'EDI HARIYANTO', 'LAKI - LAKI', '49171480', 29, 'Dalam Kabupaten', 2.76, 2.95, 2.43, 2.27, 'TERLAMBAT'),
+(64, 'EDI PURNOMO', 'LAKI - LAKI', '52848313', 25, 'Dalam Kabupaten', 2.86, 3.43, 2.92, 2.82, 'TERLAMBAT'),
+(65, 'EMA SYAROH', 'PEREMPUAN', '39822797', 32, 'Dalam Kabupaten', 3.02, 3.63, 3.42, 3.37, 'TEPAT'),
+(66, 'EMAN PRASOJO', 'LAKI - LAKI', '37072393', 27, 'Luar Kabupaten', 2.57, 3.39, 2.6, 2.73, 'TERLAMBAT'),
+(67, 'EMAWANTI', 'PEREMPUAN', '72971842', 27, 'Luar Kabupaten', 3.31, 3.6, 3.67, 3.57, 'TEPAT'),
+(68, 'ERFANA SETIYANINGRUM', 'PEREMPUAN', '85539899', 25, 'Luar Kabupaten', 3, 3.23, 2.88, 3.09, 'TERLAMBAT'),
+(69, 'FARCHAN NOVE INDRIYANTO', 'LAKI - LAKI', '29777644', 30, 'Dalam Kabupaten', 2.48, 2.48, 2.23, 2.09, 'TEPAT'),
+(70, 'FITRIA HANDAYANI', 'PEREMPUAN', '48093180', 32, 'Luar Kabupaten', 2.52, 2.8, 2.59, 2.5, 'TERLAMBAT'),
+(71, 'FITYATUN FATAYAH', 'PEREMPUAN', '60804962', 27, 'Luar Provinsi', 2.76, 3.18, 3.13, 2.75, 'TERLAMBAT'),
+(72, 'HAROZUM', 'PEREMPUAN', '76609161', 27, 'Dalam Kabupaten', 2.57, 3.16, 3.06, 2.88, 'TERLAMBAT'),
+(73, 'HERMAWAN BUDI HARTONO', 'LAKI - LAKI', '75745374', 26, 'Luar Kabupaten', 2.6, 3.32, 3.44, 2.79, 'TERLAMBAT'),
+(74, 'HERU NOR RACHMAD', 'LAKI - LAKI', '25201188', 50, 'Luar Provinsi', 2.67, 2.18, 2, 2.32, 'TERLAMBAT'),
+(75, 'INDRI ERNAMAWATI', 'PEREMPUAN', '65820512', 27, 'Dalam Kabupaten', 2.86, 2.82, 3.2, 2.58, 'TERLAMBAT'),
+(76, 'IWAN SETYO ASMOKO', 'LAKI - LAKI', '65649446', 29, 'Dalam Kabupaten', 3, 3.5, 2.69, 2.36, 'TERLAMBAT'),
+(77, 'KHAMIM MASYFU\'I', 'LAKI - LAKI', '34582533', 30, 'Dalam Kabupaten', 2.05, 1.68, 2.24, 2.09, 'TERLAMBAT'),
+(78, 'KOMARUDIN FARUQ', 'LAKI - LAKI', '23131310', 27, 'Dalam Kabupaten', 2.55, 2.3, 2.02, 2.32, 'TERLAMBAT'),
+(79, 'LINA NAILAL MUNA', 'PEREMPUAN', '80180449', 27, 'Dalam Kabupaten', 3.24, 3.58, 3.25, 3.43, 'TERLAMBAT'),
+(80, 'MEILINDA IKA WIJAYANTI', 'PEREMPUAN', '93736136', 25, 'Dalam Kabupaten', 2.07, 2.7, 2.32, 2.36, 'TERLAMBAT'),
+(81, 'MIFTAHUL HUDA', 'LAKI - LAKI', '24809228', 28, 'Dalam Kabupaten', 2.76, 3.11, 2.75, 2.59, 'TERLAMBAT'),
+(82, 'MOCH LUTFIANTO', 'LAKI - LAKI', '45095186', 26, 'Dalam Kabupaten', 2.9, 3.55, 3.38, 3.54, 'TEPAT'),
+(83, 'MOCHAMAD IRWANSYAH', 'LAKI - LAKI', '23731041', 31, 'Luar Kabupaten', 2.76, 1.09, 2.29, 0.95, 'TERLAMBAT'),
+(84, 'MOH ERIK CHANDRA IRVANA', 'LAKI - LAKI', '97035460', 26, 'Luar Kabupaten', 2.29, 2.14, 1.84, 1.67, 'TERLAMBAT'),
+(85, 'MOKHAMAD ALEX KHOIRUDIN', 'LAKI - LAKI', '21057119', 27, 'Luar Kabupaten', 2.55, 2.16, 2.14, 2.27, 'TERLAMBAT'),
+(86, 'MUCHAMMAD BAHRUDIN', 'LAKI - LAKI', '56385817', 27, 'Dalam Kabupaten', 2.17, 2.66, 2.55, 2, 'TERLAMBAT'),
+(87, 'MUHAMMAD ABDUH', 'LAKI - LAKI', '60378911', 29, 'Luar Kabupaten', 2.83, 3.61, 3.18, 3.23, 'TEPAT'),
+(88, 'MUHAMMAD ABDUL AZIS', 'LAKI - LAKI', '95905451', 27, 'Luar Provinsi', 2.26, 1.86, 0.32, 0, 'TERLAMBAT'),
+(89, 'MUHAMMAD AMINAN', 'LAKI - LAKI', '23403519', 27, 'Dalam Kabupaten', 2.38, 2.7, 3.02, 3, 'TEPAT'),
+(90, 'MUHAMMAD YASIN YUSUF', 'LAKI - LAKI', '73234012', 28, 'Luar Kabupaten', 2.69, 2.5, 3.07, 2.83, 'TERLAMBAT'),
+(91, 'NISWATUL ALIYAH', 'PEREMPUAN', '54711487', 26, 'Luar Provinsi', 2.86, 2.7, 2.89, 2.73, 'TERLAMBAT'),
+(92, 'NOOR MUHAMMAD AFIF', 'LAKI - LAKI', '70958461', 29, 'Dalam Kabupaten', 2.33, 2.75, 2.36, 2.18, 'TERLAMBAT'),
+(93, 'NOVAN AIS SETIANSAH', 'LAKI - LAKI', '41095889', 25, 'Dalam Kabupaten', 2.45, 1.43, 2.16, 0.27, 'TERLAMBAT'),
+(94, 'PUTRI KURNIA HANDAYANI', 'PEREMPUAN', '94483116', 32, 'Dalam Kabupaten', 3.24, 3.83, 3.65, 3.61, 'TEPAT'),
+(95, 'REZA PAHLEVI', 'LAKI - LAKI', '16244013', 27, 'Dalam Kabupaten', 2.24, 3.14, 1.9, 1.89, 'TERLAMBAT'),
+(96, 'RINA WARDANI', 'PEREMPUAN', '63184356', 27, 'Dalam Kabupaten', 2.74, 2.41, 2.75, 2.86, 'TERLAMBAT'),
+(97, 'ROFIDA RONING MAHANONDA', 'PEREMPUAN', '88120350', 26, 'Dalam Kabupaten', 2.31, 2.77, 2.64, 2.82, 'TERLAMBAT'),
+(98, 'RUDIYANTI SETIASIH', 'PEREMPUAN', '44314202', 26, 'Dalam Kabupaten', 2.62, 3.02, 2.52, 2.91, 'TERLAMBAT'),
+(99, 'SHOFIA NUR JAMILA', 'PEREMPUAN', '39437163', 29, 'Dalam Kabupaten', 2.67, 2.89, 2.66, 2.45, 'TERLAMBAT'),
+(100, 'SIGIT SETYO ATMOKO', 'PEREMPUAN', '55632244', 25, 'Luar Kabupaten', 2.74, 3, 2.98, 2.86, 'TERLAMBAT'),
+(101, 'SUGIYANTO', 'LAKI - LAKI', '38320564', 30, 'Luar Kabupaten', 2.45, 3.11, 2.98, 2.32, 'TERLAMBAT'),
+(102, 'SUMARLAN', 'LAKI - LAKI', '61262863', 32, 'Luar Kabupaten', 2.71, 3.41, 2.73, 2.45, 'TERLAMBAT'),
+(103, 'SUYONO', 'LAKI - LAKI', '29965192', 27, 'Dalam Kabupaten', 3.43, 3.56, 3.55, 3.67, 'TEPAT'),
+(104, 'TAUFIK SETYAWAN', 'LAKI - LAKI', '65808763', 27, 'Luar Kabupaten', 2.57, 2.91, 2.7, 2.73, 'TERLAMBAT'),
+(105, 'TRI MULYANTO', 'LAKI - LAKI', '65503134', 26, 'Luar Provinsi', 3, 3.04, 2.9, 3.14, 'TERLAMBAT'),
+(106, 'TUGIYO', 'LAKI - LAKI', '17243385', 26, 'Dalam Kabupaten', 3.76, 3.81, 3.17, 3.63, 'TEPAT'),
+(107, 'TUTIK KHOTIMAH', 'PEREMPUAN', '59344619', 29, 'Luar Kabupaten', 3.64, 3.96, 3.69, 3.83, 'TEPAT'),
+(108, 'YUDA LINDA PRATIWI', 'PEREMPUAN', '32449895', 25, 'Luar Provinsi', 2.95, 3.5, 3.19, 2.96, 'TERLAMBAT'),
+(109, 'YUSTINUS ARI SETIAWAN', 'LAKI - LAKI', '15428167', 26, 'Dalam Kabupaten', 2.88, 2.71, 3.45, 3.15, 'TERLAMBAT'),
+(110, 'DANNY NOVRIYANTO', 'LAKI - LAKI', '31384180', 29, 'Dalam Kabupaten', 1.08, 1.84, 0.71, 1.7, 'TERLAMBAT'),
+(111, 'PRATIWI PUJIASTUTI', 'PEREMPUAN', '61950771', 25, 'Dalam Kabupaten', 3.1, 2.38, 2.41, 2.27, 'TERLAMBAT'),
+(112, 'EDY KUSMANTO', 'PEREMPUAN', '10130134', 42, 'Dalam Kabupaten', 3.05, 2.35, 3.39, 2.5, 'TEPAT'),
+(113, 'LAILI QODRIYAH', 'PEREMPUAN', '32649524', 24, 'Dalam Kabupaten', 3.71, 3.6, 3.6, 3.61, 'TEPAT'),
+(114, 'SUGENG RIYANTO', 'LAKI - LAKI', '64513661', 25, 'Dalam Kabupaten', 3, 2.83, 3.57, 3.26, 'TEPAT'),
+(115, 'GUNA SETIAWAN', 'LAKI - LAKI', '78550137', 25, 'Dalam Kabupaten', 2.76, 2.53, 2.98, 2.71, 'TEPAT'),
+(116, 'MASYKURI', 'LAKI - LAKI', '51048989', 30, 'Dalam Kabupaten', 3.07, 2.9, 3.58, 2.79, 'TERLAMBAT'),
+(117, 'MUTIARA FANNY', 'PEREMPUAN', '42227232', 25, 'Luar Kabupaten', 2.64, 2.25, 2.36, 2.23, 'TERLAMBAT'),
+(118, 'HERU WIJAYANTO', 'LAKI - LAKI', '38944739', 24, 'Luar Kabupaten', 3.52, 3.48, 3.77, 3.52, 'TEPAT'),
+(119, 'SYARIEF WIRA ADMAJA', 'LAKI - LAKI', '96683993', 25, 'Luar Kabupaten', 2.31, 2.86, 2.7, 2.46, 'TERLAMBAT'),
+(120, 'ISMI NUR FAJRIAH', 'PEREMPUAN', '39504398', 24, 'Dalam Kabupaten', 3.14, 2.5, 3.39, 2.78, 'TEPAT'),
+(121, 'ARUM PURWANINGSIH', 'PEREMPUAN', '81427586', 25, 'Luar Kabupaten', 2.24, 2.03, 1.74, 1.95, 'TERLAMBAT'),
+(122, 'MUHKHAMAD FAKHRUL HIDAYAT', 'LAKI - LAKI', '79627537', 25, 'Luar Provinsi', 1.81, 1.7, 0.53, 0.18, 'TERLAMBAT'),
+(123, 'AGUSTINA SETIONINGSIH', 'PEREMPUAN', '77155422', 26, 'Dalam Kabupaten', 2.43, 2.14, 2.95, 2.29, 'TEPAT'),
+(124, 'DWI SISWANTO', 'LAKI - LAKI', '27031988', 27, 'Luar Kabupaten', 2.5, 2.43, 2.77, 2.67, 'TERLAMBAT'),
+(125, 'KUMALA DEWI', 'LAKI - LAKI', '20120426', 25, 'Luar Provinsi', 3.4, 3.03, 3.69, 3.35, 'TEPAT'),
+(126, 'NIRWANA SATRIA PAMBUDI', 'LAKI - LAKI', '72277288', 25, 'Dalam Kabupaten', 3.19, 2.95, 3.73, 3.74, 'TEPAT'),
+(127, 'IKA MUSTIANA', 'PEREMPUAN', '79168364', 23, 'Dalam Kabupaten', 3.36, 3.4, 3.63, 3.78, 'TEPAT'),
+(128, 'AYU NAWAKSARI', 'PEREMPUAN', '42861898', 24, 'Dalam Kabupaten', 3.24, 3.13, 3.44, 3.3, 'TEPAT'),
+(129, 'NOOR FAIS', 'PEREMPUAN', '55494239', 25, 'Dalam Kabupaten', 2.21, 2.03, 0.82, 0.45, 'TEPAT'),
+(130, 'INDAH NOR KHAYATI', 'PEREMPUAN', '40629808', 25, 'Dalam Kabupaten', 2.55, 2.14, 2.7, 2.42, 'TERLAMBAT'),
+(131, 'MUHAMMAD ARIF WIBOWO', 'LAKI - LAKI', '93472844', 26, 'Dalam Kabupaten', 1.67, 2.1, 1.5, 0.73, 'TERLAMBAT'),
+(132, 'MOHAMAD ABDUL AZIS', 'LAKI - LAKI', '82811824', 31, 'Dalam Kabupaten', 3.14, 3.18, 2.98, 3.63, 'TERLAMBAT'),
+(133, 'WAHYUNI', 'PEREMPUAN', '20094575', 25, 'Dalam Kabupaten', 2.33, 2.65, 3.04, 2.38, 'TERLAMBAT'),
+(134, 'MUHAMAD FAUZI', 'LAKI - LAKI', '52671634', 27, 'Luar Kabupaten', 2.69, 2.36, 3.23, 3.25, 'TERLAMBAT'),
+(135, 'FITRIANA MASRUROH', 'PEREMPUAN', '20540487', 24, 'Luar Kabupaten', 3.5, 3.5, 3.71, 3.87, 'TERLAMBAT'),
+(136, 'MOHAMAD ASNAWI', 'LAKI - LAKI', '15154831', 24, 'Luar Kabupaten', 3.38, 3.05, 3.63, 3.39, 'TERLAMBAT'),
+(137, 'MARWANTO WIJANARKO', 'LAKI - LAKI', '41906608', 27, 'Dalam Kabupaten', 2.64, 2.83, 1.75, 2.5, 'TERLAMBAT'),
+(138, 'NOOR ISYA', 'LAKI - LAKI', '65119168', 26, 'Luar Kabupaten', 2.86, 3.36, 3.55, 3.38, 'TERLAMBAT'),
+(139, 'RIZAL BACHTIAR', 'LAKI - LAKI', '19860305', 24, 'Luar Provinsi', 2.57, 2.17, 2.91, 1.91, 'TERLAMBAT'),
+(140, 'ISNANTO HENDRO YULIHARSO', 'LAKI - LAKI', '63361064', 24, 'Dalam Kabupaten', 2.52, 2.81, 3.16, 2.67, 'TERLAMBAT'),
+(141, 'WAHYU SETIYA BUDI', 'LAKI - LAKI', '90890369', 24, 'Luar Kabupaten', 2.21, 2.39, 2.55, 2.54, 'TERLAMBAT'),
+(142, 'MIFTAKHULIL SETIYANING HIDAYAH', 'PEREMPUAN', '52891355', 24, 'Luar Provinsi', 2.5, 2.17, 2.3, 2.38, 'TERLAMBAT'),
+(143, 'WIWID WAHYUDI', 'LAKI - LAKI', '76160110', 24, 'Dalam Kabupaten', 3.05, 3.05, 2.79, 2.67, 'TEPAT'),
+(144, 'GAMA FARID DENA', 'LAKI - LAKI', '31258040', 24, 'Dalam Kabupaten', 2.1, 2.67, 3.05, 2.17, 'TERLAMBAT'),
+(145, 'SAIRUN NICHLAH', 'PEREMPUAN', '74211669', 24, 'Dalam Kabupaten', 3.02, 3.03, 3.63, 3.57, 'TEPAT'),
+(146, 'UMMIA WULAN SARI', 'PEREMPUAN', '74000498', 25, 'Dalam Kabupaten', 3.33, 2.48, 3.73, 3.52, 'TEPAT'),
+(147, 'KARSONO HENDI', 'LAKI - LAKI', '14882962', 24, 'Dalam Kabupaten', 2.88, 2.81, 3.5, 3, 'TEPAT'),
+(148, 'EVA ADITYA', 'PEREMPUAN', '46737149', 27, 'Dalam Kabupaten', 2.9, 2.14, 2.48, 2.33, 'TERLAMBAT'),
+(149, 'ANDRE EKA SETYAWAN', 'LAKI - LAKI', '76109090', 24, 'Dalam Kabupaten', 2.76, 2.19, 2.77, 0.96, 'TERLAMBAT'),
+(150, 'JOHAN MAULANA', 'LAKI - LAKI', '75003993', 26, 'Dalam Kabupaten', 2.4, 2.11, 2.82, 3.05, 'TEPAT'),
+(151, 'SAIFUL ANAM', 'LAKI - LAKI', '21722261', 25, 'Luar Kabupaten', 2.81, 2.86, 3.2, 2.04, 'TERLAMBAT'),
+(152, 'NURUL KHOIRIYAH', 'PEREMPUAN', '59389762', 26, 'Luar Kabupaten', 2.67, 2.92, 3.56, 3.17, 'TEPAT'),
+(153, 'HERU DARMAWAN', 'LAKI - LAKI', '57920281', 24, 'Luar Kabupaten', 3.07, 2.68, 3.43, 2.57, 'TEPAT'),
+(154, 'NI\'MATUL KHASANAH', 'PEREMPUAN', '16386936', 28, 'Dalam Kabupaten', 2.81, 2.94, 3.25, 2.83, 'TEPAT'),
+(155, 'PURWADI', 'LAKI - LAKI', '63771198', 24, 'Luar Kabupaten', 3.33, 3.3, 3.81, 3.46, 'TERLAMBAT'),
+(156, 'TRI PUJI LESTARI', 'PEREMPUAN', '27294294', 27, 'Luar Provinsi', 3.21, 3.23, 3.67, 3.48, 'TEPAT'),
+(157, 'TAUFIK RAMADHAN', 'LAKI - LAKI', '34978017', 24, 'Dalam Kabupaten', 2.52, 2.06, 3.09, 2.25, 'TERLAMBAT'),
+(158, 'MOH SYAIKHUDDIN', 'LAKI - LAKI', '41885388', 25, 'Luar Kabupaten', 3.02, 2.83, 3, 1.98, 'TERLAMBAT'),
+(159, 'MOH AINUL YAQIN', 'LAKI - LAKI', '63861678', 27, 'Luar Provinsi', 2.12, 2.22, 2.64, 2.05, 'TERLAMBAT'),
+(160, 'FIRMAN HAQIQI', 'LAKI - LAKI', '94036887', 24, 'Dalam Kabupaten', 2.55, 2.53, 3.07, 2.75, 'TERLAMBAT'),
+(161, 'DEWI KARYASARI', 'PEREMPUAN', '62669830', 24, 'Dalam Kabupaten', 2.86, 2.78, 3.57, 2.79, 'TEPAT'),
+(162, 'ROSIDI', 'LAKI - LAKI', '54394096', 24, 'Dalam Kabupaten', 3, 2.78, 3.18, 2.5, 'TEPAT'),
+(163, 'MUH SAIFUL MUBAROK', 'LAKI - LAKI', '85331764', 28, 'Dalam Kabupaten', 2.95, 2.08, 3.05, 2.29, 'TERLAMBAT'),
+(164, 'MIFTAKHUL HABIB', 'LAKI - LAKI', '62954437', 28, 'Dalam Kabupaten', 2.9, 2.19, 3.16, 2.92, 'TERLAMBAT'),
+(165, 'GUNUNG WICAKSONO', 'LAKI - LAKI', '18467900', 26, 'Dalam Kabupaten', 2.83, 2.08, 3.11, 2.75, 'TERLAMBAT'),
+(166, 'ANIK MURWATI', 'PEREMPUAN', '16758512', 25, 'Dalam Kabupaten', 2.74, 2.39, 3.11, 2.75, 'TEPAT'),
+(167, 'MUHAMMAD TAHRIR FATHONY', 'LAKI - LAKI', '32497590', 24, 'Dalam Kabupaten', 3.24, 2.83, 3.5, 2.67, 'TEPAT'),
+(168, 'PUTRI RETNO ARIYANI', 'PEREMPUAN', '76214187', 47, 'Luar Kabupaten', 3.21, 2.85, 3.55, 2.98, 'TERLAMBAT'),
+(169, 'MOCHAMAD IDRIS', 'LAKI - LAKI', '41067151', 24, 'Luar Kabupaten', 2.79, 2.44, 2.98, 2.68, 'TERLAMBAT'),
+(170, 'ERVINA DWI WIJAYANTI', 'PEREMPUAN', '37639688', 27, 'Luar Kabupaten', 2.62, 2.64, 3.07, 2.54, 'TERLAMBAT'),
+(171, 'ADI JOKO MULYONO', 'LAKI - LAKI', '72639505', 25, 'Dalam Kabupaten', 3.02, 2.58, 3.41, 2.85, 'TEPAT'),
+(172, 'DANANG MAHENDRA', 'LAKI - LAKI', '66675579', 24, 'Luar Kabupaten', 3.02, 2.55, 3.64, 2.63, 'TERLAMBAT'),
+(173, 'NILA OCTARINA', 'PEREMPUAN', '68794723', 25, 'Luar Provinsi', 2.64, 2.22, 2.02, 1.05, 'TERLAMBAT'),
+(174, 'M IMAM MUSLIMIN', 'LAKI - LAKI', '48656636', 23, 'Dalam Kabupaten', 2.76, 1.44, 3.11, 2.08, 'TERLAMBAT'),
+(175, 'NOOR FARIDA', 'PEREMPUAN', '67791272', 27, 'Luar Kabupaten', 2.55, 2.36, 2.82, 2.36, 'TERLAMBAT'),
+(176, 'ARIE RETNO WATI', 'PEREMPUAN', '29974627', 25, 'Luar Provinsi', 3.43, 2.95, 3.55, 3.28, 'TEPAT'),
+(177, 'SUNARSO', 'LAKI - LAKI', '66470882', 23, 'Dalam Kabupaten', 2.5, 2.67, 2.84, 2.5, 'TERLAMBAT'),
+(178, 'DEWI ASTUTI', 'PEREMPUAN', '23170387', 32, 'Dalam Kabupaten', 3, 2.3, 3.25, 2.78, 'TEPAT'),
+(179, 'KHOTIMATUS SA\'ADAH', 'PEREMPUAN', '34390722', 24, 'Dalam Kabupaten', 3, 2.38, 2.84, 2.68, 'TERLAMBAT'),
+(180, 'EKA SETIYANI', 'PEREMPUAN', '47085376', 26, 'Dalam Kabupaten', 3.33, 2.6, 3.3, 2.68, 'TEPAT'),
+(181, 'MUHAMMAD SETIAWAN', 'LAKI - LAKI', '72271131', 26, 'Dalam Kabupaten', 3.38, 2.78, 3.59, 3.11, 'TERLAMBAT'),
+(182, 'ULFAH NOR SA\'ADAH', 'PEREMPUAN', '17299054', 26, 'Dalam Kabupaten', 3.12, 2.83, 3.45, 3.09, 'TEPAT'),
+(183, 'SITI SUSANAH', 'PEREMPUAN', '35633703', 25, 'Dalam Kabupaten', 2.93, 2.69, 3.39, 2.79, 'TERLAMBAT'),
+(184, 'ARDI SETIAWAN', 'LAKI - LAKI', '23455473', 24, 'Dalam Kabupaten', 2.4, 1.89, 2.39, 2.32, 'TEPAT'),
+(185, 'BADRUDDIN', 'LAKI - LAKI', '54494798', 27, 'Luar Kabupaten', 3.21, 2.4, 3.66, 3.2, 'TEPAT'),
+(186, 'PRASTIWI SETIYOWATI', 'PEREMPUAN', '61561155', 30, 'Luar Kabupaten', 3.17, 2.48, 3.43, 3.17, 'TERLAMBAT'),
+(187, 'ROBI KORNIYAWAN', 'LAKI - LAKI', '69154101', 26, 'Luar Kabupaten', 2.93, 2.25, 2.66, 2.45, 'TERLAMBAT'),
+(188, 'EVY DIAH HAPSARI', 'PEREMPUAN', '10569161', 24, 'Dalam Kabupaten', 3.07, 2.55, 2.93, 1.59, 'TERLAMBAT'),
+(189, 'NISFISYA MUSWARDINI', 'PEREMPUAN', '40991808', 26, 'Luar Kabupaten', 2.95, 2.53, 3.32, 2.88, 'TERLAMBAT'),
+(190, 'MOHAMMAD RIFQI ABDILLAH', 'LAKI - LAKI', '43465575', 24, 'Luar Provinsi', 2.48, 2.08, 2.05, 0.91, 'TERLAMBAT'),
+(191, 'MOH IQBAL HAKIM', 'LAKI - LAKI', '63548646', 24, 'Dalam Kabupaten', 2.64, 1.61, 1.21, 0.83, 'TERLAMBAT'),
+(192, 'IRWAN HIDAYAT', 'LAKI - LAKI', '86678705', 27, 'Luar Kabupaten', 2.76, 2.33, 3.25, 2.58, 'TERLAMBAT'),
+(193, 'AFTONAL FALAKH', 'LAKI - LAKI', '27191468', 25, 'Luar Provinsi', 2.76, 2.42, 2.3, 2.14, 'TERLAMBAT'),
+(194, 'SITI CHODIROH', 'PEREMPUAN', '56983054', 24, 'Dalam Kabupaten', 3.26, 2.75, 3.2, 2.76, 'TEPAT'),
+(195, 'ENI ISNAWATI', 'PEREMPUAN', '80308445', 27, 'Dalam Kabupaten', 2.62, 2.28, 2.3, 1.91, 'TERLAMBAT'),
+(196, 'AKHMAD ZAINUDIN', 'LAKI - LAKI', '76839101', 30, 'Dalam Kabupaten', 3.26, 3.03, 3.54, 3.28, 'TERLAMBAT'),
+(197, 'ARIF BUDIYANTO', 'LAKI - LAKI', '34017719', 30, 'Dalam Kabupaten', 2.9, 2.67, 3, 2.52, 'TERLAMBAT'),
+(198, 'VICKY MAULANA', 'LAKI - LAKI', '84075289', 28, 'Dalam Kabupaten', 3, 2.5, 2.7, 2.41, 'TERLAMBAT'),
+(199, 'MOCHAMAD HARTANTO', 'LAKI - LAKI', '63005772', 26, 'Dalam Kabupaten', 2.55, 2.42, 2.89, 2.82, 'TERLAMBAT'),
+(200, 'PUTRA WAHYU WIJAYAKUSUMAH', 'LAKI - LAKI', '65961225', 26, 'Dalam Kabupaten', 2.76, 2.58, 3.14, 2.33, 'TERLAMBAT'),
+(201, 'NAILIS SA\'ADAH', 'PEREMPUAN', '13715788', 25, 'Dalam Kabupaten', 3.4, 2.78, 3.45, 3.04, 'TEPAT'),
+(202, 'ANWAR KHOERUDIN', 'LAKI - LAKI', '11756544', 24, 'Luar Kabupaten', 3.19, 2.85, 3.23, 2.46, 'TEPAT'),
+(203, 'JOKO SANTOSO', 'LAKI - LAKI', '38512698', 26, 'Luar Kabupaten', 3.52, 2.73, 3.41, 2.93, 'TERLAMBAT'),
+(204, 'NOOR LATIFAH', 'PEREMPUAN', '47529665', 25, 'Luar Kabupaten', 3.71, 3.68, 3.96, 3.91, 'TEPAT'),
+(205, 'DANANG WIDURI', 'PEREMPUAN', '15303974', 24, 'Dalam Kabupaten', 2.31, 2.25, 3.11, 2.17, 'TERLAMBAT'),
+(206, 'SAIFUL AZAS KHASANUL MUNNA', 'LAKI - LAKI', '57891777', 24, 'Luar Kabupaten', 3.5, 3.03, 3.4, 2.93, 'TERLAMBAT'),
+(207, 'HANIK ROSIDAH', 'PEREMPUAN', '38622953', 24, 'Luar Provinsi', 3.33, 3.05, 3.77, 3.57, 'TEPAT'),
+(208, 'ATIQOH', 'PEREMPUAN', '91418268', 24, 'Dalam Kabupaten', 2.98, 2.75, 3.61, 3.17, 'TEPAT'),
+(209, 'SRI LESTARI', 'PEREMPUAN', '40680474', 25, 'Luar Kabupaten', 3.38, 2.85, 3.43, 2.98, 'TEPAT'),
+(210, 'INGGIT BHINTAR HISKYATITIS', 'PEREMPUAN', '52866568', 24, 'Luar Provinsi', 3.38, 3.08, 3.52, 3.11, 'TEPAT'),
+(211, 'ULYA HIMMAWATI', 'PEREMPUAN', '41565482', 29, 'Dalam Kabupaten', 2.88, 2.5, 3.34, 2.54, 'TERLAMBAT'),
+(212, 'HERU SAPUTRO', 'LAKI - LAKI', '18520181', 25, 'Dalam Kabupaten', 3.55, 2.7, 3.68, 3.2, 'TERLAMBAT'),
+(213, 'ARIS SETYAWAN', 'LAKI - LAKI', '80562053', 24, 'Dalam Kabupaten', 3.1, 2.8, 3.25, 2.43, 'TEPAT'),
+(214, 'IMAM ZARKASYI', 'LAKI - LAKI', '23998878', 28, 'Dalam Kabupaten', 3.07, 2.65, 3.41, 3.46, 'TERLAMBAT'),
+(215, 'FAJAR NOOR CAHYANTO', 'LAKI - LAKI', '98866806', 24, 'Dalam Kabupaten', 3.29, 2.58, 3.36, 2.76, 'TERLAMBAT'),
+(216, 'NENENG FAIDA', 'PEREMPUAN', '67170253', 25, 'Dalam Kabupaten', 2.36, 2.25, 2.93, 0.96, 'TERLAMBAT'),
+(217, 'ZULFA AMELIA', 'PEREMPUAN', '73603063', 26, 'Dalam Kabupaten', 3.5, 3.23, 3.83, 3.39, 'TEPAT'),
+(218, 'SUNARNO', 'LAKI - LAKI', '25822441', 24, 'Dalam Kabupaten', 2.76, 2.58, 2.8, 2.95, 'TERLAMBAT'),
+(219, 'NOR FADLI', 'LAKI - LAKI', '82126262', 26, 'Luar Kabupaten', 3.33, 2.53, 3.34, 3.65, 'TEPAT'),
+(220, 'USMAN ANDI WIBOWO', 'LAKI - LAKI', '23069665', 24, 'Luar Kabupaten', 3.38, 2.61, 3, 1.91, 'TERLAMBAT'),
+(221, 'SRI LESTARI', 'PEREMPUAN', '97934220', 24, 'Luar Kabupaten', 3.31, 2.73, 3.11, 3.04, 'TEPAT'),
+(222, 'DEWI AYU KURNIA ALAM', 'PEREMPUAN', '75596685', 25, 'Dalam Kabupaten', 3.45, 2.9, 3.45, 2.46, 'TEPAT'),
+(223, 'NUR AFIFATULLAILA', 'PEREMPUAN', '16210890', 25, 'Luar Kabupaten', 3.45, 2.83, 3.45, 2.48, 'TEPAT'),
+(224, 'MUSAUWAMATUL KHASANAH', 'PEREMPUAN', '18690573', 24, 'Luar Provinsi', 3.79, 3.13, 3.69, 3.09, 'TEPAT'),
+(225, 'ANANG RAMADHAN PANDU W', 'PEREMPUAN', '71500663', 41, 'Dalam Kabupaten', 3.64, 3.25, 3.92, 3.42, 'TEPAT'),
+(226, 'NURUL RICHA HIKMANINGSIH', 'PEREMPUAN', '91264043', 23, 'Luar Kabupaten', 3.45, 3.13, 3.75, 3.13, 'TEPAT'),
+(227, 'MASKURI R', 'LAKI - LAKI', '99288705', 27, 'Luar Provinsi', 3.33, 2.88, 3.52, 2.68, 'TEPAT'),
+(228, 'BENNY KUSUMA AJI SANJAYA', 'LAKI - LAKI', '96804680', 24, 'Dalam Kabupaten', 2.86, 2.75, 3.48, 2.83, 'TERLAMBAT'),
+(229, 'SUHIRMAN', 'LAKI - LAKI', '95294085', 25, 'Dalam Kabupaten', 2.69, 2.58, 3.02, 3.08, 'TERLAMBAT'),
+(230, 'AKHSANUL HUDA', 'LAKI - LAKI', '69461732', 27, 'Dalam Kabupaten', 2.95, 2.53, 3.05, 2.46, 'TERLAMBAT'),
+(231, 'AMIRUL CAHYO NUGROHO', 'LAKI - LAKI', '17836566', 25, 'Dalam Kabupaten', 2.83, 2.53, 2.64, 2.63, 'TERLAMBAT'),
+(232, 'ACHMAD RIDWAN', 'LAKI - LAKI', '63221767', 26, 'Dalam Kabupaten', 3.45, 2.98, 3.31, 3.15, 'TEPAT'),
+(233, 'ENDAH PUJI ASTUTI', 'PEREMPUAN', '13659164', 27, 'Dalam Kabupaten', 3.1, 2.95, 3.14, 2.38, 'TEPAT'),
+(234, 'HERDA OSRA ANANTHEA', 'PEREMPUAN', '16031569', 25, 'Dalam Kabupaten', 2.81, 1.92, 2.09, 1.09, 'TERLAMBAT'),
+(235, 'UNAMA', 'LAKI - LAKI', '94218049', 24, 'Dalam Kabupaten', 3.17, 2.7, 3.23, 2.41, 'TEPAT'),
+(236, 'LEYLA TRIYANA PRATIWI', 'PEREMPUAN', '86789967', 26, 'Luar Kabupaten', 3.6, 3.5, 3.42, 2.85, 'TEPAT'),
+(237, 'VERIS SOFIYAN PRAYOGA', 'LAKI - LAKI', '98955435', 29, 'Luar Kabupaten', 2.67, 2.66, 2.93, 3.14, 'TEPAT'),
+(238, 'ADITYA AKBAR NUGRAHA', 'LAKI - LAKI', '23759120', 27, 'Luar Kabupaten', 2.48, 2.86, 2.09, 2.55, 'TEPAT'),
+(239, 'ERNA EKA RIYANTI', 'PEREMPUAN', '39412831', 25, 'Dalam Kabupaten', 3.19, 3.08, 3.31, 2.83, 'TEPAT'),
+(240, 'FARID DWI NORYANTO', 'LAKI - LAKI', '75405142', 24, 'Luar Kabupaten', 3.1, 2.98, 3.17, 3.25, 'TEPAT'),
+(241, 'DAFIK HADI WINOTO', 'LAKI - LAKI', '31249784', 24, 'Luar Provinsi', 2.98, 2.68, 2.23, 2.86, 'TEPAT'),
+(242, 'WAHYU FITRIYANTO', 'LAKI - LAKI', '78126715', 24, 'Dalam Kabupaten', 3.45, 3.15, 3.54, 3.78, 'TEPAT'),
+(243, 'IMAM SURYO SUSANTO', 'LAKI - LAKI', '26701602', 26, 'Luar Kabupaten', 3.31, 3.02, 3.48, 3.7, 'TEPAT'),
+(244, 'AHMAD SUTOPO', 'LAKI - LAKI', '88667618', 24, 'Luar Provinsi', 2.62, 2.73, 2.11, 3.36, 'TEPAT'),
+(245, 'HERI SUFA\'AT', 'LAKI - LAKI', '65990658', 24, 'Dalam Kabupaten', 3.24, 3.06, 2.79, 2.73, 'TEPAT'),
+(246, 'MURYA AMIEN NUR PRABOWO', 'LAKI - LAKI', '41082531', 26, 'Dalam Kabupaten', 2.83, 3.02, 3.02, 3.63, 'TEPAT'),
+(247, 'EDY PURNOMO', 'LAKI - LAKI', '94314768', 24, 'Dalam Kabupaten', 2.83, 3, 2.54, 3.36, 'TEPAT'),
+(248, 'DIDIK KURNIAWAN', 'LAKI - LAKI', '32335301', 24, 'Dalam Kabupaten', 3, 3.08, 3.02, 3.07, 'TEPAT'),
+(249, 'LYDIA EVITA SANDRA DEWI', 'PEREMPUAN', '74644559', 25, 'Dalam Kabupaten', 3.52, 3.52, 3.31, 3.33, 'TEPAT'),
+(250, 'DAVID KURNIAWAN', 'LAKI - LAKI', '23272126', 36, 'Dalam Kabupaten', 2.29, 0.5, 0.16, 0.32, 'TEPAT'),
+(251, 'DEVI KISTIANI', 'PEREMPUAN', '42797727', 25, 'Dalam Kabupaten', 3.52, 3.46, 3.69, 3.41, 'TEPAT'),
+(252, 'ADI PURWADI', 'LAKI - LAKI', '62704882', 27, 'Dalam Kabupaten', 2.6, 2.91, 2.66, 2.91, 'TEPAT'),
+(253, 'ARIF WIBOWO', 'LAKI - LAKI', '42473789', 30, 'Luar Kabupaten', 2.52, 2.59, 2.11, 3, 'TEPAT'),
+(254, 'NOVAZAEN DWI SAPUTRO', 'LAKI - LAKI', '19285616', 28, 'Luar Kabupaten', 2.79, 3.05, 3.21, 2.92, 'TEPAT'),
+(255, 'MOHAMAD ADE FADHORI', 'LAKI - LAKI', '24900721', 30, 'Luar Kabupaten', 2.93, 2.52, 1.95, 2.37, 'TEPAT'),
+(256, 'SUBAEDAH', 'PEREMPUAN', '12766038', 23, 'Dalam Kabupaten', 3.52, 3.48, 3.71, 3.83, 'TEPAT'),
+(257, 'DANI PRIMAYANTI', 'PEREMPUAN', '84666481', 24, 'Luar Kabupaten', 3.48, 3.73, 3.6, 3.52, 'TEPAT'),
+(258, 'DERA BAHTIAR WIDIYANTO', 'LAKI - LAKI', '77111236', 23, 'Luar Provinsi', 2.52, 3.3, 3.79, 3.71, 'TEPAT'),
+(259, 'MUKHAMAD YAHYA WICAKSONO', 'LAKI - LAKI', '48768729', 24, 'Dalam Kabupaten', 2.45, 2.66, 2.93, 3.08, 'TEPAT'),
+(260, 'WAHYU DWI UTOMO', 'LAKI - LAKI', '94042878', 28, 'Luar Kabupaten', 2.62, 1.75, 1.95, 2.17, 'TEPAT'),
+(261, 'AHMAD FIRDAUS MABRURI', 'LAKI - LAKI', '68853480', 25, 'Luar Provinsi', 2.33, 3, 2.19, 0.44, 'TEPAT'),
+(262, 'HARYOKO ABDUL HAMID', 'LAKI - LAKI', '67255666', 26, 'Dalam Kabupaten', 3.24, 3.46, 3.56, 3.83, 'TEPAT'),
+(263, 'ERSA GILANG ARDHANI', 'LAKI - LAKI', '52385569', 25, 'Dalam Kabupaten', 2.95, 2.91, 3.44, 3.38, 'TEPAT'),
+(264, 'NEORITA NUR FATIMAH', 'PEREMPUAN', '67041156', 25, 'Dalam Kabupaten', 3.48, 3.5, 2.77, 3.59, 'TEPAT'),
+(265, 'ULIL ALBAB', 'LAKI - LAKI', '79458730', 23, 'Dalam Kabupaten', 2.93, 3.18, 3.31, 3.25, 'TEPAT'),
+(266, 'DEWI KHOIRUN NISA\'', 'PEREMPUAN', '56757216', 27, 'Dalam Kabupaten', 3, 3.33, 3.27, 2.96, 'TEPAT'),
+(267, 'AGUS NUGROHO', 'LAKI - LAKI', '66977882', 23, 'Dalam Kabupaten', 2.83, 3.11, 3.1, 2.96, 'TEPAT'),
+(268, 'MUKHAMAD LUQMAN HABIBI', 'LAKI - LAKI', '24579405', 25, 'Dalam Kabupaten', 2.88, 3.25, 3.42, 3.29, 'TEPAT'),
+(269, 'AMBAR SETIYANI', 'PEREMPUAN', '21794302', 25, 'Dalam Kabupaten', 3.71, 3.79, 3.96, 3.91, 'TEPAT'),
+(270, 'AVINA SEPTIANA', 'PEREMPUAN', '47163825', 27, 'Luar Kabupaten', 3.07, 2.85, 3.2, 3, 'TEPAT'),
+(271, 'MARIA ULFA', 'PEREMPUAN', '73169432', 24, 'Luar Kabupaten', 3.19, 2.9, 2.59, 2.77, 'TEPAT'),
+(272, 'IVANDHY SETYARACHMAN', 'LAKI - LAKI', '17643830', 31, 'Luar Kabupaten', 2.86, 2.98, 3.39, 3.27, 'TEPAT'),
+(273, 'CHASAN MUBAROK', 'LAKI - LAKI', '82447302', 25, 'Dalam Kabupaten', 2.98, 3.18, 3.73, 3.42, 'TEPAT'),
+(274, 'HASMORO ANDI WINOTO', 'LAKI - LAKI', '89465135', 24, 'Luar Kabupaten', 3.26, 3.33, 3.73, 3.41, 'TEPAT'),
+(275, 'NUR HAYATI', 'PEREMPUAN', '27241973', 23, 'Luar Provinsi', 3.21, 3.39, 3.41, 3.43, 'TEPAT'),
+(276, 'ROSIDA ARIBOWO', 'PEREMPUAN', '67734003', 24, 'Dalam Kabupaten', 3.57, 3.54, 3.5, 3.39, 'TEPAT'),
+(277, 'NOOR FAIZ', 'PEREMPUAN', '39916560', 25, 'Luar Kabupaten', 2.83, 2.59, 2.95, 3.14, 'TEPAT'),
+(278, 'FITRIA ULFA', 'PEREMPUAN', '85379418', 25, 'Luar Provinsi', 3.29, 3.19, 2.94, 3.27, 'TEPAT'),
+(279, 'FANDI AHMAD', 'LAKI - LAKI', '82448351', 22, 'Dalam Kabupaten', 3.02, 3.42, 3.81, 3.61, 'TEPAT'),
+(280, 'FAJRI FANDILAH', 'LAKI - LAKI', '70805603', 24, 'Dalam Kabupaten', 2.55, 2.57, 2.57, 2.82, 'TEPAT'),
+(281, 'INDAH SUSILOWATI', 'PEREMPUAN', '61194526', 28, 'Dalam Kabupaten', 2.36, 2.48, 2.27, 2.68, 'TEPAT'),
+(282, 'RULY WIDYASTUTI', 'PEREMPUAN', '55550607', 23, 'Dalam Kabupaten', 2.4, 2.64, 2.36, 2.95, 'TEPAT'),
+(283, 'AWIT RIKA JAYA KUSUMA', 'LAKI - LAKI', '83740892', 23, 'Dalam Kabupaten', 2.74, 2.86, 2.61, 2.95, 'TEPAT'),
+(284, 'MUSLIMATUL MUFIROH', 'PEREMPUAN', '62851482', 24, 'Dalam Kabupaten', 2.95, 2.84, 2.2, 2.77, 'TEPAT'),
+(285, 'NOVIA PRASETYANINGRUM', 'PEREMPUAN', '48697031', 24, 'Dalam Kabupaten', 3.1, 2.89, 2.59, 3.05, 'TEPAT'),
+(286, 'MUH SAFAAT AGUNG MULYADI', 'LAKI - LAKI', '81962474', 25, 'Dalam Kabupaten', 3.07, 2.77, 3, 3.05, 'TEPAT'),
+(287, 'TAQIYUDDIN', 'LAKI - LAKI', '84680308', 25, 'Luar Kabupaten', 3.4, 2.9, 3.34, 3.54, 'TEPAT'),
+(288, 'AGUS SETIAWAN', 'LAKI - LAKI', '83245456', 24, 'Luar Kabupaten', 2.55, 2.55, 2.59, 3.09, 'TEPAT'),
+(289, 'TRI SETIAWAN', 'LAKI - LAKI', '55461117', 24, 'Luar Kabupaten', 2.33, 2.5, 2.3, 2.59, 'TEPAT'),
+(290, 'WAHYUNI', 'PEREMPUAN', '21008204', 26, 'Dalam Kabupaten', 2.93, 2.89, 2.93, 2.86, 'TEPAT'),
+(291, 'FACHRY WICAKSONO', 'LAKI - LAKI', '32151659', 23, 'Luar Kabupaten', 2.83, 3, 3.55, 2.82, 'TEPAT'),
+(292, 'MUNIF ROHMAWATI', 'PEREMPUAN', '36784068', 23, 'Luar Provinsi', 2.93, 3.05, 2.8, 3.09, 'TEPAT'),
+(293, 'LAILA HIDAYATI', 'PEREMPUAN', '24260151', 23, 'Dalam Kabupaten', 2.19, 2.45, 1.82, 2.5, 'TEPAT'),
+(294, 'ANDI PRASETYO', 'LAKI - LAKI', '77725346', 23, 'Luar Kabupaten', 2.71, 2.41, 2.8, 2.95, 'TEPAT'),
+(295, 'NOOR YANTO', 'LAKI - LAKI', '42632219', 23, 'Luar Provinsi', 2.98, 2.43, 2.52, 2.86, 'TEPAT'),
+(296, 'HARYANTO', 'LAKI - LAKI', '85912277', 25, 'Dalam Kabupaten', 2.36, 2, 2.07, 2.27, 'TEPAT'),
+(297, 'FITROTUN MUNADLOFAH', 'PEREMPUAN', '70547447', 23, 'Dalam Kabupaten', 2.4, 2.66, 2.55, 2.59, 'TEPAT'),
+(298, 'FAHRUR ABID', 'LAKI - LAKI', '15919624', 23, 'Dalam Kabupaten', 2.62, 2.43, 2.11, 2.32, 'TEPAT'),
+(299, 'SLAMET RIYANTO', 'LAKI - LAKI', '40476329', 24, 'Dalam Kabupaten', 3.05, 2.94, 3.57, 2.93, 'TEPAT'),
+(300, 'KHOIRIL AINIAH', 'PEREMPUAN', '38042421', 24, 'Dalam Kabupaten', 2.4, 2.57, 2.3, 2.82, 'TEPAT'),
+(301, 'ADJI LISTIANSAH PRABOWO', 'LAKI - LAKI', '75231228', 24, 'Dalam Kabupaten', 2.48, 2.32, 2.18, 2.36, 'TEPAT'),
+(302, 'WAWAN MULYONO', 'LAKI - LAKI', '21252560', 24, 'Dalam Kabupaten', 2.55, 2.5, 2.07, 2.68, 'TEPAT'),
+(303, 'NENENG ZUBAIDAH', 'PEREMPUAN', '17571059', 23, 'Dalam Kabupaten', 3.26, 3.27, 3.13, 3.17, 'TEPAT'),
+(304, 'DINA FITHRONI', 'LAKI - LAKI', '61639969', 23, 'Luar Kabupaten', 2.6, 2.52, 2.3, 2.77, 'TEPAT'),
+(305, 'KHOIRUL HADI PRANOTO', 'LAKI - LAKI', '32297584', 27, 'Luar Kabupaten', 2.86, 2.41, 2.55, 3, 'TEPAT'),
+(306, 'DWI PUTRI ISNIATI', 'PEREMPUAN', '19009895', 23, 'Luar Kabupaten', 3.21, 3.07, 3, 3.41, 'TEPAT'),
+(307, 'AGUSTINUS', 'LAKI - LAKI', '70071881', 23, 'Dalam Kabupaten', 2.98, 2.2, 2.16, 1.8, 'TEPAT'),
+(308, 'SHOFIL GUNAWAN', 'LAKI - LAKI', '97606681', 23, 'Luar Kabupaten', 2.6, 1.93, 2.37, 2.09, 'TEPAT'),
+(309, 'ANIF FARIZI', 'LAKI - LAKI', '62719462', 25, 'Luar Provinsi', 2.74, 2.64, 2.39, 2.82, 'TEPAT'),
+(310, 'ALI NURSID', 'LAKI - LAKI', '12174615', 22, 'Dalam Kabupaten', 2.6, 2.2, 2.27, 2.55, 'TEPAT'),
+(311, 'DIDI MULYANTO', 'LAKI - LAKI', '25589101', 22, 'Luar Kabupaten', 2.43, 2.55, 2.64, 2.68, 'TEPAT'),
+(312, 'ZULIATI', 'PEREMPUAN', '50584742', 23, 'Luar Provinsi', 2.93, 2.89, 2.7, 2.77, 'TEPAT'),
+(313, 'SITTA ROIHANA FITRI', 'PEREMPUAN', '88968788', 23, 'Dalam Kabupaten', 2.83, 2.91, 2.95, 2.86, 'TEPAT'),
+(314, 'JAMAL HENDRI PRASETIYO', 'LAKI - LAKI', '62209888', 23, 'Dalam Kabupaten', 3.31, 2.96, 3.48, 3.26, 'TEPAT'),
+(315, 'AUFAL WIDAD', 'LAKI - LAKI', '62138746', 23, 'Dalam Kabupaten', 2.5, 2.08, 2.25, 2.27, 'TEPAT'),
+(316, 'ZAENUDDIN MZ', 'LAKI - LAKI', '86481544', 26, 'Dalam Kabupaten', 2.76, 2.86, 2.57, 2.91, 'TEPAT'),
+(317, 'ARGI CAHYANING WULAN', 'PEREMPUAN', '40595641', 24, 'Dalam Kabupaten', 2.17, 2.66, 2.86, 2.86, 'TEPAT'),
+(318, 'EKO SUHERMAN', 'LAKI - LAKI', '76055193', 23, 'Dalam Kabupaten', 1.79, 2.24, 2.02, 2.45, 'TEPAT'),
+(319, 'AVIF ROHANA HERMAWAN', 'LAKI - LAKI', '78717100', 40, 'Dalam Kabupaten', 2.83, 2.64, 2.89, 3.14, 'TEPAT'),
+(320, 'ROBERT MYLLANO', 'LAKI - LAKI', '95452555', 23, 'Dalam Kabupaten', 2.26, 2.61, 2.34, 2.86, 'TEPAT'),
+(321, 'ABDUL LATIF', 'LAKI - LAKI', '80900332', 23, 'Luar Kabupaten', 2.55, 2.75, 2.64, 2.59, 'TEPAT'),
+(322, 'AHMAD FAIZIN', 'LAKI - LAKI', '32072437', 23, 'Luar Kabupaten', 3, 2.89, 3.25, 2.83, 'TEPAT'),
+(323, 'KHOIRUL ICHSAN', 'LAKI - LAKI', '27213732', 24, 'Luar Kabupaten', 2.5, 2.84, 3.11, 3.04, 'TEPAT'),
+(324, 'DIAN AMALIA NOVIYANTI', 'PEREMPUAN', '93275299', 24, 'Dalam Kabupaten', 3.57, 3.23, 2.38, 3.59, 'TEPAT'),
+(325, 'KHOIRUL ULUM', 'LAKI - LAKI', '41027644', 22, 'Luar Kabupaten', 2.52, 2.7, 2.73, 3.27, 'TEPAT'),
+(326, 'SAVITTA ANGGRAENI', 'PEREMPUAN', '90452769', 24, 'Luar Provinsi', 2.55, 2.34, 2.23, 2.36, 'TEPAT'),
+(327, 'ARIS HIDAYAT', 'LAKI - LAKI', '48045000', 24, 'Dalam Kabupaten', 2.71, 3.05, 3.04, 3.14, 'TEPAT'),
+(328, 'SHOFI\'I', 'LAKI - LAKI', '48215135', 24, 'Luar Kabupaten', 2.9, 2.89, 3.25, 3.13, 'TEPAT'),
+(329, 'SUMIATI', 'PEREMPUAN', '42806638', 23, 'Luar Provinsi', 3.33, 3.1, 3.27, 3.61, 'TEPAT'),
+(330, 'DWI ROY ARDIANTO SAPUTRO', 'LAKI - LAKI', '55011858', 24, 'Dalam Kabupaten', 3.15, 2.67, 2.68, 2.36, 'TERLAMBAT'),
+(331, 'JAMA\' ROCHMAD MUTTAQIM', 'LAKI - LAKI', '15411701', 27, 'Dalam Kabupaten', 2.79, 2.75, 3.02, 2.75, 'TEPAT'),
+(332, 'RIFDA NAUFALIN', 'PEREMPUAN', '67680012', 22, 'Dalam Kabupaten', 3.1, 3.38, 3.6, 3.83, 'TEPAT'),
+(333, 'MUHAMMAD YUSUF MEI HILDA', 'LAKI - LAKI', '65670096', 23, 'Dalam Kabupaten', 2.88, 2.8, 3.11, 3.09, 'TEPAT'),
+(334, 'YUIKE WIJAYANTI', 'PEREMPUAN', '33116252', 24, 'Dalam Kabupaten', 2.55, 3.07, 2.68, 3, 'TEPAT'),
+(335, 'ZIDNI ILMA', 'LAKI - LAKI', '44591860', 25, 'Dalam Kabupaten', 2.57, 3.02, 3.13, 3.25, 'TEPAT'),
+(336, 'FADLULLOH', 'LAKI - LAKI', '17086321', 23, 'Dalam Kabupaten', 2.57, 3.02, 3.13, 3.25, 'TEPAT'),
+(337, 'MUSTAANUN NA\'IM', 'LAKI - LAKI', '56110508', 23, 'Dalam Kabupaten', 3.05, 3.19, 3.52, 3.57, 'TEPAT'),
+(338, 'MUAMAR ACHLIS AZIZI', 'LAKI - LAKI', '50229439', 24, 'Luar Kabupaten', 3.19, 3.4, 2.94, 3.14, 'TEPAT'),
+(339, 'ZUMROTUN HALIMAH', 'PEREMPUAN', '21351766', 23, 'Luar Kabupaten', 2.71, 2.75, 2.43, 3.14, 'TEPAT'),
+(340, 'HEMMI ZULAEKHAH', 'PEREMPUAN', '21970390', 23, 'Luar Kabupaten', 3.29, 3.71, 3.52, 3.52, 'TEPAT'),
+(341, 'NURUL KHOFIANIDA', 'PEREMPUAN', '22156627', 24, 'Dalam Kabupaten', 3.05, 2.98, 3.25, 3.14, 'TEPAT'),
+(342, 'DEDY DANU SAPUTRA', 'LAKI - LAKI', '55106136', 22, 'Luar Kabupaten', 2.86, 2.86, 3.25, 3.25, 'TEPAT'),
+(343, 'RUDY ADIATMA', 'LAKI - LAKI', '89754693', 23, 'Luar Provinsi', 3.19, 3.29, 2.77, 2.86, 'TEPAT'),
+(344, 'SITI MARIYANAH', 'PEREMPUAN', '72496027', 24, 'Dalam Kabupaten', 3.4, 3.23, 2.52, 2.91, 'TEPAT'),
+(345, 'FARIS RAHMAN', 'LAKI - LAKI', '68000952', 24, 'Luar Kabupaten', 3.19, 3.19, 3.29, 3.35, 'TEPAT'),
+(346, 'BAMBANG ZAKKI SISWOYO', 'LAKI - LAKI', '53786045', 28, 'Luar Provinsi', 3.24, 3.27, 3.5, 3.22, 'TEPAT'),
+(347, 'FITRI KOMALASARI', 'PEREMPUAN', '93278606', 26, 'Dalam Kabupaten', 2.79, 3.09, 3.08, 2.96, 'TEPAT'),
+(348, 'NURUN NI\'MAH', 'PEREMPUAN', '73689216', 23, 'Dalam Kabupaten', 2.05, 3.52, 3.5, 3.85, 'TEPAT'),
+(349, 'NOVITA ARYUNINGRUM', 'PEREMPUAN', '72946443', 25, 'Dalam Kabupaten', 3.26, 3.06, 3.27, 3.52, 'TEPAT'),
+(350, 'NURUL MISBAH', 'LAKI - LAKI', '67091318', 24, 'Dalam Kabupaten', 3.26, 3.06, 3.27, 3.52, 'TEPAT'),
+(351, 'MUNIF ABDILLAH', 'LAKI - LAKI', '44879352', 23, 'Dalam Kabupaten', 2.9, 2.84, 2.39, 3.18, 'TEPAT'),
+(352, 'MUHTAR HAFID', 'LAKI - LAKI', '78225899', 23, 'Dalam Kabupaten', 2.9, 2.98, 2.39, 2.91, 'TEPAT'),
+(353, 'MUHAMMAD DARUNNAFIS', 'LAKI - LAKI', '93748461', 26, 'Dalam Kabupaten', 3.29, 3.31, 2.88, 3.36, 'TEPAT'),
+(354, 'SITI NUR HIDAYATI', 'PEREMPUAN', '63064474', 24, 'Dalam Kabupaten', 3.26, 3.38, 3.06, 3.68, 'TEPAT'),
+(355, 'AFIEF BACHTIAR', 'LAKI - LAKI', '28832021', 24, 'Luar Kabupaten', 3.07, 3.04, 3.1, 3.15, 'TEPAT'),
+(356, 'ALI AKBAR DAROJAT', 'LAKI - LAKI', '27309553', 26, 'Luar Kabupaten', 2.98, 2.66, 2.7, 2.73, 'TEPAT'),
+(357, 'ITA SEPTIARINIE', 'PEREMPUAN', '81149534', 32, 'Luar Kabupaten', 2.98, 2.66, 2.7, 2.73, 'TEPAT'),
+(358, 'DHANANG HERY WIBISONO', 'LAKI - LAKI', '11119479', 23, 'Dalam Kabupaten', 3.02, 2.88, 2.45, 2.14, 'TEPAT'),
+(359, 'NORMA FITRIYANI', 'PEREMPUAN', '92735476', 23, 'Luar Kabupaten', 3.02, 2.88, 2.45, 2.14, 'TEPAT'),
+(360, 'ANIK FARYANTI', 'PEREMPUAN', '91642817', 25, 'Luar Provinsi', 2.9, 3.07, 2.44, 2.41, 'TEPAT'),
+(361, 'RIFQI ABDILLAH', 'LAKI - LAKI', '80869027', 24, 'Dalam Kabupaten', 2.79, 2.73, 2.48, 2.45, 'TEPAT'),
+(362, 'DAMA CHOIRUL HUDA', 'LAKI - LAKI', '46462788', 25, 'Luar Kabupaten', 2.98, 3, 2.73, 3, 'TEPAT'),
+(363, 'AGUS SUPRIYO', 'LAKI - LAKI', '16882686', 24, 'Luar Provinsi', 3.05, 3.23, 3.42, 3.43, 'TEPAT'),
+(364, 'NOR JUNAIDI', 'LAKI - LAKI', '92156845', 23, 'Dalam Kabupaten', 2.83, 2.91, 2.52, 2.86, 'TEPAT'),
+(365, 'LILIK SUYATNO', 'LAKI - LAKI', '97828977', 23, 'Dalam Kabupaten', 2.76, 3.18, 3.06, 2.88, 'TEPAT'),
+(366, 'AMIR ALFIAN', 'LAKI - LAKI', '66307483', 23, 'Dalam Kabupaten', 2.74, 2.68, 2.36, 2.55, 'TERLAMBAT'),
+(367, 'SURYAWAN ADHI SAPUTRO', 'LAKI - LAKI', '38954598', 25, 'Dalam Kabupaten', 2.86, 3.14, 3.27, 3.38, 'TEPAT'),
+(368, 'AGUS SETRIO PRANOTO', 'LAKI - LAKI', '57451472', 24, 'Dalam Kabupaten', 3.07, 3.21, 2.94, 3.36, 'TEPAT'),
+(369, 'ANIS WATUL WARDAH', 'PEREMPUAN', '66503631', 24, 'Dalam Kabupaten', 2.88, 2.77, 2.61, 3.23, 'TEPAT'),
+(370, 'ASROFAH', 'PEREMPUAN', '93390380', 23, 'Dalam Kabupaten', 2.64, 2.59, 3.09, 3.14, 'TEPAT'),
+(371, 'KUSNITA MARIANA', 'PEREMPUAN', '71012244', 24, 'Dalam Kabupaten', 2.83, 3.16, 3.25, 3.21, 'TEPAT'),
+(372, 'NOVI PURNAMASARI', 'PEREMPUAN', '44601054', 23, 'Luar Kabupaten', 3.1, 3.04, 3.17, 2.91, 'TEPAT'),
+(373, 'AJI PRASETYO', 'LAKI - LAKI', '20323078', 23, 'Luar Kabupaten', 3.05, 3.1, 3.33, 3.17, 'TEPAT'),
+(374, 'ABDUL ROSYID', 'LAKI - LAKI', '38351360', 23, 'Luar Kabupaten', 2.29, 2.89, 2.48, 3.14, 'TEPAT'),
+(375, 'ARY JULI SETIYANTO', 'LAKI - LAKI', '82719747', 23, 'Dalam Kabupaten', 1.98, 2.5, 2.14, 2.77, 'TEPAT'),
+(376, 'RINA ZAHROTUL UMAMI', 'PEREMPUAN', '60591087', 23, 'Luar Kabupaten', 2.74, 2.75, 2.55, 3, 'TEPAT'),
+(377, 'TULISA WAHYUHADI KRISNATAMI', 'PEREMPUAN', '26537795', 23, 'Luar Provinsi', 2.74, 2.75, 2.55, 3, 'TEPAT'),
+(378, 'NI\'MATUL JANNAH', 'PEREMPUAN', '71843055', 23, 'Dalam Kabupaten', 3.02, 2.94, 3.25, 2.87, 'TEPAT'),
+(379, 'DINDU SETYO WICAKSONO', 'LAKI - LAKI', '83323765', 23, 'Luar Kabupaten', 3.1, 3.06, 3, 3.23, 'TEPAT');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_data_prediksi`
+--
+
+CREATE TABLE `tb_data_prediksi` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_kelamin` varchar(50) NOT NULL,
+  `nim` varchar(50) NOT NULL,
+  `usia` int(11) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `ips_1` double NOT NULL,
+  `ips_2` double NOT NULL,
+  `ips_3` double NOT NULL,
+  `ips_4` double NOT NULL,
+  `result` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_data_prediksi`
+--
+
+INSERT INTO `tb_data_prediksi` (`id`, `nama`, `jenis_kelamin`, `nim`, `usia`, `alamat`, `ips_1`, `ips_2`, `ips_3`, `ips_4`, `result`) VALUES
+(1, 'ANDRE EKA SETYAWAN', 'LAKI - LAKI', '76109090', 24, 'Dalam Kabupaten', 2.76, 2.19, 2.77, 0.96, 'TERLAMBAT'),
+(2, 'JOHAN MAULANA', 'LAKI - LAKI', '75003993', 26, 'Dalam Kabupaten', 2.4, 2.11, 2.82, 3.05, 'TEPAT'),
+(3, 'SAIFUL ANAM', 'LAKI - LAKI', '21722261', 25, 'Luar Kabupaten', 2.81, 2.86, 3.2, 2.04, 'TERLAMBAT'),
+(4, 'NURUL KHOIRIYAH', 'PEREMPUAN', '59389762', 26, 'Luar Kabupaten', 2.67, 2.92, 3.56, 3.17, 'TEPAT'),
+(5, 'HERU DARMAWAN', 'LAKI - LAKI', '57920281', 24, 'Luar Kabupaten', 3.07, 2.68, 3.43, 2.57, 'TEPAT'),
+(6, 'NI\'MATUL KHASANAH', 'PEREMPUAN', '16386936', 28, 'Dalam Kabupaten', 2.81, 2.94, 3.25, 2.83, 'TEPAT'),
+(7, 'PURWADI', 'LAKI - LAKI', '63771198', 24, 'Luar Kabupaten', 3.33, 3.3, 3.81, 3.46, 'TERLAMBAT'),
+(8, 'TRI PUJI LESTARI', 'PEREMPUAN', '27294294', 27, 'Luar Provinsi', 3.21, 3.23, 3.67, 3.48, 'TEPAT'),
+(9, 'TAUFIK RAMADHAN', 'LAKI - LAKI', '34978017', 24, 'Dalam Kabupaten', 2.52, 2.06, 3.09, 2.25, 'TERLAMBAT'),
+(10, 'MOH SYAIKHUDDIN', 'LAKI - LAKI', '41885388', 25, 'Luar Kabupaten', 3.02, 2.83, 3, 1.98, 'TERLAMBAT'),
+(11, 'MOH AINUL YAQIN', 'LAKI - LAKI', '63861678', 27, 'Luar Provinsi', 2.12, 2.22, 2.64, 2.05, 'TERLAMBAT'),
+(12, 'FIRMAN HAQIQI', 'LAKI - LAKI', '94036887', 24, 'Dalam Kabupaten', 2.55, 2.53, 3.07, 2.75, 'TERLAMBAT'),
+(13, 'DEWI KARYASARI', 'PEREMPUAN', '62669830', 24, 'Dalam Kabupaten', 2.86, 2.78, 3.57, 2.79, 'TEPAT'),
+(14, 'ROSIDI', 'LAKI - LAKI', '54394096', 24, 'Dalam Kabupaten', 3, 2.78, 3.18, 2.5, 'TEPAT'),
+(15, 'MUH SAIFUL MUBAROK', 'LAKI - LAKI', '85331764', 28, 'Dalam Kabupaten', 2.95, 2.08, 3.05, 2.29, 'TERLAMBAT'),
+(16, 'MIFTAKHUL HABIB', 'LAKI - LAKI', '62954437', 28, 'Dalam Kabupaten', 2.9, 2.19, 3.16, 2.92, 'TERLAMBAT'),
+(17, 'GUNUNG WICAKSONO', 'LAKI - LAKI', '18467900', 26, 'Dalam Kabupaten', 2.83, 2.08, 3.11, 2.75, 'TERLAMBAT'),
+(18, 'ANIK MURWATI', 'PEREMPUAN', '16758512', 25, 'Dalam Kabupaten', 2.74, 2.39, 3.11, 2.75, 'TEPAT'),
+(19, 'MUHAMMAD TAHRIR FATHONY', 'LAKI - LAKI', '32497590', 24, 'Dalam Kabupaten', 3.24, 2.83, 3.5, 2.67, 'TEPAT'),
+(20, 'PUTRI RETNO ARIYANI', 'PEREMPUAN', '76214187', 47, 'Luar Kabupaten', 3.21, 2.85, 3.55, 2.98, 'TERLAMBAT'),
+(21, 'MOCHAMAD IDRIS', 'LAKI - LAKI', '41067151', 24, 'Luar Kabupaten', 2.79, 2.44, 2.98, 2.68, 'TERLAMBAT'),
+(22, 'ERVINA DWI WIJAYANTI', 'PEREMPUAN', '37639688', 27, 'Luar Kabupaten', 2.62, 2.64, 3.07, 2.54, 'TERLAMBAT'),
+(23, 'ADI JOKO MULYONO', 'LAKI - LAKI', '72639505', 25, 'Dalam Kabupaten', 3.02, 2.58, 3.41, 2.85, 'TERLAMBAT'),
+(24, 'DANANG MAHENDRA', 'LAKI - LAKI', '66675579', 24, 'Luar Kabupaten', 3.02, 2.55, 3.64, 2.63, 'TERLAMBAT'),
+(25, 'NILA OCTARINA', 'PEREMPUAN', '68794723', 25, 'Luar Provinsi', 2.64, 2.22, 2.02, 1.05, 'TERLAMBAT'),
+(26, 'M IMAM MUSLIMIN', 'LAKI - LAKI', '48656636', 23, 'Dalam Kabupaten', 2.76, 1.44, 3.11, 2.08, 'TERLAMBAT'),
+(27, 'NOOR FARIDA', 'PEREMPUAN', '67791272', 27, 'Luar Kabupaten', 2.55, 2.36, 2.82, 2.36, 'TERLAMBAT'),
+(28, 'ARIE RETNO WATI', 'PEREMPUAN', '29974627', 25, 'Luar Provinsi', 3.43, 2.95, 3.55, 3.28, 'TEPAT'),
+(29, 'SUNARSO', 'LAKI - LAKI', '66470882', 23, 'Dalam Kabupaten', 2.5, 2.67, 2.84, 2.5, 'TERLAMBAT'),
+(30, 'DEWI ASTUTI', 'PEREMPUAN', '23170387', 32, 'Dalam Kabupaten', 3, 2.3, 3.25, 2.78, 'TEPAT');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_data_uji`
+--
+
+CREATE TABLE `tb_data_uji` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_kelamin` varchar(50) NOT NULL,
+  `nim` varchar(50) NOT NULL,
+  `usia` int(11) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `ips_1` double NOT NULL,
+  `ips_2` double NOT NULL,
+  `ips_3` double NOT NULL,
+  `ips_4` double NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `result` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_data_uji`
+--
+
+INSERT INTO `tb_data_uji` (`id`, `nama`, `jenis_kelamin`, `nim`, `usia`, `alamat`, `ips_1`, `ips_2`, `ips_3`, `ips_4`, `status`, `result`) VALUES
+(1, 'ANIK WIDAYANTI', 'PEREMPUAN', '54540977', 28, 'Dalam Kabupaten', 2.76, 2.8, 3.2, 3.17, 'TERLAMBAT', 'TERLAMBAT'),
+(2, 'DWI HESTYNA PRIHASTANTY', 'PEREMPUAN', '23220863', 32, 'Luar Kabupaten', 3, 3.3, 3.14, 3.14, 'TERLAMBAT', 'TERLAMBAT'),
+(3, 'MURYA ARIEF BASUKI', 'PEREMPUAN', '69814179', 29, 'Luar Provinsi', 3.5, 3.3, 3.7, 3.29, 'TERLAMBAT', 'TERLAMBAT'),
+(4, 'NANIK SUSANTI', 'PEREMPUAN', '77949717', 27, 'Dalam Kabupaten', 3.17, 3.41, 3.61, 3.36, 'TERLAMBAT', 'TERLAMBAT'),
+(5, 'RIFKA ISTIQFARINA', 'PEREMPUAN', '57535297', 29, 'Luar Kabupaten', 2.9, 2.89, 3.3, 2.85, 'TERLAMBAT', 'TERLAMBAT'),
+(6, 'SUHARYONO', 'LAKI - LAKI', '33162408', 27, 'Luar Provinsi', 2.95, 2.82, 3.09, 3.1, 'TERLAMBAT', 'TERLAMBAT'),
+(7, 'FARIKHATUN NAZLI', 'PEREMPUAN', '58950343', 26, 'Dalam Kabupaten', 2.76, 3.14, 2.6, 2.95, 'TEPAT', 'TEPAT'),
+(8, 'FIFI SUNALISA', 'PEREMPUAN', '20843166', 27, 'Dalam Kabupaten', 2.62, 2.89, 2.32, 2.5, 'TEPAT', 'TEPAT'),
+(9, 'HENDRIK MULIYANTO', 'PEREMPUAN', '97320562', 25, 'Dalam Kabupaten', 3.6, 3.54, 3.52, 3.39, 'TERLAMBAT', 'TEPAT'),
+(10, 'IMAM AGUNG RIBOWO', 'PEREMPUAN', '41192889', 28, 'Dalam Kabupaten', 2.71, 2.55, 1.77, 2.11, 'TERLAMBAT', 'TERLAMBAT'),
+(11, 'IMAM SANTOSA', 'PEREMPUAN', '67490792', 27, 'Dalam Kabupaten', 3.14, 3.46, 3.4, 3.43, 'TERLAMBAT', 'TERLAMBAT'),
+(12, 'IRFAN EKO WAHYUDI', 'PEREMPUAN', '76328432', 32, 'Dalam Kabupaten', 2.67, 2.3, 1.57, 1.44, 'TERLAMBAT', 'TERLAMBAT'),
+(13, 'IWAN HAMBALI', 'PEREMPUAN', '55610511', 26, 'Dalam Kabupaten', 2.57, 2.82, 2.2, 2.45, 'TERLAMBAT', 'TERLAMBAT'),
+(14, 'M SYAIFULLAH', 'PEREMPUAN', '74785839', 31, 'Dalam Kabupaten', 2.71, 3, 2.65, 2.27, 'TERLAMBAT', 'TERLAMBAT'),
+(15, 'DIANA LAILY FITHRI', 'PEREMPUAN', '64160757', 26, 'Luar Kabupaten', 3.24, 3.38, 3.44, 3.3, 'TERLAMBAT', 'TEPAT'),
+(16, 'DONNY PRABOWO', 'LAKI - LAKI', '36460232', 27, 'Luar Kabupaten', 2.86, 2.86, 2.45, 1.86, 'TERLAMBAT', 'TERLAMBAT'),
+(17, 'EDI JATMIKO', 'PEREMPUAN', '53606852', 27, 'Luar Kabupaten', 2.71, 3.27, 2.54, 3.36, 'TERLAMBAT', 'TERLAMBAT'),
+(18, 'ADI SUBEKTI', 'LAKI - LAKI', '15882190', 29, 'Dalam Kabupaten', 2.67, 2.2, 1.45, 3, 'TERLAMBAT', 'TERLAMBAT'),
+(19, 'AHMAD IBROZI', 'LAKI - LAKI', '21281460', 27, 'Luar Kabupaten', 2.67, 2.68, 1.95, 1.61, 'TERLAMBAT', 'TERLAMBAT'),
+(20, 'ANDI HARDIANTO', 'LAKI - LAKI', '86497186', 27, 'Luar Provinsi', 3.1, 3.71, 2.96, 3.4, 'TEPAT', 'TEPAT'),
+(21, 'ANDI SUNARWAN', 'LAKI - LAKI', '28566553', 28, 'Dalam Kabupaten', 3, 3.33, 2.88, 2.8, 'TERLAMBAT', 'TERLAMBAT'),
+(22, 'ANNY AZIZAH', 'LAKI - LAKI', '62330253', 26, 'Luar Kabupaten', 3.12, 3.23, 2.96, 3, 'TERLAMBAT', 'TEPAT'),
+(23, 'ARIEF PRAM WAHYUDI', 'LAKI - LAKI', '76290294', 26, 'Luar Provinsi', 2.9, 3.32, 2.83, 2.91, 'TERLAMBAT', 'TERLAMBAT'),
+(24, 'DENNY SELA PUTROWIBOWO', 'LAKI - LAKI', '57615508', 29, 'Dalam Kabupaten', 2.95, 3.41, 3.48, 3.24, 'TERLAMBAT', 'TERLAMBAT'),
+(25, 'MARTHINA FLAVERIA', 'LAKI - LAKI', '96455085', 25, 'Dalam Kabupaten', 3.05, 2.92, 2.27, 2.65, 'TERLAMBAT', 'TERLAMBAT'),
+(26, 'MASLUH JAMIL', 'LAKI - LAKI', '93379354', 30, 'Dalam Kabupaten', 2.64, 3, 2.9, 2.77, 'TERLAMBAT', 'TERLAMBAT'),
+(27, 'MURDIANTORO', 'LAKI - LAKI', '79179423', 32, 'Dalam Kabupaten', 2.45, 2.45, 2.14, 1.95, 'TERLAMBAT', 'TERLAMBAT'),
+(28, 'NAILI ROHMAH', 'PEREMPUAN', '78625155', 27, 'Dalam Kabupaten', 0.33, 2.9, 3.16, 2.35, 'TERLAMBAT', 'TERLAMBAT'),
+(29, 'NASRUL SAFARAH', 'LAKI - LAKI', '71924561', 27, 'Dalam Kabupaten', 3.33, 3.63, 3.29, 3.89, 'TEPAT', 'TEPAT'),
+(30, 'NOOR KAMALUDDIN MALIK', 'LAKI - LAKI', '65081535', 26, 'Dalam Kabupaten', 2.52, 2.7, 2.84, 2.77, 'TERLAMBAT', 'TERLAMBAT'),
+(31, 'ROHANA MIRAWATI', 'LAKI - LAKI', '22996291', 25, 'Dalam Kabupaten', 3.05, 3.38, 3.21, 2.93, 'TEPAT', 'TEPAT'),
+(32, 'SANDY YUDHA NUGRAHA', 'LAKI - LAKI', '51268029', 30, 'Luar Kabupaten', 2.81, 3.09, 2.63, 3.36, 'TERLAMBAT', 'TERLAMBAT'),
+(33, 'SISKA LIANAWATI', 'LAKI - LAKI', '69686278', 32, 'Luar Kabupaten', 2.52, 2.75, 2.25, 2.5, 'TEPAT', 'TEPAT'),
+(34, 'SRI MINUK ISWATI', 'LAKI - LAKI', '74647514', 27, 'Luar Kabupaten', 3.12, 3.1, 2.73, 2.8, 'TEPAT', 'TEPAT'),
+(35, 'SUDANDING DWI SUPRABANA', 'LAKI - LAKI', '74896216', 27, 'Dalam Kabupaten', 2.86, 3.05, 2.54, 2.36, 'TERLAMBAT', 'TERLAMBAT'),
+(36, 'SUGIYANTO', 'LAKI - LAKI', '74549981', 26, 'Luar Kabupaten', 3.05, 3.27, 2.31, 3.05, 'TERLAMBAT', 'TERLAMBAT'),
+(37, 'SUSI  HANDAYANI', 'LAKI - LAKI', '79305291', 25, 'Luar Provinsi', 2.71, 3.16, 2.44, 2.91, 'TEPAT', 'TEPAT'),
+(38, 'SUTOPO', 'LAKI - LAKI', '92914708', 50, 'Dalam Kabupaten', 2.88, 3.32, 2.48, 3.27, 'TERLAMBAT', 'TERLAMBAT'),
+(39, 'TOTOK ANTON ARIBOWO', 'LAKI - LAKI', '60525714', 27, 'Luar Kabupaten', 2.76, 3.25, 2.98, 1.91, 'TERLAMBAT', 'TERLAMBAT'),
+(40, 'ADI DARMADI', 'LAKI - LAKI', '39313161', 29, 'Luar Provinsi', 2.69, 2.59, 3.2, 3, 'TERLAMBAT', 'TERLAMBAT'),
+(41, 'EKO JAUHARI SAPUTRO', 'LAKI - LAKI', '35258469', 30, 'Dalam Kabupaten', 2.29, 3.09, 3.2, 2.74, 'TERLAMBAT', 'TERLAMBAT'),
+(42, 'HARMINTO MULYO', 'LAKI - LAKI', '93009553', 28, 'Dalam Kabupaten', 2.71, 2.59, 3.09, 1.76, 'TERLAMBAT', 'TERLAMBAT'),
+(43, 'HERI PURWANTO', 'LAKI - LAKI', '38310061', 27, 'Dalam Kabupaten', 2.43, 3.02, 3, 2.79, 'TERLAMBAT', 'TERLAMBAT'),
+(44, 'MIFTACHUR RIDHO', 'LAKI - LAKI', '84397971', 27, 'Dalam Kabupaten', 2.88, 2.59, 2.82, 3.05, 'TERLAMBAT', 'TERLAMBAT'),
+(45, 'TATIK HIKMAWATI', 'LAKI - LAKI', '53471367', 29, 'Dalam Kabupaten', 2.07, 2.59, 2.59, 2.48, 'TERLAMBAT', 'TERLAMBAT'),
+(46, 'USWATUN KHASANAH', 'LAKI - LAKI', '49781872', 25, 'Dalam Kabupaten', 3.1, 3, 2.98, 3.1, 'TERLAMBAT', 'TERLAMBAT'),
+(47, 'A SYAFI\'I', 'LAKI - LAKI', '57230168', 28, 'Dalam Kabupaten', 2.57, 2.55, 2.57, 1.91, 'TERLAMBAT', 'TERLAMBAT'),
+(48, 'ABDUL GHOFFAR ISMA\'IL', 'LAKI - LAKI', '99648274', 28, 'Dalam Kabupaten', 3.26, 3.73, 3.02, 3.5, 'TEPAT', 'TEPAT'),
+(49, 'ACHMAD FAHMI AQWA', 'LAKI - LAKI', '91793692', 32, 'Luar Kabupaten', 2.71, 2.89, 2.75, 3.18, 'TEPAT', 'TEPAT'),
+(50, 'ADY PRASETIA', 'LAKI - LAKI', '72794862', 27, 'Luar Kabupaten', 1.9, 1.91, 1.59, 1.28, 'TERLAMBAT', 'TERLAMBAT');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_alamat`
+--
+
+CREATE TABLE `tb_prob_alamat` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_alamat`
+--
+
+INSERT INTO `tb_prob_alamat` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, 'Dalam Kabupaten', 128, 94, 222, 0.593, 0.577),
+(2, 'Luar Kabupaten', 62, 50, 112, 0.287, 0.307),
+(3, 'Luar Provinsi', 26, 19, 45, 0.12, 0.117);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_ips1`
+--
+
+CREATE TABLE `tb_prob_ips1` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_ips1`
+--
+
+INSERT INTO `tb_prob_ips1` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, '0.33', 0, 1, 1, 0, 0.006),
+(2, '1.08', 0, 1, 1, 0, 0.006),
+(3, '1.67', 0, 1, 2, 0, 0.006),
+(4, '1.79', 1, 0, 1, 0.005, 0),
+(5, '1.81', 0, 1, 1, 0, 0.006),
+(6, '1.9', 0, 1, 16, 0, 0.006),
+(7, '1.98', 1, 0, 2, 0.005, 0),
+(8, '2.05', 1, 1, 4, 0.005, 0.006),
+(9, '2.07', 0, 2, 4, 0, 0.012),
+(10, '2.1', 0, 2, 37, 0, 0.012),
+(11, '2.12', 0, 1, 1, 0, 0.006),
+(12, '2.14', 0, 1, 13, 0, 0.006),
+(13, '2.17', 1, 1, 7, 0.005, 0.006),
+(14, '2.19', 1, 0, 4, 0.005, 0),
+(15, '2.21', 1, 1, 2, 0.005, 0.006),
+(16, '2.24', 0, 3, 5, 0, 0.018),
+(17, '2.26', 1, 1, 2, 0.005, 0.006),
+(18, '2.29', 2, 2, 7, 0.009, 0.012),
+(19, '2.31', 0, 3, 4, 0, 0.018),
+(20, '2.33', 2, 3, 8, 0.009, 0.018),
+(21, '2.36', 2, 1, 15, 0.009, 0.006),
+(22, '2.38', 1, 0, 7, 0.005, 0),
+(23, '2.4', 5, 0, 59, 0.023, 0),
+(24, '2.43', 2, 1, 9, 0.009, 0.006),
+(25, '2.45', 1, 3, 15, 0.005, 0.018),
+(26, '2.48', 3, 2, 14, 0.014, 0.012),
+(27, '2.5', 2, 3, 98, 0.009, 0.018),
+(28, '2.52', 4, 5, 16, 0.019, 0.031),
+(29, '2.55', 6, 6, 26, 0.028, 0.037),
+(30, '2.57', 2, 7, 13, 0.009, 0.043),
+(31, '2.6', 4, 2, 79, 0.019, 0.012),
+(32, '2.62', 4, 3, 7, 0.019, 0.018),
+(33, '2.64', 1, 5, 16, 0.005, 0.031),
+(34, '2.67', 2, 5, 15, 0.009, 0.031),
+(35, '2.69', 0, 4, 6, 0, 0.025),
+(36, '2.71', 5, 5, 12, 0.023, 0.031),
+(37, '2.74', 5, 3, 9, 0.023, 0.018),
+(38, '2.76', 4, 13, 20, 0.019, 0.08),
+(39, '2.79', 4, 1, 12, 0.019, 0.006),
+(40, '2.81', 1, 4, 7, 0.005, 0.025),
+(41, '2.83', 10, 2, 24, 0.046, 0.012),
+(42, '2.86', 5, 8, 28, 0.023, 0.049),
+(43, '2.88', 5, 4, 18, 0.023, 0.025),
+(44, '2.9', 5, 5, 99, 0.023, 0.031),
+(45, '2.93', 5, 2, 15, 0.023, 0.012),
+(46, '2.95', 2, 6, 21, 0.009, 0.037),
+(47, '2.98', 8, 0, 22, 0.037, 0),
+(48, '3', 6, 7, 367, 0.028, 0.043),
+(49, '3.02', 7, 2, 21, 0.032, 0.012),
+(50, '3.05', 8, 2, 23, 0.037, 0.012),
+(51, '3.07', 5, 3, 15, 0.023, 0.018),
+(52, '3.1', 8, 2, 90, 0.037, 0.012),
+(53, '3.12', 2, 1, 3, 0.009, 0.006),
+(54, '3.14', 1, 2, 19, 0.005, 0.012),
+(55, '3.15', 0, 1, 5, 0, 0.006),
+(56, '3.17', 1, 2, 12, 0.005, 0.012),
+(57, '3.19', 7, 0, 11, 0.032, 0),
+(58, '3.21', 4, 1, 9, 0.019, 0.006),
+(59, '3.24', 6, 2, 9, 0.028, 0.012),
+(60, '3.26', 7, 1, 10, 0.032, 0.006),
+(61, '3.29', 3, 1, 9, 0.014, 0.006),
+(62, '3.31', 4, 0, 9, 0.019, 0),
+(63, '3.33', 7, 1, 13, 0.032, 0.006),
+(64, '3.36', 1, 0, 10, 0.005, 0),
+(65, '3.38', 2, 3, 13, 0.009, 0.018),
+(66, '3.4', 4, 0, 55, 0.019, 0),
+(67, '3.43', 2, 0, 10, 0.009, 0),
+(68, '3.45', 5, 0, 8, 0.023, 0),
+(69, '3.48', 2, 0, 10, 0.009, 0),
+(70, '3.5', 1, 3, 50, 0.005, 0.018),
+(71, '3.52', 4, 1, 15, 0.019, 0.006),
+(72, '3.55', 0, 1, 7, 0, 0.006),
+(73, '3.57', 2, 0, 9, 0.009, 0),
+(74, '3.6', 1, 1, 33, 0.005, 0.006),
+(75, '3.64', 2, 0, 3, 0.009, 0),
+(76, '3.71', 3, 0, 8, 0.014, 0),
+(77, '3.76', 1, 0, 1, 0.005, 0),
+(78, '3.79', 1, 0, 3, 0.005, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_ips2`
+--
+
+CREATE TABLE `tb_prob_ips2` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_ips2`
+--
+
+INSERT INTO `tb_prob_ips2` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, '0.5', 1, 0, 2, 0.005, 0),
+(2, '1.09', 0, 1, 2, 0, 0.006),
+(3, '1.43', 0, 1, 1, 0, 0.006),
+(4, '1.44', 0, 1, 2, 0, 0.006),
+(5, '1.55', 0, 1, 1, 0, 0.006),
+(6, '1.61', 0, 1, 2, 0, 0.006),
+(7, '1.68', 0, 2, 2, 0, 0.012),
+(8, '1.7', 0, 1, 8, 0, 0.006),
+(9, '1.75', 1, 0, 2, 0.005, 0),
+(10, '1.84', 0, 2, 3, 0, 0.012),
+(11, '1.86', 0, 1, 3, 0, 0.006),
+(12, '1.89', 1, 0, 2, 0.005, 0),
+(13, '1.91', 0, 1, 6, 0, 0.006),
+(14, '1.92', 0, 1, 1, 0, 0.006),
+(15, '1.93', 1, 0, 1, 0.005, 0),
+(16, '2', 1, 0, 379, 0.005, 0),
+(17, '2.03', 1, 1, 3, 0.005, 0.006),
+(18, '2.06', 0, 1, 1, 0, 0.006),
+(19, '2.08', 1, 3, 5, 0.005, 0.018),
+(20, '2.1', 0, 1, 37, 0, 0.006),
+(21, '2.11', 1, 0, 5, 0.005, 0),
+(22, '2.14', 1, 3, 13, 0.005, 0.018),
+(23, '2.16', 0, 1, 3, 0, 0.006),
+(24, '2.17', 0, 2, 7, 0, 0.012),
+(25, '2.18', 0, 1, 3, 0, 0.006),
+(26, '2.19', 0, 2, 4, 0, 0.012),
+(27, '2.2', 2, 1, 44, 0.009, 0.006),
+(28, '2.22', 0, 2, 2, 0, 0.012),
+(29, '2.24', 1, 0, 5, 0.005, 0),
+(30, '2.25', 0, 4, 7, 0, 0.025),
+(31, '2.27', 0, 1, 11, 0, 0.006),
+(32, '2.28', 0, 1, 1, 0, 0.006),
+(33, '2.3', 1, 2, 54, 0.005, 0.012),
+(34, '2.32', 1, 0, 8, 0.005, 0),
+(35, '2.33', 0, 1, 8, 0, 0.006),
+(36, '2.34', 1, 0, 2, 0.005, 0),
+(37, '2.35', 1, 0, 2, 0.005, 0),
+(38, '2.36', 0, 2, 15, 0, 0.012),
+(39, '2.38', 0, 2, 7, 0, 0.012),
+(40, '2.39', 1, 1, 6, 0.005, 0.006),
+(41, '2.4', 1, 0, 59, 0.005, 0),
+(42, '2.41', 2, 1, 7, 0.009, 0.006),
+(43, '2.42', 0, 2, 3, 0, 0.012),
+(44, '2.43', 2, 1, 9, 0.009, 0.006),
+(45, '2.44', 0, 1, 3, 0, 0.006),
+(46, '2.45', 1, 1, 15, 0.005, 0.006),
+(47, '2.48', 3, 1, 14, 0.014, 0.006),
+(48, '2.5', 4, 4, 98, 0.019, 0.025),
+(49, '2.52', 2, 0, 16, 0.009, 0),
+(50, '2.53', 2, 4, 6, 0.009, 0.025),
+(51, '2.55', 2, 4, 26, 0.009, 0.025),
+(52, '2.57', 2, 0, 13, 0.009, 0),
+(53, '2.58', 1, 4, 8, 0.005, 0.025),
+(54, '2.59', 3, 4, 15, 0.014, 0.025),
+(55, '2.6', 1, 0, 79, 0.005, 0),
+(56, '2.61', 1, 1, 4, 0.005, 0.006),
+(57, '2.64', 3, 1, 16, 0.014, 0.006),
+(58, '2.65', 0, 2, 4, 0, 0.012),
+(59, '2.66', 6, 1, 10, 0.028, 0.006),
+(60, '2.67', 0, 4, 15, 0, 0.025),
+(61, '2.68', 2, 2, 15, 0.009, 0.012),
+(62, '2.69', 0, 1, 6, 0, 0.006),
+(63, '2.7', 3, 4, 95, 0.014, 0.025),
+(64, '2.71', 0, 1, 12, 0, 0.006),
+(65, '2.73', 3, 1, 15, 0.014, 0.006),
+(66, '2.75', 8, 2, 17, 0.037, 0.012),
+(67, '2.77', 2, 1, 14, 0.009, 0.006),
+(68, '2.78', 3, 1, 6, 0.014, 0.006),
+(69, '2.8', 2, 3, 111, 0.009, 0.018),
+(70, '2.81', 1, 1, 7, 0.005, 0.006),
+(71, '2.82', 0, 4, 14, 0, 0.025),
+(72, '2.83', 4, 2, 24, 0.019, 0.012),
+(73, '2.84', 3, 0, 7, 0.014, 0),
+(74, '2.85', 3, 1, 8, 0.014, 0.006),
+(75, '2.86', 4, 3, 28, 0.019, 0.018),
+(76, '2.88', 3, 0, 18, 0.014, 0),
+(77, '2.89', 8, 2, 14, 0.037, 0.012),
+(78, '2.9', 3, 2, 99, 0.014, 0.012),
+(79, '2.91', 4, 2, 14, 0.019, 0.012),
+(80, '2.92', 1, 1, 5, 0.005, 0.006),
+(81, '2.94', 3, 0, 6, 0.014, 0),
+(82, '2.95', 3, 2, 21, 0.014, 0.012),
+(83, '2.96', 1, 0, 7, 0.005, 0),
+(84, '2.98', 5, 0, 22, 0.023, 0),
+(85, '3', 4, 4, 367, 0.019, 0.025),
+(86, '3.02', 4, 2, 21, 0.019, 0.012),
+(87, '3.03', 2, 2, 4, 0.009, 0.012),
+(88, '3.04', 2, 1, 8, 0.009, 0.006),
+(89, '3.05', 5, 2, 23, 0.023, 0.012),
+(90, '3.06', 4, 0, 7, 0.019, 0),
+(91, '3.07', 3, 0, 15, 0.014, 0),
+(92, '3.08', 3, 0, 7, 0.014, 0),
+(93, '3.09', 1, 3, 14, 0.005, 0.018),
+(94, '3.1', 3, 0, 90, 0.014, 0),
+(95, '3.11', 1, 3, 13, 0.005, 0.018),
+(96, '3.13', 3, 0, 8, 0.014, 0),
+(97, '3.14', 2, 1, 19, 0.009, 0.006),
+(98, '3.15', 1, 0, 5, 0.005, 0),
+(99, '3.16', 2, 1, 6, 0.009, 0.006),
+(100, '3.18', 3, 2, 9, 0.014, 0.012),
+(101, '3.19', 3, 0, 11, 0.014, 0),
+(102, '3.21', 1, 0, 9, 0.005, 0),
+(103, '3.23', 5, 2, 13, 0.023, 0.012),
+(104, '3.25', 2, 1, 19, 0.009, 0.006),
+(105, '3.27', 2, 2, 13, 0.009, 0.012),
+(106, '3.29', 1, 0, 9, 0.005, 0),
+(107, '3.3', 1, 3, 65, 0.005, 0.018),
+(108, '3.31', 1, 0, 9, 0.005, 0),
+(109, '3.32', 0, 3, 4, 0, 0.018),
+(110, '3.33', 2, 1, 13, 0.009, 0.006),
+(111, '3.36', 0, 1, 10, 0, 0.006),
+(112, '3.38', 3, 1, 13, 0.014, 0.006),
+(113, '3.39', 1, 1, 10, 0.005, 0.006),
+(114, '3.4', 2, 0, 55, 0.009, 0),
+(115, '3.41', 0, 3, 10, 0, 0.018),
+(116, '3.42', 1, 0, 7, 0.005, 0),
+(117, '3.43', 0, 1, 10, 0, 0.006),
+(118, '3.46', 2, 1, 5, 0.009, 0.006),
+(119, '3.48', 3, 0, 10, 0.014, 0),
+(120, '3.5', 2, 3, 50, 0.009, 0.018),
+(121, '3.52', 2, 0, 15, 0.009, 0),
+(122, '3.54', 1, 1, 6, 0.005, 0.006),
+(123, '3.55', 1, 0, 7, 0.005, 0),
+(124, '3.56', 1, 0, 3, 0.005, 0),
+(125, '3.58', 0, 1, 2, 0, 0.006),
+(126, '3.6', 2, 0, 33, 0.009, 0),
+(127, '3.61', 1, 0, 7, 0.005, 0),
+(128, '3.63', 2, 0, 8, 0.009, 0),
+(129, '3.68', 1, 0, 3, 0.005, 0),
+(130, '3.71', 2, 0, 8, 0.009, 0),
+(131, '3.73', 2, 0, 6, 0.009, 0),
+(132, '3.79', 1, 0, 3, 0.005, 0),
+(133, '3.81', 1, 0, 3, 0.005, 0),
+(134, '3.83', 1, 0, 6, 0.005, 0),
+(135, '3.96', 1, 0, 3, 0.005, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_ips3`
+--
+
+CREATE TABLE `tb_prob_ips3` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_ips3`
+--
+
+INSERT INTO `tb_prob_ips3` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, '0.16', 1, 0, 1, 0.005, 0),
+(2, '0.32', 0, 1, 2, 0, 0.006),
+(3, '0.53', 0, 1, 1, 0, 0.006),
+(4, '0.71', 0, 1, 1, 0, 0.006),
+(5, '0.82', 1, 0, 1, 0.005, 0),
+(6, '1.21', 0, 1, 1, 0, 0.006),
+(7, '1.45', 0, 1, 1, 0, 0.006),
+(8, '1.5', 0, 1, 6, 0, 0.006),
+(9, '1.57', 0, 1, 1, 0, 0.006),
+(10, '1.59', 0, 1, 3, 0, 0.006),
+(11, '1.74', 0, 1, 1, 0, 0.006),
+(12, '1.75', 0, 1, 2, 0, 0.006),
+(13, '1.77', 0, 1, 1, 0, 0.006),
+(14, '1.82', 1, 0, 1, 0.005, 0),
+(15, '1.84', 0, 1, 3, 0, 0.006),
+(16, '1.9', 0, 1, 16, 0, 0.006),
+(17, '1.95', 2, 1, 5, 0.009, 0.006),
+(18, '2', 0, 1, 379, 0, 0.006),
+(19, '2.02', 1, 2, 3, 0.005, 0.012),
+(20, '2.03', 0, 1, 3, 0, 0.006),
+(21, '2.05', 0, 1, 4, 0, 0.006),
+(22, '2.07', 2, 0, 4, 0.009, 0),
+(23, '2.09', 1, 1, 5, 0.005, 0.006),
+(24, '2.11', 3, 0, 5, 0.014, 0),
+(25, '2.14', 1, 2, 13, 0.005, 0.012),
+(26, '2.16', 1, 1, 3, 0.005, 0.006),
+(27, '2.18', 1, 0, 3, 0.005, 0),
+(28, '2.19', 1, 0, 4, 0.005, 0),
+(29, '2.2', 1, 2, 44, 0.005, 0.012),
+(30, '2.23', 3, 0, 4, 0.014, 0),
+(31, '2.24', 0, 1, 5, 0, 0.006),
+(32, '2.25', 2, 0, 7, 0.009, 0),
+(33, '2.27', 2, 1, 11, 0.009, 0.006),
+(34, '2.29', 0, 1, 7, 0, 0.006),
+(35, '2.3', 3, 3, 54, 0.014, 0.018),
+(36, '2.31', 0, 1, 4, 0, 0.006),
+(37, '2.32', 1, 1, 8, 0.005, 0.006),
+(38, '2.34', 1, 0, 2, 0.005, 0),
+(39, '2.36', 1, 3, 15, 0.005, 0.018),
+(40, '2.37', 1, 0, 2, 0.005, 0),
+(41, '2.38', 1, 0, 7, 0.005, 0),
+(42, '2.39', 4, 0, 6, 0.019, 0),
+(43, '2.41', 0, 1, 7, 0, 0.006),
+(44, '2.43', 1, 1, 9, 0.005, 0.006),
+(45, '2.44', 2, 0, 3, 0.009, 0),
+(46, '2.45', 2, 2, 15, 0.009, 0.012),
+(47, '2.48', 2, 2, 14, 0.009, 0.012),
+(48, '2.52', 3, 1, 16, 0.014, 0.006),
+(49, '2.54', 1, 2, 6, 0.005, 0.012),
+(50, '2.55', 4, 2, 26, 0.019, 0.012),
+(51, '2.57', 2, 1, 13, 0.009, 0.006),
+(52, '2.58', 0, 1, 8, 0, 0.006),
+(53, '2.59', 3, 2, 15, 0.014, 0.012),
+(54, '2.6', 1, 1, 79, 0.005, 0.006),
+(55, '2.61', 2, 0, 4, 0.009, 0),
+(56, '2.63', 0, 1, 3, 0, 0.006),
+(57, '2.64', 2, 3, 16, 0.009, 0.018),
+(58, '2.65', 0, 1, 4, 0, 0.006),
+(59, '2.66', 1, 2, 10, 0.005, 0.012),
+(60, '2.68', 1, 3, 15, 0.005, 0.018),
+(61, '2.69', 0, 1, 6, 0, 0.006),
+(62, '2.7', 3, 4, 95, 0.014, 0.025),
+(63, '2.73', 3, 1, 15, 0.014, 0.006),
+(64, '2.75', 1, 2, 17, 0.005, 0.012),
+(65, '2.76', 0, 1, 20, 0, 0.006),
+(66, '2.77', 2, 2, 14, 0.009, 0.012),
+(67, '2.79', 2, 0, 12, 0.009, 0),
+(68, '2.8', 2, 1, 111, 0.009, 0.006),
+(69, '2.82', 1, 2, 14, 0.005, 0.012),
+(70, '2.83', 0, 1, 24, 0, 0.006),
+(71, '2.84', 0, 4, 7, 0, 0.025),
+(72, '2.86', 1, 0, 28, 0.005, 0),
+(73, '2.88', 1, 2, 18, 0.005, 0.012),
+(74, '2.89', 1, 3, 14, 0.005, 0.018),
+(75, '2.9', 0, 2, 99, 0, 0.012),
+(76, '2.91', 0, 1, 14, 0, 0.006),
+(77, '2.92', 0, 1, 5, 0, 0.006),
+(78, '2.93', 3, 2, 15, 0.014, 0.012),
+(79, '2.94', 3, 0, 6, 0.014, 0),
+(80, '2.95', 3, 0, 21, 0.014, 0),
+(81, '2.96', 1, 1, 7, 0.005, 0.006),
+(82, '2.98', 1, 6, 22, 0.005, 0.037),
+(83, '3', 3, 4, 367, 0.014, 0.025),
+(84, '3.02', 5, 2, 21, 0.023, 0.012),
+(85, '3.04', 1, 1, 8, 0.005, 0.006),
+(86, '3.05', 0, 3, 23, 0, 0.018),
+(87, '3.06', 2, 1, 7, 0.009, 0.006),
+(88, '3.07', 0, 3, 15, 0, 0.018),
+(89, '3.08', 1, 0, 7, 0.005, 0),
+(90, '3.09', 1, 3, 14, 0.005, 0.018),
+(91, '3.1', 2, 0, 90, 0.009, 0),
+(92, '3.11', 4, 3, 13, 0.019, 0.018),
+(93, '3.13', 3, 1, 8, 0.014, 0.006),
+(94, '3.14', 1, 2, 19, 0.005, 0.012),
+(95, '3.16', 0, 3, 6, 0, 0.018),
+(96, '3.17', 4, 0, 12, 0.019, 0),
+(97, '3.18', 2, 0, 9, 0.009, 0),
+(98, '3.19', 0, 2, 11, 0, 0.012),
+(99, '3.2', 2, 5, 80, 0.009, 0.031),
+(100, '3.21', 2, 0, 9, 0.009, 0),
+(101, '3.23', 2, 1, 13, 0.009, 0.006),
+(102, '3.25', 9, 2, 19, 0.042, 0.012),
+(103, '3.27', 5, 0, 13, 0.023, 0),
+(104, '3.29', 2, 0, 9, 0.009, 0),
+(105, '3.3', 1, 1, 65, 0.005, 0.006),
+(106, '3.31', 4, 0, 9, 0.019, 0),
+(107, '3.32', 0, 1, 4, 0, 0.006),
+(108, '3.33', 1, 0, 13, 0.005, 0),
+(109, '3.34', 2, 1, 3, 0.009, 0.006),
+(110, '3.36', 0, 1, 10, 0, 0.006),
+(111, '3.38', 1, 0, 13, 0.005, 0),
+(112, '3.39', 3, 1, 10, 0.014, 0.006),
+(113, '3.4', 0, 2, 55, 0, 0.012),
+(114, '3.41', 2, 2, 10, 0.009, 0.012),
+(115, '3.42', 4, 0, 7, 0.019, 0),
+(116, '3.43', 2, 1, 10, 0.009, 0.006),
+(117, '3.44', 2, 2, 4, 0.009, 0.012),
+(118, '3.45', 4, 1, 8, 0.019, 0.006),
+(119, '3.48', 2, 2, 10, 0.009, 0.012),
+(120, '3.5', 5, 0, 50, 0.023, 0),
+(121, '3.52', 4, 1, 15, 0.019, 0.006),
+(122, '3.54', 1, 1, 6, 0.005, 0.006),
+(123, '3.55', 3, 2, 7, 0.014, 0.012),
+(124, '3.56', 2, 0, 3, 0.009, 0),
+(125, '3.57', 3, 0, 9, 0.014, 0),
+(126, '3.58', 0, 1, 2, 0, 0.006),
+(127, '3.59', 0, 1, 3, 0, 0.006),
+(128, '3.6', 3, 0, 33, 0.014, 0),
+(129, '3.61', 1, 1, 7, 0.005, 0.006),
+(130, '3.63', 2, 1, 8, 0.009, 0.006),
+(131, '3.64', 0, 1, 3, 0, 0.006),
+(132, '3.65', 1, 0, 2, 0.005, 0),
+(133, '3.66', 1, 0, 1, 0.005, 0),
+(134, '3.67', 2, 0, 3, 0.009, 0),
+(135, '3.68', 0, 1, 3, 0, 0.006),
+(136, '3.69', 4, 0, 4, 0.019, 0),
+(137, '3.7', 0, 1, 23, 0, 0.006),
+(138, '3.71', 1, 1, 8, 0.005, 0.006),
+(139, '3.73', 4, 0, 6, 0.019, 0),
+(140, '3.75', 1, 0, 1, 0.005, 0),
+(141, '3.77', 2, 0, 2, 0.009, 0),
+(142, '3.79', 1, 0, 3, 0.005, 0),
+(143, '3.81', 1, 1, 3, 0.005, 0.006),
+(144, '3.83', 1, 0, 6, 0.005, 0),
+(145, '3.92', 1, 0, 1, 0.005, 0),
+(146, '3.96', 2, 0, 3, 0.009, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_ips4`
+--
+
+CREATE TABLE `tb_prob_ips4` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_ips4`
+--
+
+INSERT INTO `tb_prob_ips4` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, '0', 0, 1, 280, 0, 0.006),
+(2, '0.18', 0, 1, 1, 0, 0.006),
+(3, '0.27', 0, 1, 1, 0, 0.006),
+(4, '0.32', 1, 0, 2, 0.005, 0),
+(5, '0.44', 1, 0, 1, 0.005, 0),
+(6, '0.45', 1, 0, 1, 0.005, 0),
+(7, '0.73', 0, 1, 1, 0, 0.006),
+(8, '0.83', 0, 1, 1, 0, 0.006),
+(9, '0.91', 0, 1, 1, 0, 0.006),
+(10, '0.95', 0, 1, 1, 0, 0.006),
+(11, '0.96', 0, 2, 2, 0, 0.012),
+(12, '1.05', 0, 1, 1, 0, 0.006),
+(13, '1.09', 0, 1, 2, 0, 0.006),
+(14, '1.28', 0, 1, 1, 0, 0.006),
+(15, '1.44', 0, 1, 2, 0, 0.006),
+(16, '1.59', 0, 2, 3, 0, 0.012),
+(17, '1.61', 0, 1, 2, 0, 0.006),
+(18, '1.67', 0, 1, 2, 0, 0.006),
+(19, '1.7', 0, 1, 8, 0, 0.006),
+(20, '1.76', 0, 1, 1, 0, 0.006),
+(21, '1.8', 1, 0, 11, 0.005, 0),
+(22, '1.86', 0, 2, 3, 0, 0.012),
+(23, '1.89', 0, 1, 2, 0, 0.006),
+(24, '1.91', 0, 5, 6, 0, 0.031),
+(25, '1.95', 0, 2, 5, 0, 0.012),
+(26, '1.98', 0, 1, 2, 0, 0.006),
+(27, '2', 0, 1, 379, 0, 0.006),
+(28, '2.04', 0, 1, 1, 0, 0.006),
+(29, '2.05', 0, 1, 4, 0, 0.006),
+(30, '2.08', 0, 1, 5, 0, 0.006),
+(31, '2.09', 2, 1, 5, 0.009, 0.006),
+(32, '2.11', 0, 1, 5, 0, 0.006),
+(33, '2.14', 2, 3, 13, 0.009, 0.018),
+(34, '2.17', 1, 2, 7, 0.005, 0.012),
+(35, '2.18', 0, 1, 3, 0, 0.006),
+(36, '2.23', 0, 1, 4, 0, 0.006),
+(37, '2.25', 0, 1, 7, 0, 0.006),
+(38, '2.27', 2, 5, 11, 0.009, 0.031),
+(39, '2.29', 1, 1, 7, 0.005, 0.006),
+(40, '2.32', 2, 3, 8, 0.009, 0.018),
+(41, '2.33', 0, 2, 8, 0, 0.012),
+(42, '2.35', 0, 1, 2, 0, 0.006),
+(43, '2.36', 2, 5, 15, 0.009, 0.031),
+(44, '2.37', 1, 0, 2, 0.005, 0),
+(45, '2.38', 1, 2, 7, 0.005, 0.012),
+(46, '2.41', 2, 1, 7, 0.009, 0.006),
+(47, '2.42', 0, 1, 3, 0, 0.006),
+(48, '2.43', 1, 0, 9, 0.005, 0),
+(49, '2.45', 2, 4, 15, 0.009, 0.025),
+(50, '2.46', 2, 2, 4, 0.009, 0.012),
+(51, '2.48', 1, 1, 14, 0.005, 0.006),
+(52, '2.5', 6, 4, 98, 0.028, 0.025),
+(53, '2.52', 0, 1, 16, 0, 0.006),
+(54, '2.54', 0, 3, 6, 0, 0.018),
+(55, '2.55', 2, 1, 26, 0.009, 0.006),
+(56, '2.57', 1, 0, 13, 0.005, 0),
+(57, '2.58', 0, 2, 8, 0, 0.012),
+(58, '2.59', 3, 1, 15, 0.014, 0.006),
+(59, '2.63', 0, 2, 3, 0, 0.012),
+(60, '2.64', 0, 1, 16, 0, 0.006),
+(61, '2.65', 0, 1, 4, 0, 0.006),
+(62, '2.67', 2, 2, 15, 0.009, 0.012),
+(63, '2.68', 5, 3, 15, 0.023, 0.018),
+(64, '2.71', 1, 0, 12, 0.005, 0),
+(65, '2.73', 3, 4, 15, 0.014, 0.025),
+(66, '2.74', 0, 1, 9, 0, 0.006),
+(67, '2.75', 2, 3, 17, 0.009, 0.018),
+(68, '2.76', 1, 1, 20, 0.005, 0.006),
+(69, '2.77', 5, 2, 14, 0.023, 0.012),
+(70, '2.78', 2, 0, 6, 0.009, 0),
+(71, '2.79', 1, 4, 12, 0.005, 0.025),
+(72, '2.8', 1, 1, 111, 0.005, 0.006),
+(73, '2.82', 4, 3, 14, 0.019, 0.018),
+(74, '2.83', 3, 2, 24, 0.014, 0.012),
+(75, '2.85', 2, 2, 8, 0.009, 0.012),
+(76, '2.86', 8, 2, 28, 0.037, 0.012),
+(77, '2.87', 1, 0, 1, 0.005, 0),
+(78, '2.88', 1, 2, 18, 0.005, 0.012),
+(79, '2.91', 6, 2, 14, 0.028, 0.012),
+(80, '2.92', 1, 1, 5, 0.005, 0.006),
+(81, '2.93', 2, 2, 15, 0.009, 0.012),
+(82, '2.95', 4, 1, 21, 0.019, 0.006),
+(83, '2.96', 3, 1, 7, 0.014, 0.006),
+(84, '2.98', 1, 1, 22, 0.005, 0.006),
+(85, '3', 9, 3, 367, 0.042, 0.018),
+(86, '3.04', 3, 0, 8, 0.014, 0),
+(87, '3.05', 3, 2, 23, 0.014, 0.012),
+(88, '3.07', 1, 0, 15, 0.005, 0),
+(89, '3.08', 1, 2, 7, 0.005, 0.012),
+(90, '3.09', 5, 1, 14, 0.023, 0.006),
+(91, '3.1', 0, 2, 90, 0, 0.012),
+(92, '3.11', 1, 1, 13, 0.005, 0.006),
+(93, '3.13', 2, 0, 8, 0.009, 0),
+(94, '3.14', 9, 2, 19, 0.042, 0.012),
+(95, '3.15', 2, 1, 5, 0.009, 0.006),
+(96, '3.17', 4, 2, 12, 0.019, 0.012),
+(97, '3.18', 2, 0, 9, 0.009, 0),
+(98, '3.2', 1, 1, 80, 0.005, 0.006),
+(99, '3.21', 1, 0, 9, 0.005, 0),
+(100, '3.22', 1, 0, 1, 0.005, 0),
+(101, '3.23', 3, 0, 13, 0.014, 0),
+(102, '3.24', 0, 1, 9, 0, 0.006),
+(103, '3.25', 5, 1, 19, 0.023, 0.006),
+(104, '3.26', 2, 0, 10, 0.009, 0),
+(105, '3.27', 3, 1, 13, 0.014, 0.006),
+(106, '3.28', 1, 1, 2, 0.005, 0.006),
+(107, '3.29', 1, 1, 9, 0.005, 0.006),
+(108, '3.3', 1, 1, 65, 0.005, 0.006),
+(109, '3.33', 1, 0, 13, 0.005, 0),
+(110, '3.35', 2, 0, 2, 0.009, 0),
+(111, '3.36', 4, 3, 10, 0.019, 0.018),
+(112, '3.37', 1, 0, 1, 0.005, 0),
+(113, '3.38', 2, 1, 13, 0.009, 0.006),
+(114, '3.39', 2, 2, 10, 0.009, 0.012),
+(115, '3.4', 1, 0, 55, 0.005, 0),
+(116, '3.41', 3, 0, 10, 0.014, 0),
+(117, '3.42', 2, 0, 7, 0.009, 0),
+(118, '3.43', 2, 2, 10, 0.009, 0.012),
+(119, '3.46', 0, 2, 5, 0, 0.012),
+(120, '3.48', 1, 0, 10, 0.005, 0),
+(121, '3.5', 1, 0, 50, 0.005, 0),
+(122, '3.52', 6, 0, 15, 0.028, 0),
+(123, '3.54', 2, 0, 6, 0.009, 0),
+(124, '3.57', 4, 0, 9, 0.019, 0),
+(125, '3.59', 2, 0, 3, 0.009, 0),
+(126, '3.61', 4, 0, 7, 0.019, 0),
+(127, '3.63', 2, 1, 8, 0.009, 0.006),
+(128, '3.65', 1, 0, 2, 0.005, 0),
+(129, '3.67', 1, 0, 3, 0.005, 0),
+(130, '3.68', 1, 0, 3, 0.005, 0),
+(131, '3.7', 1, 0, 23, 0.005, 0),
+(132, '3.71', 1, 0, 8, 0.005, 0),
+(133, '3.74', 1, 0, 1, 0.005, 0),
+(134, '3.78', 2, 0, 2, 0.009, 0),
+(135, '3.83', 4, 0, 6, 0.019, 0),
+(136, '3.85', 1, 0, 1, 0.005, 0),
+(137, '3.87', 0, 1, 1, 0, 0.006),
+(138, '3.89', 1, 0, 1, 0.005, 0),
+(139, '3.91', 2, 0, 2, 0.009, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_jenkel`
+--
+
+CREATE TABLE `tb_prob_jenkel` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_jenkel`
+--
+
+INSERT INTO `tb_prob_jenkel` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, 'LAKI - LAKI', 124, 110, 234, 0.574, 0.675),
+(2, 'PEREMPUAN', 92, 53, 145, 0.426, 0.325);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_status`
+--
+
+CREATE TABLE `tb_prob_status` (
+  `id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `count` int(11) NOT NULL,
+  `result` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_status`
+--
+
+INSERT INTO `tb_prob_status` (`id`, `status`, `count`, `result`) VALUES
+(1, 'TEPAT', 216, 0.57),
+(2, 'TERLAMBAT', 163, 0.43);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prob_usia`
+--
+
+CREATE TABLE `tb_prob_usia` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `countOnTime` int(11) NOT NULL,
+  `countLate` int(11) NOT NULL,
+  `countAll` int(11) NOT NULL,
+  `resultOnTime` double NOT NULL,
+  `resultLate` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_prob_usia`
+--
+
+INSERT INTO `tb_prob_usia` (`id`, `name`, `countOnTime`, `countLate`, `countAll`, `resultOnTime`, `resultLate`) VALUES
+(1, '22', 6, 0, 46, 0.028, 0),
+(2, '23', 52, 3, 104, 0.241, 0.018),
+(3, '24', 61, 24, 117, 0.282, 0.147),
+(4, '25', 36, 27, 115, 0.167, 0.166),
+(5, '26', 20, 25, 87, 0.093, 0.153),
+(6, '27', 18, 37, 112, 0.083, 0.227),
+(7, '28', 6, 13, 54, 0.028, 0.08),
+(8, '29', 3, 13, 67, 0.014, 0.08),
+(9, '30', 3, 9, 51, 0.014, 0.055),
+(10, '31', 1, 3, 59, 0.005, 0.018),
+(11, '32', 6, 6, 61, 0.028, 0.037),
+(12, '36', 1, 0, 55, 0.005, 0),
+(13, '40', 1, 0, 31, 0.005, 0),
+(14, '41', 1, 0, 43, 0.005, 0),
+(15, '42', 1, 0, 40, 0.005, 0),
+(16, '47', 0, 1, 31, 0, 0.006),
+(17, '50', 0, 2, 26, 0, 0.012);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `jenis_kelamin` varchar(50) NOT NULL,
+  `no_telp` varchar(30) NOT NULL,
+  `alamat` text NOT NULL,
+  `image` varchar(30) NOT NULL,
+  `status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `nama`, `jenis_kelamin`, `no_telp`, `alamat`, `image`, `status`) VALUES
+(1, 'Dev', '$2y$10$kvqnE220juUXE5KEt3U2.O6cRsZ53FpTveL3ccyg5HeBr2PDAwBH2', 'dev@gmail.com', 'Dev Admin', 'Laki Laki', '081123567876', 'Kuningan, Jakarta Selatan', '', 0),
+(2, 'TestAdmin', '$2y$10$5SUeJNU254Te4wjEojq2o.rVJa5o6qGIOhbT4LUDnX37NRXfD13mq', 'test@gmail.com', 'Test Admin', 'Laki Laki', '081333888999', 'Tebet, Jakarta Selatan', '', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tb_data_latih`
+--
+ALTER TABLE `tb_data_latih`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_data_prediksi`
+--
+ALTER TABLE `tb_data_prediksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_data_uji`
+--
+ALTER TABLE `tb_data_uji`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_alamat`
+--
+ALTER TABLE `tb_prob_alamat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_ips1`
+--
+ALTER TABLE `tb_prob_ips1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_ips2`
+--
+ALTER TABLE `tb_prob_ips2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_ips3`
+--
+ALTER TABLE `tb_prob_ips3`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_ips4`
+--
+ALTER TABLE `tb_prob_ips4`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_jenkel`
+--
+ALTER TABLE `tb_prob_jenkel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_status`
+--
+ALTER TABLE `tb_prob_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prob_usia`
+--
+ALTER TABLE `tb_prob_usia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tb_data_latih`
+--
+ALTER TABLE `tb_data_latih`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=380;
+
+--
+-- AUTO_INCREMENT for table `tb_data_prediksi`
+--
+ALTER TABLE `tb_data_prediksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `tb_data_uji`
+--
+ALTER TABLE `tb_data_uji`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_alamat`
+--
+ALTER TABLE `tb_prob_alamat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_ips1`
+--
+ALTER TABLE `tb_prob_ips1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_ips2`
+--
+ALTER TABLE `tb_prob_ips2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_ips3`
+--
+ALTER TABLE `tb_prob_ips3`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_ips4`
+--
+ALTER TABLE `tb_prob_ips4`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_jenkel`
+--
+ALTER TABLE `tb_prob_jenkel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_status`
+--
+ALTER TABLE `tb_prob_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_prob_usia`
+--
+ALTER TABLE `tb_prob_usia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
