@@ -46,6 +46,20 @@ class Data_probabilitas_model extends CI_Model
     return $this->db->get($tb)->result_array();
   }
 
+  // function mean_data($tb)
+  // {
+  //   $this->db->select_avg('name');
+  //   $query = $this->db->get($tb);
+  //   return $query->row()->name;
+
+  // }
+
+  function count_data($tb)
+  {
+    $this->db->from($tb);
+    return $this->db->count_all_results();
+  }
+
   function insert_tb_prob($tb, $data)
   {
     $this->db->insert($tb, $data);

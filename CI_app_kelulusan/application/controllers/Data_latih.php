@@ -175,9 +175,9 @@ class Data_latih extends CI_Controller
 
                 for ($row = 2; $row <= $highestRow; $row++) {
 
-                    $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                    $jenis_kelamin = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    $nim = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $nama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $jenis_kelamin = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $nim = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $usia = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
                     $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
                     $ips_1 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
@@ -192,12 +192,12 @@ class Data_latih extends CI_Controller
                         'jenis_kelamin' => strval($jenis_kelamin),
                         'nim' => strval($nim),
                         'usia' => $usia,
-                        'alamat' => strval($alamat),
+                        'alamat' => ucwords(strval($alamat)),
                         'ips_1' => $ips_1,
                         'ips_2' => $ips_2,
                         'ips_3' => $ips_3,
                         'ips_4' => $ips_4,
-                        'status' => strval($status),
+                        'status' => strtoupper(strval($status)),
                     );
 
                     // var_dump($data);

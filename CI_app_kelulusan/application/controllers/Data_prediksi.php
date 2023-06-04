@@ -9,6 +9,7 @@ class Data_prediksi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Data_prediksi_model');
+        $this->load->model('Data_latih_model');
         $this->load->library('form_validation');
     }
 
@@ -59,6 +60,7 @@ class Data_prediksi extends CI_Controller
 
         $data = array(
             'data_prediksi_data' => $data_prediksi,
+            'data_latih' => $this->Data_latih_model->get_all(),
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
@@ -175,9 +177,9 @@ class Data_prediksi extends CI_Controller
 
                 for ($row = 2; $row <= $highestRow; $row++) {
 
-                    $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                    $jenis_kelamin = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    $nim = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $nama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $jenis_kelamin = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $nim = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $usia = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
                     $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
                     $ips_1 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
@@ -186,7 +188,7 @@ class Data_prediksi extends CI_Controller
                     $ips_4 = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
                     // $status = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
 
-                    $clasification = $this->naves_bayes->clasification($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
+                    $clasification = $this->naves_bayes->clasification2(strval($jenis_kelamin), intval($usia), ucwords($alamat), doubleval($ips_1), doubleval($ips_2), doubleval($ips_3), doubleval($ips_4));
 
                     $data[] = array(
                         'nama' => strval($nama),

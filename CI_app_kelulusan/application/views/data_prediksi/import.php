@@ -53,6 +53,9 @@
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary me-2">Import</button>
+                            <a href="<?= base_url('guide/format data pada tabel.pdf') ?>" target="_blank" class="btn btn-success">
+                                Format Excell
+                            </a>
                             <a href="<?= base_url('data_prediksi') ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

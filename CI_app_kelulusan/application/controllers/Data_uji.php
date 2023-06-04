@@ -32,10 +32,6 @@ class Data_uji extends CI_Controller
         $inCorrect = 0;
         $totalDataUji = 0;
 
-
-
-
-
         $dataResult = [];
 
         foreach ($resultFilter as $key => $data_uji) {
@@ -47,7 +43,7 @@ class Data_uji extends CI_Controller
             $ips_3 = $data_uji->ips_3;
             $ips_4 = $data_uji->ips_4;
 
-            $clasification = $this->naves_bayes->clasification($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
+            $clasification = $this->naves_bayes->clasification2($jenis_kelamin, $usia, $alamat, $ips_1, $ips_2, $ips_3, $ips_4);
 
             $dataResult[$key] = $clasification;
             // if ($data_uji->result == $data_uji->status) {
@@ -56,7 +52,7 @@ class Data_uji extends CI_Controller
             //     $inCorrect = $inCorrect + 1;
             // }
             $totalDataUji = $totalDataUji + 1;
-            if ($clasification == $data_uji->status) {
+            if ($clasification == strtoupper($data_uji->status)) {
                 $correct = $correct + 1;
             } else {
                 $inCorrect = $inCorrect + 1;
@@ -80,25 +76,39 @@ class Data_uji extends CI_Controller
 
         $probAlamat = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_alamat');
 
-        $probUsia = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_usia');
+        // $probUsia = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_usia');
 
-        $newPropUsia = $this->naves_bayes->new_data_prob_usia($probUsia);
+        // $newPropUsia = $this->naves_bayes->new_data_prob_usia($probUsia);
 
-        $probIps1 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips1');
+        $prob_usia = [];
+        $prob_ips1 = [];
+        $prob_ips2 = [];
+        $prob_ips3 = [];
+        $prob_ips4 = [];
 
-        $newProbIps1 = $this->naves_bayes->new_data_prob_ips($probIps1);
+        if (!empty($probStatus)) {
+            $mean_usia = $this->naves_bayes->mean_data('usia');
+            $std_usia = $this->naves_bayes->standard_deviasi($mean_usia);
+            $prob_usia = ['mean_data' => $mean_usia, 'standard_deviasi' => $std_usia];
 
-        $probIps2 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips2');
+            $mean_ips1 = $this->naves_bayes->mean_data('ips_1');
+            $std_ips1 = $this->naves_bayes->standard_deviasi($mean_ips1);
+            $prob_ips1 = ['mean_data' => $mean_ips1, 'standard_deviasi' => $std_ips1];
 
-        $newProbIps2 = $this->naves_bayes->new_data_prob_ips($probIps2);
+            $mean_ips2 = $this->naves_bayes->mean_data('ips_2');
+            $std_ips2 = $this->naves_bayes->standard_deviasi($mean_ips2);
+            $prob_ips2 = ['mean_data' => $mean_ips2, 'standard_deviasi' => $std_ips2];
 
-        $probIps3 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips3');
+            $mean_ips3 = $this->naves_bayes->mean_data('ips_3');
+            $std_ips3 = $this->naves_bayes->standard_deviasi($mean_ips3);
+            $prob_ips3 = ['mean_data' => $mean_ips3, 'standard_deviasi' => $std_ips3];
 
-        $newProbIps3 = $this->naves_bayes->new_data_prob_ips($probIps3);
+            $mean_ips4 = $this->naves_bayes->mean_data('ips_4');
+            $std_ips4 = $this->naves_bayes->standard_deviasi($mean_ips4);
+            $prob_ips4 = ['mean_data' => $mean_ips4, 'standard_deviasi' => $std_ips4];
+        }
 
-        $probIps4 = $this->Data_probabilitas_model->get_all_tb_prob('tb_prob_ips4');
 
-        $newProbIps4 = $this->naves_bayes->new_data_prob_ips($probIps4);
 
         $data = array(
             'start' => $start,
@@ -110,11 +120,11 @@ class Data_uji extends CI_Controller
             'probJenkel' => $probJenkel,
             'probAlamat' => $probAlamat,
             'data_latih' => $data_latih,
-            'probUsia' => $newPropUsia,
-            'probIps1' => $newProbIps1,
-            'probIps2' => $newProbIps2,
-            'probIps3' => $newProbIps3,
-            'probIps4' => $newProbIps4,
+            'probUsia' => $prob_usia,
+            'probIps1' => $prob_ips1,
+            'probIps2' => $prob_ips2,
+            'probIps3' => $prob_ips3,
+            'probIps4' => $prob_ips4,
             'dataAccuracy' => round($dataAccuracy, 0),
             'totalDataUji' => $totalDataUji,
             'filterData' => $filterData,

@@ -256,10 +256,10 @@
     <section class="content">
         <div class="container-fluid">
             <h5 class="mt-4 mb-3 text-center">Propabilitas <code>Status</code> dari Data Uji</h5>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center reverse">
                 <?php foreach ($probStatus as $key => $value) : ?>
                     <div class="col-md-3">
-                        <?php if ($value['status'] == 'TEPAT') : ?>
+                        <?php if (strtoupper($value['status']) == 'TEPAT') : ?>
                             <div class="info-box bg-success">
                                 <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
 
@@ -487,19 +487,10 @@
                         <!-- /.card-header -->
                         <div class="card-body table-responsive" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Tepat</th>
-                                    <th>Peluang Lulus</th>
-                                </tr>
-                                <?php
-                                $cat1Ontime = 0;
-                                $probOntimeUsia = 0;
-                                foreach ($probUsia as $key => $value) : ?>
+                                <?php foreach ($probUsia as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countOnTime'] ?></td>
-                                        <td><?= $value['resultOnTime'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probUsia[$key]['onTime'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -526,16 +517,10 @@
                         <!-- /.card-header -->
                         <div class="card-body" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Terlambat</th>
-                                    <th>Peluang Terlambat</th>
-                                </tr>
                                 <?php foreach ($probUsia as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countLate'] ?></td>
-                                        <td><?= $value['resultLate'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probUsia[$key]['late'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -571,16 +556,10 @@
                         <!-- /.card-header -->
                         <div class="card-body table-responsive" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Tepat</th>
-                                    <th>Peluang Lulus</th>
-                                </tr>
                                 <?php foreach ($probIps1 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countOnTime'] ?></td>
-                                        <td><?= $value['resultOnTime'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps1[$key]['onTime'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -607,16 +586,10 @@
                         <!-- /.card-header -->
                         <div class="card-body" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Terlambat</th>
-                                    <th>Peluang Terlambat</th>
-                                </tr>
                                 <?php foreach ($probIps1 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countLate'] ?></td>
-                                        <td><?= $value['resultLate'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps1[$key]['late'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -652,16 +625,10 @@
                         <!-- /.card-header -->
                         <div class="card-body table-responsive" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Tepat</th>
-                                    <th>Peluang Lulus</th>
-                                </tr>
                                 <?php foreach ($probIps2 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countOnTime'] ?></td>
-                                        <td><?= $value['resultOnTime'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps2[$key]['onTime'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -688,16 +655,10 @@
                         <!-- /.card-header -->
                         <div class="card-body" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Terlambat</th>
-                                    <th>Peluang Terlambat</th>
-                                </tr>
                                 <?php foreach ($probIps2 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countLate'] ?></td>
-                                        <td><?= $value['resultLate'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps2[$key]['late'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -712,8 +673,8 @@
 <?php endif ?>
 
 <?php if (!empty($probStatus)) : ?>
-    <sect class="content">
-        <div class=" px-0con-mdtainer-fluid px-5">
+    <section class="content">
+        <div class="container-fluid px-auto px-md-5">
             <h5 class="mt-4 mb-2">Propabilitas <code>IPS 3</code> dari Data Uji</h5>
             <div class="row">
                 <div class="col-md-6">
@@ -731,18 +692,12 @@
                             <!-- /.card-tools -->
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body" style="display: block;">
+                        <div class="card-body table-responsive" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Tepat</th>
-                                    <th>Peluang Lulus</th>
-                                </tr>
                                 <?php foreach ($probIps3 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countOnTime'] ?></td>
-                                        <td><?= $value['resultOnTime'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps3[$key]['onTime'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -769,16 +724,10 @@
                         <!-- /.card-header -->
                         <div class="card-body" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Terlambat</th>
-                                    <th>Peluang Terlambat</th>
-                                </tr>
                                 <?php foreach ($probIps3 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countLate'] ?></td>
-                                        <td><?= $value['resultLate'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps3[$key]['late'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -789,7 +738,7 @@
                 </div>
             </div>
         </div>
-    </sect table-responsiveion>
+    </section>
 <?php endif ?>
 
 <?php if (!empty($probStatus)) : ?>
@@ -814,16 +763,10 @@
                         <!-- /.card-header -->
                         <div class="card-body table-responsive" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Tepat</th>
-                                    <th>Peluang Lulus</th>
-                                </tr>
                                 <?php foreach ($probIps4 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countOnTime'] ?></td>
-                                        <td><?= $value['resultOnTime'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps4[$key]['onTime'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -850,16 +793,10 @@
                         <!-- /.card-header -->
                         <div class="card-body" style="display: block;">
                             <table class="table table-bordered" style="margin-bottom: 10px">
-                                <tr>
-                                    <th></th>
-                                    <th>Terlambat</th>
-                                    <th>Peluang Terlambat</th>
-                                </tr>
                                 <?php foreach ($probIps4 as $key => $value) : ?>
                                     <tr class="text-right">
-                                        <th><?= $value['name'] ?></th>
-                                        <td><?= $value['countLate'] ?></td>
-                                        <td><?= $value['resultLate'] ?></td>
+                                        <th class="text-left"><?= str_replace('_', ' ', ucwords($key)) ?></th>
+                                        <td><?= $probIps4[$key]['late'] ?></td>
                                     </tr>
                                 <?php endforeach ?>
 
@@ -872,6 +809,7 @@
         </div>
     </section>
 <?php endif ?>
+
 
 
 
@@ -906,6 +844,10 @@
         color: #fff;
         font-size: 60px;
     } */
+
+    .row.reverse {
+        flex-direction: row-reverse;
+    }
 
     .vPaginations nav ul {
         display: flex;

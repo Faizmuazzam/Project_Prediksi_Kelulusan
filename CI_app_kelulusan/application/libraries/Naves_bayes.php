@@ -173,6 +173,154 @@ class Naves_bayes
     return $result;
   }
 
+  public function Clasification2($jenkel = NULL, $usia = NULL, $alamat = NULL, $ips_1 = NULL, $ips_2 = NULL, $ips_3 = NULL, $ips_4 = NULL)
+  {
+
+    $data_status = $this->getDataStatus();
+
+    // $data_jenkel = $this->getPropabilitas('jenis_kelamin');
+    $data_jenkel = $this->CI->Data_probabilitas_model->get_all_tb_prob('tb_prob_jenkel');
+
+
+    foreach ($data_jenkel as $key => $value) {
+      if ($value['name'] == $jenkel) {
+        $jenkelOnTime = $value['resultOnTime'];
+        $jenkelLate = $value['resultLate'];
+      }
+    }
+
+    $mean_usia = $this->mean_data('ips_1');
+    $std_usia = $this->standard_deviasi($mean_usia);
+    $prob_usia = $this->prob_num($ips_1, $mean_usia, $std_usia);
+
+    $data_alamat = $this->CI->Data_probabilitas_model->get_all_tb_prob('tb_prob_alamat');
+
+    foreach ($data_alamat as $key => $value) {
+      if ($value['name'] == $alamat) {
+        $alamatOnTime = $value['resultOnTime'];
+        $alamatLate = $value['resultLate'];
+      }
+    }
+
+
+
+    $mean_ips1 = $this->mean_data('ips_1');
+    $std_ips1 = $this->standard_deviasi($mean_ips1);
+    $prob_ips1 = $this->prob_num($ips_1, $mean_ips1, $std_ips1);
+
+    $mean_ips2 = $this->mean_data('ips_2');
+    $std_ips2 = $this->standard_deviasi($mean_ips2);
+    $prob_ips2 = $this->prob_num($ips_2, $mean_ips2, $std_ips2);
+
+    $mean_ips3 = $this->mean_data('ips_3');
+    $std_ips3 = $this->standard_deviasi($mean_ips3);
+    $prob_ips3 = $this->prob_num($ips_3, $mean_ips3, $std_ips3);
+
+    $mean_ips4 = $this->mean_data('ips_4');
+    $std_ips4 = $this->standard_deviasi($mean_ips4);
+    $prob_ips4 = $this->prob_num($ips_4, $mean_ips4, $std_ips4);
+
+
+    $onTime = $data_status[0]['result'];
+    $late = $data_status[1]['result'];
+
+    $countOnTime = $jenkelOnTime * $prob_usia['onTime'] * $alamatOnTime * $prob_ips1['onTime'] * $prob_ips2['onTime'] * $prob_ips3['onTime'] * $prob_ips4['onTime'];
+    $classOntime = $onTime * $countOnTime;
+
+    $countLate = $jenkelLate * $prob_usia['late'] * $alamatLate * $prob_ips1['late'] * $prob_ips2['late'] * $prob_ips3['late'] * $prob_ips4['late'];
+    $classLate = $late * $countLate;
+
+    $result = ($classOntime > $classLate) ? 'TEPAT' : 'TERLAMBAT';
+
+    // var_dump($result);
+    return $result;
+  }
+
+  function mean_data($field)
+  {
+    $getData = $this->CI->Data_latih_model->get_all();
+    $data_status = $this->getDataStatus();
+
+    $v_data_onTime = 0;
+
+    $n_data_onTime = $data_status[1]['count'];
+
+    $v_data_late = 0;
+
+    $n_data_late = $data_status[0]['count'];
+
+    foreach ($getData as $key => $value) {
+      if ($value->status == 'TEPAT') {
+        $v_data_onTime = $v_data_onTime + $value->$field;
+      } else {
+        $v_data_late = $v_data_late + $value->$field;
+      }
+    }
+
+    $mean_onTime = $v_data_onTime / $n_data_onTime;
+    $mean_late = $v_data_late / $n_data_late;
+
+
+
+    $mean_data['onTime'] = round($mean_onTime, 2);
+    $mean_data['late'] = round($mean_late, 2);
+
+    return $mean_data;
+  }
+
+  function standard_deviasi($mean_data)
+  {
+    $data_status = $this->getDataStatus();
+    $getData = $this->CI->Data_latih_model->get_all();
+
+    $std_x_onTime = 0;
+    $std_y_onTime = $data_status[1]['count'] - 1;
+
+    $std_x_late = 0;
+    $std_y_late = $data_status[0]['count'] - 1;
+
+    foreach ($getData as $key => $value) {
+      if ($value->status == 'TEPAT') {
+        $std_x_onTime = $std_x_onTime + pow(($value->ips_1 -  $mean_data['onTime']), 2);
+      } else {
+        $std_x_late = $std_x_onTime + pow(($value->ips_1 -  $mean_data['onTime']), 2);
+      }
+    }
+
+    $std_onTime = sqrt($std_x_onTime / $std_y_onTime);
+    $std_late = sqrt($std_x_late / $std_y_late);
+
+    $std_data['onTime'] = round($std_onTime, 2);
+    $std_data['late'] = round($std_late, 2);
+
+    return $std_data;
+  }
+
+  function prob_num($val, $mean_data, $std_data)
+  {
+
+    $p_x_onTime = - (pow(($val - $mean_data['onTime']), 2)) / (pow((2 * $std_data['onTime']), 2));
+
+    $p_exp_ontime = pow(2.718, $p_x_onTime);
+
+    $p_y_ontime = 1 / ((sqrt(2 * pi())) * $std_data['onTime']);
+
+    $prob_onTime = $p_y_ontime * $p_exp_ontime;
+
+    $p_x_late = - (pow(($val - $mean_data['late']), 2)) / (pow((2 * $std_data['late']), 2));
+
+    $p_exp_late = pow(2.718, $p_x_late);
+
+    $p_y_late = 1 / ((sqrt(2 * pi())) * $std_data['late']);
+
+    $prob_late = $p_y_late * $p_exp_late;
+
+    $data_prob['onTime'] = $prob_onTime;
+    $data_prob['late'] = $prob_late;
+
+    return $data_prob;
+  }
+
   public function Percentage_data($data, $allData)
   {
     # code...

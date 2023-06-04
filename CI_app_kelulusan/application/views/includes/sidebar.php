@@ -53,14 +53,7 @@
           </li>
 
           <li class="nav-header">Data Master</li>
-          <li class="nav-item">
-            <a href="<?= base_url('users/update/' .  $this->session->userdata('id_user')) ?>" class="nav-link <?= ($this->uri->uri_string() == 'users') ? 'active' : '' ?>">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Profile
-              </p>
-            </a>
-          </li>
+         
 
           <li class="nav-item">
             <a href="<?= base_url('/data_latih') ?>" class="nav-link <?= ($this->uri->uri_string() == 'data_latih') ? 'active' : '' ?>">
@@ -71,6 +64,16 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="<?= base_url('users/update/' .  $this->session->userdata('id_user')) ?>" class="nav-link <?= ($this->uri->uri_string() == 'users') ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Profile
+              </p>
+            </a>
+          </li>
+          
           <li class="nav-header">Auth</li>
           <li class="nav-item">
             <a href="<?= base_url('/auth/logout') ?>" class="nav-link">

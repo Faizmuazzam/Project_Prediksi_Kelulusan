@@ -8,7 +8,7 @@ class Data_latih_model extends CI_Model
 
     public $table = 'tb_data_latih';
     public $id = 'id';
-    public $order = 'DESC';
+    public $order = 'ASC';
 
     function __construct()
     {
@@ -79,6 +79,22 @@ class Data_latih_model extends CI_Model
         $this->db->where($field, $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
+    }
+
+    function get_sub_data_prob($field, $status)
+    {
+        $this->db->where('status', $status);
+        // $this->db->where($field, $q);
+        return $this->db->get($this->table)->result();
+    }
+
+    function total_sub_data_prob($field, $status)
+    {
+        $this->db->where('status', $status);
+        // $this->db->where($field, $q);
+        $this->db->get($this->table);
+        return $this->db->count_all_results();
+
     }
 
     // function total_data_prob_ips($field, $status, $q = NULL)
